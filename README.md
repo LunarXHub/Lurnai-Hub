@@ -42,7 +42,7 @@
       <p>👑 Owner</p>
     </td>
     <td align="center" width="200">
-      <img src="https://github.com/identicons/Mizuuu.png" width="100" height="100" alt="Mizuuu" style="border-radius: 50%"><br>
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/standard%20(1).gif" width="100" height="100" alt="Mizuuu" style="border-radius: 50%"><br>
       <h3>Mizuuu</h3>
       <p>🛡️ Discord Manager</p>
     </td>
