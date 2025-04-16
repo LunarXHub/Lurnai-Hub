@@ -3,7 +3,7 @@
   
   # ✨ Lurnai Hub ✨
   
-  <p><em>Lurnai Hub, Let Break Games!</em></p>
+  <p><em>Lurnai Hub, Let's Break Games!</em></p>
   
   <p>
     <a href="https://discord.gg/Lurnai"><img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Server"/></a>
@@ -37,7 +37,7 @@
 <table align="center">
   <tr>
     <td align="center" width="200">
-      <img src="https://github.com/identicons/HVX-Havoc.png" width="100" height="100" alt="Havoc" style="border-radius: 50%"><br>
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/standard.gif" width="100" height="100" alt="Havoc" style="border-radius: 50%"><br>
       <h3>Havoc</h3>
       <p>👑 Owner</p>
     </td>
@@ -50,13 +50,29 @@
 </table>
 
 ### Close Friends & Contributors
+
 <table align="center">
   <tr>
-    <td align="center"><b>Mizuuu</b></td>
-    <td align="center"><b>Sherya</b></td>
-    <td align="center"><b>Ducks1</b></td>
-    <td align="center"><b>6wk</b></td>
-    <td align="center"><b>NeX</b></td>
+    <td align="center" width="120">
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/standard%20(1).gif" width="60" height="60" alt="Mizuuu" style="border-radius: 50%"><br>
+      <b>Mizuuu</b>
+    </td>
+    <td align="center" width="120">
+      <img src="https://avatars.githubusercontent.com/u/1234567?v=4" width="60" height="60" alt="Sherya" style="border-radius: 50%"><br>
+      <b>Sherya</b>
+    </td>
+    <td align="center" width="120">
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/standard%20(2).gif" width="60" height="60" alt="Ducks1" style="border-radius: 50%"><br>
+      <b>Ducks</b>
+    </td>
+    <td align="center" width="120">
+      <img src="https://www.instagram.com/cutecatworld.in/p/C7ccUprtlr7/" width="60" height="60" alt="6wk" style="border-radius: 50%"><br>
+      <b>1_6wk</b>
+    </td>
+    <td align="center" width="120">
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/standard%20(1).gif" width="60" height="60" alt="NeX" style="border-radius: 50%"><br>
+      <b>NeX</b>
+    </td>
   </tr>
 </table>
 
