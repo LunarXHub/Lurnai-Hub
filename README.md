@@ -1,7 +1,7 @@
 # 🌟 Lurnai Hub 🌟
 
 <div align="center">
-  <img src="https://via.placeholder.com/150?text=Lurnai+Hub" alt="Lurnai Hub Logo" width="150px"/>
+  <img src="file:///C:/Users/CABALLERO32488/Pictures/Capture.PNG" alt="Lurnai Hub Logo" width="150px"/>
   <br>
   <em>Your premier source for high-quality Roblox game scripts!</em>
   <br><br>
