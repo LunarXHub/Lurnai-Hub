@@ -22,7 +22,7 @@
   <table>
     <tr>
       <td align="center" width="400" style="background-color: #1a1a2e; border-radius: 10px; padding: 20px;">
-        <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/muscle-legends.png" width="500" height="300" style="border-radius: 20px;" onerror="this.src='https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/muscle-legends.png'"/>
+        <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/muscle-legends.png" width="80" height="80" style="border-radius: 10px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/80x80?text=Muscle+Legends'"/>
         <h3>💪 Muscle Legends</h3>
         <p><strong>Status:</strong> <span style="color: #4CAF50;">✅ AVAILABLE</span></p>
         <ul align="left">
@@ -31,11 +31,11 @@
           <li>Teleport & Visual Customization</li>
         </ul>
         <a href="https://discord.gg/Lurnai">
-          <img src="https://github.com/HVX-Havoc/Images/blob/main/muscle-legends.png" alt="Get Script"/>
+          <img src="https://github.com/HVX-Havoc/Images/blob/main/muscle-legends.png" alt="Get Script" style="max-width: 100%; height: auto;"/>
         </a>
       </td>
       <td align="center" width="400" style="background-color: #1a1a2e; border-radius: 10px; padding: 20px;">
-        <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/blox-fruits.png" width="100" height="100" style="border-radius: 10px;" onerror="this.src='https://via.placeholder.com/100x100?text=Blox+Fruits'"/>
+        <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/blox-fruits.png" width="80" height="80" style="border-radius: 10px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/80x80?text=Blox+Fruits'"/>
         <h3>🏴‍☠️ Blox Fruits</h3>
         <p><strong>Status:</strong> <span style="color: #FFC107;">⏳ COMING SOON</span></p>
         <ul align="left">
@@ -44,7 +44,7 @@
           <li>PvP Enhancements & ESP Features</li>
         </ul>
         <a href="https://discord.gg/Lurnai">
-          <img src="https://github.com/HVX-Havoc/Images/blob/main/noFilter.webp" alt="Get Notified"/>
+          <img src="https://github.com/HVX-Havoc/Images/blob/main/noFilter.webp" alt="Get Notified" style="max-width: 100%; height: auto;"/>
         </a>
       </td>
     </tr>
@@ -54,6 +54,7 @@
     <img src="https://img.shields.io/badge/View_All_Scripts-5865F2?style=for-the-badge&logo=gamepad&logoColor=white" alt="View All Scripts"/>
   </a>
 </div>
+
 
 
 ## 🚀 Premium Features
