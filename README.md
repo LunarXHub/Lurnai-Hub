@@ -31,7 +31,7 @@
           <li>Teleport & Visual Customization</li>
         </ul>
         <a href="https://discord.gg/Lurnai">
-          <img src="https://img.shields.io/badge/GET_SCRIPT-4CAF50?style=for-the-badge&logo=github&logoColor=white" alt="Get Script"/>
+          <img src="https://github.com/HVX-Havoc/Images/blob/main/muscle-legends.png" alt="Get Script"/>
         </a>
       </td>
       <td align="center" width="400" style="background-color: #1a1a2e; border-radius: 10px; padding: 20px;">
@@ -44,7 +44,7 @@
           <li>PvP Enhancements & ESP Features</li>
         </ul>
         <a href="https://discord.gg/Lurnai">
-          <img src="https://img.shields.io/badge/GET_NOTIFIED-FFC107?style=for-the-badge&logo=discord&logoColor=white" alt="Get Notified"/>
+          <img src="https://github.com/HVX-Havoc/Images/blob/main/noFilter.webp" alt="Get Notified"/>
         </a>
       </td>
     </tr>
