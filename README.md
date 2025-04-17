@@ -22,7 +22,7 @@
   <table>
     <tr>
       <td align="center" width="400" style="background-color: #1a1a2e; border-radius: 10px; padding: 20px;">
-        <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/muscle-legends.png" width="100" height="100" style="border-radius: 10px;" onerror="this.src='https://via.placeholder.com/100x100?text=Muscle+Legends'"/>
+        <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/muscle-legends.png" width="200" height="200" style="border-radius: 20px;" onerror="this.src='https://via.placeholder.com/100x100?text=Muscle+Legends'"/>
         <h3>💪 Muscle Legends</h3>
         <p><strong>Status:</strong> <span style="color: #4CAF50;">✅ AVAILABLE</span></p>
         <ul align="left">
