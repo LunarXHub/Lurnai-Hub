@@ -14,9 +14,7 @@
   </div>
 </div>
 
-<div align="center">
-  <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/divider.png" alt="divider" width="100%"/>
-</div>
+
 
 ## 🎮 Premium Game Scripts
 
@@ -57,9 +55,6 @@
   </a>
 </div>
 
-<div align="center">
-  <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/divider.png" alt="divider" width="100%"/>
-</div>
 
 ## 🚀 Premium Features
 
@@ -96,9 +91,6 @@
   </table>
 </div>
 
-<div align="center">
-  <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/divider.png" alt="divider" width="100%"/>
-</div>
 
 ## 👥 Our Team
 
@@ -162,10 +154,6 @@
   </table>
 </div>
 
-<div align="center">
-  <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/divider.png" alt="divider" width="100%"/>
-</div>
-
 ## 📱 Join Our Community
 
 <div align="center">
@@ -200,10 +188,6 @@
   </table>
 </div>
 
-<div align="center">
-  <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/divider.png" alt="divider" width="100%"/>
-</div>
-
 ## ⚠️ Disclaimer
 
 <div align="center">
@@ -214,10 +198,6 @@
       </td>
     </tr>
   </table>
-</div>
-
-<div align="center">
-  <img src="https://github.com/HVX-Havoc/Lurnai-Hub/blob/main/Github/divider.png" alt="divider" width="100%"/>
 </div>
 
 <div align="center">
