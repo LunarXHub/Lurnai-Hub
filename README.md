@@ -22,7 +22,7 @@
   <table>
     <tr>
       <td align="center" width="400" style="background-color: #1a1a2e; border-radius: 10px; padding: 20px;">
-        <img src="https://tr.rbxcdn.com/e8e2c741f8d7c2b76f8e502f4c116a9e/150/150/Image/Png" width="80" height="80" style="border-radius: 10px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/80x80?text=Muscle+Legends'"/>
+        <img src="https://github.com/HVX-Havoc/Images/blob/main/Muscle%20Legendsss.PNG" width="80" height="80" style="border-radius: 10px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/80x80?text=Muscle+Legends'"/>
         <h3>💪 Muscle Legends</h3>
         <p><strong>Status:</strong> <span style="color: #4CAF50;">✅ AVAILABLE</span></p>
         <ul align="left">
@@ -35,7 +35,7 @@
         </a>
       </td>
       <td align="center" width="400" style="background-color: #1a1a2e; border-radius: 10px; padding: 20px;">
-        <img src="https://tr.rbxcdn.com/5b26d20e6ba46a5d7b6ada5723542152/150/150/Image/Png" width="80" height="80" style="border-radius: 10px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/80x80?text=Blox+Fruits'"/>
+        <img src="https://github.com/HVX-Havoc/Images/blob/main/Blox%20Fruitss.PNG" width="80" height="80" style="border-radius: 10px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/80x80?text=Blox+Fruits'"/>
         <h3>🏴‍☠️ Blox Fruits</h3>
         <p><strong>Status:</strong> <span style="color: #FFC107;">⏳ COMING SOON</span></p>
         <ul align="left">
