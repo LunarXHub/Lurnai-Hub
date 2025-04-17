@@ -1,4 +1,4 @@
-local LurnaiHub = loadstring(game:HttpGet("https://raw.githubusercontent.com/yourusername/LurnaiHub/main/LurnaiHub.lua"))()
+local LurnaiHub = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai"))()
 
 local Lurnai = LurnaiHub.new()
 
