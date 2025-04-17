@@ -10,7 +10,7 @@
       <img src="https://img.shields.io/badge/Discord-Join_Server-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Server"/>
     </a>
     <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=statuspage&logoColor=white" alt="Status"/>
-    <img src="https://img.shields.io/badge/Version-2.5.0-blue?style=for-the-badge&logo=semver&logoColor=white" alt="Version"/>
+    <img src="https://img.shields.io/badge/Version-1.9.0-blue?style=for-the-badge&logo=semver&logoColor=white" alt="Version"/>
   </div>
 </div>
 
