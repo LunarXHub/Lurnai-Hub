@@ -1,0 +1,64 @@
+local LurnaiHub = loadstring(game:HttpGet("https://raw.githubusercontent.com/yourusername/LurnaiHub/main/LurnaiHub.lua"))()
+
+local Lurnai = LurnaiHub.new()
+
+local Window = Lurnai:CreateWindow({
+    Title = "Lurnai Hub",
+    SubTitle = "v1.0.0",
+    Size = UDim2.new(0, 600, 0, 400)
+})
+
+local MainTab = Window:AddTab({
+    Title = "Main",
+    Icon = "Home"
+})
+
+local Section1 = MainTab:AddSection({
+    Title = "Example Section"
+})
+
+Section1:AddButton({
+    Title = "Button Example",
+    Description = "Click me!",
+    Callback = function()
+        print("Button clicked!")
+    end
+})
+
+Section1:AddToggle({
+    Title = "Toggle Example",
+    Description = "Toggle me!",
+    Default = false,
+    Callback = function(Value)
+        print("Toggle:", Value)
+    end
+})
+
+Section1:AddSlider({
+    Title = "Slider Example",
+    Description = "Adjust me!",
+    Default = 50,
+    Min = 0,
+    Max = 100,
+    Increment = 1,
+    Callback = function(Value)
+        print("Slider:", Value)
+    end
+})
+
+-- Example of the dropdown with your requested syntax
+Local.Lurnai:Section1AddDropdown({
+    Title = "Dropdown Example",
+    Description = "Select an option",
+    Values = {"Option 1", "Option 2", "Option 3"},
+    Default = "Option 1",
+    Callback = function(Selected)
+        print("Selected:", Selected)
+    end
+})
+
+Lurnai:Notify({
+    Title = "Notification",
+    Content = "This is a notification example!",
+    Duration = 5
+})
