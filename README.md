@@ -26,12 +26,12 @@
         <h3>💪 Muscle Legends</h3>
         <p><strong>Status:</strong> <span style="color: #4CAF50;">✅ AVAILABLE</span></p>
         <ul align="left">
-          <li>Auto-Farm Strength, Endurance & More</li>
+          <li>Auto-Farm Strength, Durabiltiy & More</li>
           <li>Auto-Rebirth & Auto-Hatch Pets</li>
-          <li>Teleport & Visual Customization</li>
+          <li>Teleport & ETC</li>
         </ul>
         <a href="https://discord.gg/Lurnai">
-          <img src="https://github.com/HVX-Havoc/Images/blob/main/muscle-legends.png" alt="Get Script" style="max-width: 100%; height: auto;"/>
+          <img src="https://github.com/HVX-Havoc/Images/blob/main/muscle-legends.png" alt="Get Script" style="max-width: 10%; height: auto;"/>
         </a>
       </td>
       <td align="center" width="0" style="background-color: #1a1a2e; border-radius: 0px; padding: 0px;">
@@ -39,8 +39,8 @@
         <h3>🏴‍☠️ Blox Fruits</h3>
         <p><strong>Status:</strong> <span style="color: #FFC107;">⏳ COMING SOON</span></p>
         <ul align="left">
-          <li>Auto-Farm All Resources</li>
-          <li>Auto-Quest & Raid Assistance</li>
+          <li>Auto-Farm</li>
+          <li>Auto-Quest & Raid</li>
           <li>PvP Enhancements & ESP Features</li>
         </ul>
         <a href="https://discord.gg/Lurnai">
