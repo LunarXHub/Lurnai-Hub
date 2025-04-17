@@ -73,6 +73,14 @@
       <img src="https://github.com/HVX-Havoc/Images/blob/main/8231821.gif" width="60" height="60" alt="NeX" style="border-radius: 50%"><br>
       <b>NeX</b>
     </td>
+    <td align="center" width="120">
+      <img src="https://opensea.io/assets/ethereum/0xb35e250be14309056d007ac7dc93c9de9e6d9448/1003" width="60" height="60" alt="Pxrson" style="border-radius: 50%"><br>
+      <b>Pxrson</b>
+    </td>
+    <td align="center" width="120">
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/Mizuuuuu.gif" width="60" height="60" alt="Adriel" style="border-radius: 50%"><br>
+      <b>Adriel</b>
+    </td>
   </tr>
 </table>
 
