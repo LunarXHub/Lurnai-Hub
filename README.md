@@ -42,7 +42,7 @@
       <p>👑 Owner</p>
     </td>
     <td align="center" width="200">
-      <img src="https://github.com/HVX-Havoc/Images/blob/main/standard%20(1).gif" width="100" height="100" alt="Mizuuu" style="border-radius: 50%"><br>
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/Mizuuuuu.gif" width="100" height="100" alt="Mizuuu" style="border-radius: 50%"><br>
       <h3>Mizuuu</h3>
       <p>🛡️ Discord Manager</p>
     </td>
@@ -54,11 +54,11 @@
 <table align="center">
   <tr>
     <td align="center" width="120">
-      <img src="https://github.com/HVX-Havoc/Images/blob/main/standard%20(1).gif" width="60" height="60" alt="Mizuuu" style="border-radius: 50%"><br>
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/Mizuuuuu.gif" width="60" height="60" alt="Mizuuu" style="border-radius: 50%"><br>
       <b>Mizuuu</b>
     </td>
     <td align="center" width="120">
-      <img src="https://avatars.githubusercontent.com/u/1234567?v=4" width="60" height="60" alt="Sherya" style="border-radius: 50%"><br>
+      <img src="https://github.com/HVX-Havoc/Images/blob/main/6c78880cb057b0a70f198d1279ee879c%20(1).png" width="60" height="60" alt="Sherya" style="border-radius: 50%"><br>
       <b>Sherya</b>
     </td>
     <td align="center" width="120">
