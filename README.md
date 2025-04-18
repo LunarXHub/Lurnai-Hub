@@ -31,7 +31,7 @@
           <li>Teleport & ETC</li>
         </ul>
         <a href="https://discord.gg/Lurnai">
-          <img src="https://img.shields.io/badge/Get_Script-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Get Script"/>
+          <img src="https://img.shields.io/badge/Get_Script-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join Discord!!!"/>
         </a>
       </td>
       <td align="center" width="400" style="background-color: #1a1a2e; border-radius: 10px; padding: 20px;">
@@ -44,7 +44,7 @@
           <li>PvP Enhancements & ESP Features</li>
         </ul>
         <a href="https://discord.gg/Lurnai">
-          <img src="https://img.shields.io/badge/Get_Notified-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Get Notified"/>
+          <img src="https://img.shields.io/badge/Get_Notified-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join Discord!!!"/>
         </a>
       </td>
     </tr>
