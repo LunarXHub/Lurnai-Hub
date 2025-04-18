@@ -206,6 +206,6 @@
   <p>© 2025 Lurnai Hub. All Rights Reserved.</p>
   <p>
     <img src="https://img.shields.io/badge/Made_with-❤️-ff69b4?style=flat-square" alt="Made with Love">
-    <img src="https://img.shields.io/badge/Op?_YEAH!-orange?style=flat-square" alt="OP?_YEAH!">
+    <img src="https://img.shields.io/badge/Op_YEAH-!-orange?style=flat-square" alt="OP?_YEAH!">
   </p>
 </div>
