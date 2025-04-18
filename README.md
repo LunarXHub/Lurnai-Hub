@@ -37,7 +37,7 @@
       <td align="center" width="400" style="background-color: #1a1a2e; border-radius: 10px; padding: 20px;">
         <img src="https://github.com/HVX-Havoc/Images/blob/main/Blox%20Fruitss.PNG" width="550" height="200" style="border-radius: 10px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/80x80?text=Blox+Fruits'"/>
         <h3>🏴‍☠️ Blox Fruits</h3>
-        <p><strong>Status:</strong> <span style="color: #FFC107;">⏳ COMING SOON</span></p>
+        <p><strong>Status:</strong> <span style="color: #FFC107;">✅ AVAILABLE</span></p>
         <ul align="left">
           <li>Auto-Farm</li>
           <li>Auto-Quest & Raid</li>
