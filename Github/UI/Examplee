@@ -1,4 +1,4 @@
-local LurnaiHub = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai"))()
+local Libary = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai"))()
 
 local window = Library:CreateWindow({
     Title = "My Cool GUI",
