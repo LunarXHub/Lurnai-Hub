@@ -1,4 +1,4 @@
-local Libary = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai"))()
 
 Library:SetTheme("Dark")
 
