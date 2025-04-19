@@ -1,64 +1,125 @@
 local LurnaiHub = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai"))()
 
-local Lurnai = LurnaiHub.new()
+Library:SetTheme("Dark") -- You can use "Dark", "Light", "Discord", "Aqua", or "Midnight"
 
-local Window = Lurnai:CreateWindow({
-    Title = "Lurnai Hub",
-    SubTitle = "v1.0.0",
-    Size = UDim2.new(0, 600, 0, 400)
+local window = Library:CreateWindow({
+    Title = "My Cool GUI",
+    Size = Vector2.new(500, 400),
+    Position = Vector2.new(100, 100),
+    ToggleKey = Enum.KeyCode.RightShift,
+    CanResize = true,
+    MinSize = Vector2.new(400, 300)
 })
 
-local MainTab = Window:AddTab({
+local mainTab = window:CreateTab({
     Title = "Main",
-    Icon = "Home"
+    Icon = "rbxassetid://6031094670" 
 })
 
-local Section1 = MainTab:AddSection({
-    Title = "Example Section"
+local settingsTab = window:CreateTab({
+    Title = "Settings",
+    Icon = "rbxassetid://6031280882"
 })
 
-Section1:AddButton({
-    Title = "Button Example",
-    Description = "Click me!",
+mainTab:CreateLabel({
+    Text = "Welcome to my GUI!",
+    Alignment = Enum.TextXAlignment.Center
+})
+
+mainTab:CreateButton({
+    Title = "Click Me",
+    Description = "This is a button example",
     Callback = function()
         print("Button clicked!")
     end
 })
 
-Section1:AddToggle({
-    Title = "Toggle Example",
-    Description = "Toggle me!",
+mainTab:CreateToggle("autoFarm", {
+    Title = "Auto Farm",
     Default = false,
-    Callback = function(Value)
-        print("Toggle:", Value)
+    Callback = function(value)
+        print("Auto Farm:", value)
     end
 })
 
-Section1:AddSlider({
-    Title = "Slider Example",
-    Description = "Adjust me!",
-    Default = 50,
-    Min = 0,
+mainTab:CreateSlider("walkSpeed", {
+    Title = "Walk Speed",
+    Description = "Adjust your character's walk speed",
+    Min = 16,
     Max = 100,
-    Increment = 1,
-    Callback = function(Value)
-        print("Slider:", Value)
+    Default = 16,
+    Rounding = 0,
+    Callback = function(value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
     end
 })
 
--- Example of the dropdown with your requested syntax
-Local.Lurnai:Section1AddDropdown({
-    Title = "Dropdown Example",
-    Description = "Select an option",
-    Values = {"Option 1", "Option 2", "Option 3"},
-    Default = "Option 1",
-    Callback = function(Selected)
-        print("Selected:", Selected)
+mainTab:CreateDropdown("teleportLocation", {
+    Title = "Teleport",
+    Values = {"Spawn", "Shop", "Boss Area", "Secret Room"},
+    Default = "Spawn",
+    Multi = false,
+    Callback = function(value)
+        print("Teleporting to:", value)
+        -- Your teleport code here
     end
 })
 
-Lurnai:Notify({
-    Title = "Notification",
-    Content = "This is a notification example!",
-    Duration = 5
+mainTab:CreateInput("playerName", {
+    Title = "Player Name",
+    Placeholder = "Enter a player name",
+    Default = "",
+    Numeric = false,
+    Finished = true, 
+    Callback = function(value)
+        print("Searching for player:", value)
+    end
 })
+
+mainTab:CreateColorpicker("espColor", {
+    Title = "ESP Color",
+    Default = Color3.fromRGB(255, 0, 0),
+    Transparency = 0,
+    Callback = function(value, transparency)
+        print("ESP Color changed to:", value, "Transparency:", transparency)
+    end
+})
+
+-- Add elements to the settings tab
+settingsTab:CreateLabel({
+    Text = "Settings",
+    Alignment = Enum.TextXAlignment.Center
+})
+
+settingsTab:CreateDivider()
+
+settingsTab:CreateToggle("uiSounds", {
+    Title = "UI Sounds",
+    Default = true,
+    Callback = function(value)
+        print("UI Sounds:", value)
+    end
+})
+
+settingsTab:CreateDropdown("theme", {
+    Title = "UI Theme",
+    Values = {"Dark", "Light", "Discord", "Aqua", "Midnight"},
+    Default = "Dark",
+    Multi = false,
+    Callback = function(value)
+        Library:SetTheme(value)
+    end
+})
+
+-- Get values from options later
+local function getSavedSettings()
+    local walkSpeed = Library:GetOption("walkSpeed")
+    local espColor = Library:GetOption("espColor")
+    
+    print("Saved walk speed:", walkSpeed)
+    print("Saved ESP color:", espColor)
+end
+
+-- You can call this function whenever you need to retrieve saved values
+wait(5)
+getSavedSettings()
