@@ -1,7 +1,5 @@
 local LurnaiHub = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai"))()
 
-Library:SetTheme("Dark") -- You can use "Dark", "Light", "Discord", "Aqua", or "Midnight"
-
 local window = Library:CreateWindow({
     Title = "My Cool GUI",
     Size = Vector2.new(500, 400),
