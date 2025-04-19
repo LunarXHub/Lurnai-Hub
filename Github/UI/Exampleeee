@@ -1,5 +1,8 @@
 local Libary = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai"))()
 
+Library:SetTheme("Dark")
+
+
 local window = Library:CreateWindow({
     Title = "My Cool GUI",
     Size = Vector2.new(500, 400),
