@@ -5,12 +5,13 @@ Library:SetTheme("Dark")
 
 local window = Library:CreateWindow({
     Title = "My Cool GUI",
-    Size = Vector2.new(500, 400),
-    Position = Vector2.new(100, 100),
+    Size = UDim2.new(0, 500, 0, 400),  -- Changed from Vector2 to UDim2
+    Position = UDim2.new(0, 100, 0, 100),  -- Changed from Vector2 to UDim2
     ToggleKey = Enum.KeyCode.RightShift,
     CanResize = true,
-    MinSize = Vector2.new(400, 300)
+    MinSize = UDim2.new(0, 400, 0, 300)  -- Changed from Vector2 to UDim2
 })
+
 
 local mainTab = window:CreateTab({
     Title = "Main",
