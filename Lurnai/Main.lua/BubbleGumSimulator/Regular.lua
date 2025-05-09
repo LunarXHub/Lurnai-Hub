@@ -1,3 +1,4 @@
+return {
 ["Flying Gem"] = "rbxassetid://137058516278425",
 ["Piggy"] = "rbxassetid://126005209800286",
 ["Bionic Shard"] = "rbxassetid://113926773562723",
@@ -172,4 +173,5 @@
 ["Paper Bunny"] = "rbxassetid://126388715768535",
 ["Polar Bear"] = "rbxassetid://74189506845007",
 ["Electra"] = "rbxassetid://116500311179740",
-["Flying Pig"] = "rbxassetid://118299916052281",
+["Flying Pig"] = "rbxassetid://118299916052281"
+}
