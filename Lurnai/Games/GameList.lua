@@ -1,3 +1,21 @@
+--[[ 
+.----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------. 
+| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
+| |   _          | || |  _    _      | || |  _______     | || | ____  _____  | || |      _       | || |     _____    | |
+| |  | |         | || | | |  | |     | || | |_   __ \    | || ||_   \|_   _| | || |     / \      | || |    |_   _|   | |
+| |  | |         | || | | |  | |     | || |   | |__) |   | || |  |   \ | |   | || |    / _ \     | || |      | |     | |
+| |  | |         | || | | |  | |     | || |   |  __ /    | || |  | |\ \| |   | || |   / ___ \    | || |      | |     | |
+| |  | |____     | || | | `--' |     | || |  _| |  \ \_  | || | _| |_\   |_  | || | _/ /   \ \_  | || |     _| |_    | |
+| |  |______|    | || |  \____/      | || | |____| |___| | || ||_____|\____| | || ||____| |____| | || |    |_____|   | |
+| |              | || |              | || |              | || |              | || |              | || |              | |
+| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
+ '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' 
+
+© 2025 LURNAI. All Rights Reserved.
+LURNAI is the legal owner of this script and is protected by copyright law.
+You may use this script **only for personal, non-commercial purposes.**
+Modification, redistribution, or claiming authorship of this script is **strictly prohibited** without explicit permission from the creator (LURNAI).
+]]--
 local Games = {
   [3623096087] = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Lurnai/Games/Muscle%20Legends.Lua", -- Muscle Legends
   [3101667897] = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Lurnai/Games/Legends%20Of%20Speed.lua", -- Legends of Speed (SOON)
