@@ -550,6 +550,7 @@ end
 
 -- EXAMPLE: 
 
+--[[
 
 onMessage = function(message)
 
@@ -563,6 +564,7 @@ onMessage = function(message)
 
 end
 
+]]--
 
 
 
@@ -572,6 +574,7 @@ end
 
 --! example usage
 
+--[[
 
 copyButton.MouseButton1Click:Connect(function()
 
@@ -615,6 +618,6 @@ else
 
 end
 
-
+]]--
 
 -------------------------------------------------------------------------------
