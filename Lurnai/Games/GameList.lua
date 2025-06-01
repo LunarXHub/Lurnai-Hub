@@ -23,6 +23,7 @@ local Games = {
   [4442272183] = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Lurnai/Games/Blox%20Fruits.lua", -- Blox Fruits (Second Sea)
   [7449423635] = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Lurnai/Games/Blox%20Fruits.lua", -- Blox Fruits (Third Sea)
   [85896571713843] = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Lurnai/Games/BubbleGum%20Simulator.lua", -- Bubble Gum Simulator (Soon)
+  [126884695634066] = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Lurnai/Games/Grow%20Of%20Garden.txt", -- Grow A Garden
 }
 
 return Games
