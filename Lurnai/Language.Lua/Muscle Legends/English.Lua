@@ -23,6 +23,8 @@ return {
     ["Anti Knockback"] = "Anti Knockback",
     ["Infinite Jump"] = "Infinite Jump",
     ["NoClip"] = "NoClip",
+["LockPosition"] = "Lock Position",
+["LockPositionDesc"] = "Prevents the UI from moving",
     ["Free AutoLift"] = "Free AutoLift",
     ["Hide Frames"] = "Hide Frames",
     ["Auto Use Protein Egg"] = "Auto Use Protein Egg",
