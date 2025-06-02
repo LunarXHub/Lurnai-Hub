@@ -13,6 +13,8 @@ return {
     ["Settings"] = "Настройки",
     ["Credits"] = "Авторы",
     ["Discord"] = "Discord",
+["LockPosition"] = "Закрепить Позицию",
+["LockPositionDesc"] = "Предотвращает перемещение интерфейса",
     ["Join our Discord community for updates and support!"] = "Присоединяйтесь к нашему сообществу Discord для обновлений и поддержки!",
     ["Change Speed"] = "Изменить скорость",
     ["Enter speed value"] = "Введите значение скорости",
