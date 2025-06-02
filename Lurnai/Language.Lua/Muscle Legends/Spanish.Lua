@@ -13,6 +13,8 @@ return {
     ["Settings"] = "Configuración",
     ["Credits"] = "Créditos",
     ["Discord"] = "Discord",
+["LockPosition"] = "Bloquear Posición",
+["LockPositionDesc"] = "Evita que la interfaz se mueva",
     ["Join our Discord community for updates and support!"] = "¡Únete a nuestra comunidad de Discord para actualizaciones y soporte!",
     ["Change Speed"] = "Cambiar Velocidad",
     ["Enter speed value"] = "Ingresa el valor de velocidad",
