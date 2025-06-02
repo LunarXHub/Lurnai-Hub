@@ -23,6 +23,8 @@ return {
     ["Anti Knockback"] = "Anti-Rückstoß",
     ["Infinite Jump"] = "Unendlicher Sprung",
     ["NoClip"] = "Durch Wände gehen",
+["LockPosition"] = "Position Sperren",
+["LockPositionDesc"] = "Verhindert das Verschieben der Oberfläche",
     ["Free AutoLift"] = "Kostenloses Auto-Heben",
     ["Hide Frames"] = "Rahmen ausblenden",
     ["Auto Use Protein Egg"] = "Protein-Ei automatisch verwenden",
