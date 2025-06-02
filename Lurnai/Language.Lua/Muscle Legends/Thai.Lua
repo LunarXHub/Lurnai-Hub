@@ -18,6 +18,8 @@ return {
     ["Enter speed value"] = "ป้อนค่าความเร็ว",
     ["Auto Set Speed"] = "ตั้งค่าความเร็วอัตโนมัติ",
     ["Change Size"] = "เปลี่ยนขนาด",
+["LockPosition"] = "ล็อคตำแหน่ง",
+["LockPositionDesc"] = "ป้องกันไม่ให้ UI เคลื่อนที่",
     ["Enter size value"] = "ป้อนค่าขนาด",
     ["Auto Set Size"] = "ตั้งค่าขนาดอัตโนมัติ",
     ["Anti Knockback"] = "ป้องกันการผลักกลับ",
