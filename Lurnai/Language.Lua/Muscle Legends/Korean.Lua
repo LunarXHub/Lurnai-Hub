@@ -13,6 +13,8 @@ return {
     ["Settings"] = "설정",
     ["Credits"] = "크레딧",
     ["Discord"] = "디스코드",
+["LockPosition"] = "위치 잠금",
+["LockPositionDesc"] = "UI 이동을 방지합니다",
     ["Join our Discord community for updates and support!"] = "업데이트와 지원을 위해 디스코드 커뮤니티에 가입하세요!",
     ["Change Speed"] = "속도 변경",
     ["Enter speed value"] = "속도 값 입력",
