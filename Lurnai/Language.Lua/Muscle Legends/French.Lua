@@ -22,6 +22,8 @@ return {
     ["Auto Set Size"] = "Définir Taille Auto",
     ["Anti Knockback"] = "Anti Recul",
     ["Infinite Jump"] = "Saut Infini",
+["LockPosition"] = "Verrouiller la Position",
+["LockPositionDesc"] = "Empêche l’interface de bouger",
     ["NoClip"] = "Traverser les Murs",
     ["Free AutoLift"] = "AutoLift Gratuit",
     ["Hide Frames"] = "Cacher les Cadres",
