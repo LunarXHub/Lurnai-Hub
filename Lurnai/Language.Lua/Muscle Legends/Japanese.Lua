@@ -13,6 +13,8 @@ return {
     ["Settings"] = "設定",
     ["Credits"] = "クレジット",
     ["Discord"] = "Discord",
+["LockPosition"] = "位置をロック",
+["LockPositionDesc"] = "UIの移動を防ぎます",
     ["Join our Discord community for updates and support!"] = "アップデートとサポートのためにDiscordコミュニティに参加しよう！",
     ["Change Speed"] = "速度変更",
     ["Enter speed value"] = "速度値を入力",
