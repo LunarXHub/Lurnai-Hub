@@ -1,4 +1,4 @@
-local keySystem = loadstring(game:HttpGet(""))()
+local keySystem = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/KeySystemUI.Lua"))()
 
 keySystem({
     keys = {"", "", ""},
