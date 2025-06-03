@@ -78,12 +78,23 @@ return function(config)
         return sha256_digest(str)
     end
     
-    local validHashes = config and config.keys or {
-        sha256("lurnai_key_2024"),
-        sha256("hub_access_v3"),
-        sha256("red_theme_key")
-    }
-    local linkUrl = config and config.link or "https://work.ink/2T8K/lurnai"
+    local function fetchValidKeys()
+        local success, result = pcall(function()
+            return game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/Help.lua")
+        end)
+        
+        if success then
+            local validKeys = {}
+            for key in result:gmatch('"([^"]+)"') do
+                table.insert(validKeys, sha256(key))
+            end
+            return validKeys
+        else
+            return {}
+        end
+    end
+    
+    local validHashes = config and config.keys or fetchValidKeys()
     local successCallback = config and config.callback or function() end
     
     local TweenService = game:GetService("TweenService")
@@ -221,58 +232,4 @@ return function(config)
             end
         end
         
-        if valid then
-            status.Text = "key valid! loading hub..."
-            status.TextColor3 = Color3.fromRGB(100, 255, 100)
-            wait(0.8)
-            gui:Destroy()
-            successCallback()
-
-               else
-            status.Text = "wrong key"
-            status.TextColor3 = Color3.fromRGB(255, 100, 100)
-            keyBox.Text = ""
-        end
-    end)
-    
-    getkey.MouseButton1Click:Connect(function()
-        setclipboard(linkUrl)
-        status.Text = "copied link!"
-        status.TextColor3 = Color3.fromRGB(100, 255, 100)
-    end)
-    
-    close.MouseButton1Click:Connect(function()
-        gui:Destroy()
-    end)
-    
-    keyBox.FocusLost:Connect(function(enter)
-        if enter then
-            submit.MouseButton1Click:Fire()
-        end
-    end)
-    
-    local dragging = false
-    local dragStart = nil
-    local startPos = nil
-    
-    main.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = true
-            dragStart = input.Position
-            startPos = main.Position
-        end
-    end)
-    
-    main.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
-            local delta = input.Position - dragStart
-            main.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        end
-    end)
-    
-    main.InputEnded:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = false
-        end
-    end)
-end
+              
