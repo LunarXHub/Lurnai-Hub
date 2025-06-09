@@ -1,451 +1,285 @@
-local Services = {
-    TweenService = game:GetService("TweenService"),
-    UserInputService = game:GetService("UserInputService"),
-    CoreGui = game:GetService("CoreGui")
-}
+local ScreenGui = Instance.new("ScreenGui")
+local AdFrame = Instance.new("Frame")
+local DiscordLabel = Instance.new("TextLabel")
+local CopyButton = Instance.new("TextButton")
+local ExitButton = Instance.new("TextButton")
+local WaitButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local UIStroke = Instance.new("UIStroke")
+local UIGlow = Instance.new("ImageLabel")
 
-local Colors = {
-    Primary = {
-        Background = Color3.fromRGB(18, 18, 24),
-        Surface = Color3.fromRGB(25, 25, 35),
-        Accent = Color3.fromRGB(88, 166, 255),
-        AccentHover = Color3.fromRGB(108, 186, 255),
-        AccentPressed = Color3.fromRGB(68, 146, 235)
-    },
-    Secondary = {
-        Success = Color3.fromRGB(34, 197, 94),
-        Warning = Color3.fromRGB(251, 191, 36),
-        Error = Color3.fromRGB(239, 68, 68),
-        ErrorHover = Color3.fromRGB(248, 113, 113)
-    },
-    Text = {
-        Primary = Color3.fromRGB(255, 255, 255),
-        Secondary = Color3.fromRGB(156, 163, 175),
-        Accent = Color3.fromRGB(88, 166, 255)
-    },
-    Border = {
-        Default = Color3.fromRGB(55, 65, 81),
-        Accent = Color3.fromRGB(88, 166, 255),
-        Focus = Color3.fromRGB(108, 186, 255)
-    }
-}
+ScreenGui.Name = "LurnaiAds"
+ScreenGui.Parent = (gethui() or cloneref(game:GetService("CoreGui")) or game:GetService("CoreGui"))
+ScreenGui.ResetOnSpawn = false
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local Config = {
-    Discord = {
-        InviteLink = "https://discord.gg/lurnai",
-        ServerName = "Lurnai Hub Community"
-    },
-    GitHub = {
-        Repository = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Execution",
-        Author = "HVX-Havoc"
-    },
-    UI = {
-        FrameSize = UDim2.new(0.35, 0, 0.28, 0),
-        CornerRadius = UDim.new(0, 12),
-        ButtonCornerRadius = UDim.new(0, 8),
-        StrokeThickness = 2,
-        ShadowOffset = 4,
-        WaitTime = 5
-    },
-    Animations = {
-        Fast = TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-        Medium = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-        Slow = TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
-        Entrance = TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
-        Exit = TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.In)
-    }
-}
+AdFrame.Name = "AdFrame"
+AdFrame.Parent = ScreenGui
+AdFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
+AdFrame.Position = UDim2.new(0.5, 0, 0.35, 0)
+AdFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+AdFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
+AdFrame.BorderSizePixel = 0
+AdFrame.Active = true
 
-local Typography = {
-    Title = {
-        Font = Enum.Font.GothamBold,
-        Size = 20
-    },
-    Button = {
-        Font = Enum.Font.GothamSemibold,
-        Size = 14
-    },
-    Body = {
-        Font = Enum.Font.Gotham,
-        Size = 12
-    }
-}
+UICorner.Parent = AdFrame
+UICorner.CornerRadius = UDim.new(0, 10)
 
-local function CreateInstance(className, properties)
-    local instance = Instance.new(className)
-    for property, value in pairs(properties) do
-        instance[property] = value
-    end
-    return instance
-end
+UIStroke.Parent = AdFrame
+UIStroke.Color = Color3.fromRGB(70, 130, 255)
+UIStroke.Thickness = 2
+UIStroke.Transparency = 0.1
 
-local function CreateCorner(radius)
-    return CreateInstance("UICorner", {
-        CornerRadius = radius or Config.UI.CornerRadius
-    })
-end
+UIGlow.Name = "Glow"
+UIGlow.Parent = AdFrame
+UIGlow.AnchorPoint = Vector2.new(0.5, 0.5)
+UIGlow.BackgroundTransparency = 1
+UIGlow.Position = UDim2.new(0.5, 0, 0.5, 0)
+UIGlow.Size = UDim2.new(1.05, 0, 1.05, 0)
+UIGlow.ZIndex = -1
+UIGlow.Image = "rbxassetid://6014261993"
+UIGlow.ImageColor3 = Color3.fromRGB(45, 90, 255)
+UIGlow.ImageTransparency = 0.8
 
-local function CreateStroke(color, thickness)
-    return CreateInstance("UIStroke", {
-        Color = color or Colors.Border.Default,
-        Thickness = thickness or Config.UI.StrokeThickness
-    })
-end
+DiscordLabel.Name = "DiscordLabel"
+DiscordLabel.Parent = AdFrame
+DiscordLabel.Size = UDim2.new(1, 0, 0.6, 0)
+DiscordLabel.BackgroundTransparency = 1
+DiscordLabel.Text = "Lurnai Hub"
+DiscordLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordLabel.TextSize = 28
+DiscordLabel.Font = Enum.Font.GothamBold
+DiscordLabel.TextWrapped = true
 
-local function CreateShadow(parent, offset)
-    return CreateInstance("Frame", {
-        Name = "Shadow",
-        Parent = parent,
-        AnchorPoint = Vector2.new(0.5, 0.5),
-        Position = UDim2.new(0.5, 0, 0.5, offset or Config.UI.ShadowOffset),
-        Size = UDim2.new(1, 10, 1, 10),
-        BackgroundColor3 = Color3.fromRGB(0, 0, 0),
-        BackgroundTransparency = 0.8,
-        BorderSizePixel = 0,
-        ZIndex = -1
-    })
-end
+local TextGlow = Instance.new("TextLabel")
+TextGlow.Name = "TextGlow"
+TextGlow.Parent = DiscordLabel
+TextGlow.AnchorPoint = Vector2.new(0.5, 0.5)
+TextGlow.Position = UDim2.new(0.5, 0, 0.5, 0)
+TextGlow.Size = UDim2.new(1, 0, 1, 0)
+TextGlow.BackgroundTransparency = 1
+TextGlow.TextColor3 = Color3.fromRGB(75, 130, 255)
+TextGlow.Text = "Lurnai Hub"
+TextGlow.TextSize = 28
+TextGlow.Font = Enum.Font.GothamBold
+TextGlow.TextTransparency = 0.6
+TextGlow.ZIndex = -1
+TextGlow.TextWrapped = true
 
-local GUI = {}
+local CopyCorner = Instance.new("UICorner")
+CopyCorner.Parent = CopyButton
+CopyCorner.CornerRadius = UDim.new(0, 8)
 
-function GUI:Initialize()
-    local getgui = function()
-        if syn and syn.protect_gui then
-            local screenGui = CreateInstance("ScreenGui", {
-                Name = "LurnaiHubAd",
-                ResetOnSpawn = false,
-                ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-            })
-            syn.protect_gui(screenGui)
-            screenGui.Parent = game:GetService("CoreGui")
-            return screenGui
-        elseif gethui then
-            local screenGui = CreateInstance("ScreenGui", {
-                Name = "LurnaiHubAd",
-                ResetOnSpawn = false,
-                ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-            })
-            screenGui.Parent = gethui()
-            return screenGui
-        elseif game:GetService("RunService"):IsStudio() then
-            return CreateInstance("ScreenGui", {
-                Name = "LurnaiHubAd",
-                Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"),
-                ResetOnSpawn = false,
-                ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-            })
-        else
-            local screenGui = CreateInstance("ScreenGui", {
-                Name = "LurnaiHubAd",
-                ResetOnSpawn = false,
-                ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-            })
-            screenGui.Parent = game:GetService("CoreGui")
-            return screenGui
-        end
-    end
+CopyButton.Name = "CopyButton"
+CopyButton.Parent = AdFrame
+CopyButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+CopyButton.Position = UDim2.new(0.1, 0, 0.7, 0)
+CopyButton.Text = "Join Discord"
+CopyButton.BackgroundColor3 = Color3.fromRGB(50, 100, 255)
+CopyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CopyButton.Font = Enum.Font.GothamSemibold
+CopyButton.TextSize = 16
+CopyButton.AutoButtonColor = false
 
-    self.ScreenGui = getgui()
+local ExitCorner = Instance.new("UICorner")
+ExitCorner.Parent = ExitButton
+ExitCorner.CornerRadius = UDim.new(0, 8)
 
-    self:CreateMainFrame()
-    self:CreateComponents()
-    self:SetupAnimations()
-    self:SetupEvents()
-    self:PlayEntranceAnimation()
-end
+ExitButton.Name = "ExitButton"
+ExitButton.Parent = AdFrame
+ExitButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+ExitButton.Position = UDim2.new(0.5, 0, 0.7, 0)
+ExitButton.Text = "Close"
+ExitButton.Visible = false
+ExitButton.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
+ExitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ExitButton.Font = Enum.Font.GothamSemibold
+ExitButton.TextSize = 16
+ExitButton.AutoButtonColor = false
 
-function GUI:CreateMainFrame()
-    self.MainFrame = CreateInstance("Frame", {
-        Name = "MainFrame",
-        Parent = self.ScreenGui,
-        Size = UDim2.new(0, 0, 0, 0),
-        Position = UDim2.new(0.5, 0, 0.5, 0),
-        AnchorPoint = Vector2.new(0.5, 0.5),
-        BackgroundColor3 = Colors.Primary.Surface,
-        BorderSizePixel = 0,
-        Active = true
-    })
+local WaitCorner = Instance.new("UICorner")
+WaitCorner.Parent = WaitButton
+WaitCorner.CornerRadius = UDim.new(0, 8)
 
-    CreateCorner():Parent = self.MainFrame
-    CreateStroke(Colors.Border.Accent):Parent = self.MainFrame
-    CreateShadow(self.MainFrame)
-end
+WaitButton.Name = "WaitButton"
+WaitButton.Parent = AdFrame
+WaitButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+WaitButton.Position = UDim2.new(0.5, 0, 0.7, 0)
+WaitButton.Text = "Please wait..."
+WaitButton.Visible = true
+WaitButton.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
+WaitButton.TextColor3 = Color3.fromRGB(150, 150, 150)
+WaitButton.Font = Enum.Font.GothamSemibold
+WaitButton.TextSize = 16
+WaitButton.AutoButtonColor = false
 
-function GUI:CreateComponents()
-    self.TitleLabel = CreateInstance("TextLabel", {
-        Name = "TitleLabel",
-        Parent = self.MainFrame,
-        Size = UDim2.new(1, -40, 0.5, 0),
-        Position = UDim2.new(0, 20, 0, 20),
-        BackgroundTransparency = 1,
-        Text = "Lurnai Hub",
-        TextColor3 = Colors.Text.Primary,
-        TextSize = Typography.Title.Size,
-        Font = Typography.Title.Font,
-        TextXAlignment = Enum.TextXAlignment.Left,
-        TextYAlignment = Enum.TextYAlignment.Top
-    })
+local SubLabel = Instance.new("TextLabel")
+SubLabel.Name = "SubLabel"
+SubLabel.Parent = AdFrame
+SubLabel.Size = UDim2.new(0.9, 0, 0.2, 0)
+SubLabel.Position = UDim2.new(0.05, 0, 0.4, 0)
+SubLabel.BackgroundTransparency = 1
+SubLabel.Text = "Join our community for updates and support"
+SubLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+SubLabel.TextSize = 16
+SubLabel.Font = Enum.Font.Gotham
+SubLabel.TextWrapped = true
 
-    self.SubtitleLabel = CreateInstance("TextLabel", {
-        Name = "SubtitleLabel",
-        Parent = self.MainFrame,
-        Size = UDim2.new(1, -40, 0.3, 0),
-        Position = UDim2.new(0, 20, 0, 50),
-        BackgroundTransparency = 1,
-        Text = "Join our community for updates and support",
-        TextColor3 = Colors.Text.Secondary,
-        TextSize = Typography.Body.Size,
-        Font = Typography.Body.Font,
-        TextXAlignment = Enum.TextXAlignment.Left,
-        TextYAlignment = Enum.TextYAlignment.Top,
-        TextWrapped = true
-    })
-
-    self.DiscordButton = CreateInstance("TextButton", {
-        Name = "DiscordButton",
-        Parent = self.MainFrame,
-        Size = UDim2.new(0.45, -15, 0.25, 0),
-        Position = UDim2.new(0, 20, 1, -60),
-        BackgroundColor3 = Colors.Primary.Accent,
-        BorderSizePixel = 0,
-        Text = "Join Discord",
-        TextColor3 = Colors.Text.Primary,
-        TextSize = Typography.Button.Size,
-        Font = Typography.Button.Font,
-        AutoButtonColor = false
-    })
-
-    CreateCorner(Config.UI.ButtonCornerRadius):Parent = self.DiscordButton
-    CreateStroke(Colors.Border.Focus, 1):Parent = self.DiscordButton
-
-    self.ExitButton = CreateInstance("TextButton", {
-        Name = "ExitButton",
-        Parent = self.MainFrame,
-        Size = UDim2.new(0.45, -15, 0.25, 0),
-        Position = UDim2.new(0.55, 5, 1, -60),
-        BackgroundColor3 = Colors.Secondary.Error,
-        BorderSizePixel = 0,
-        Text = "Close",
-        TextColor3 = Colors.Text.Primary,
-        TextSize = Typography.Button.Size,
-        Font = Typography.Button.Font,
-        AutoButtonColor = false,
-        Visible = false
-    })
-
-    CreateCorner(Config.UI.ButtonCornerRadius):Parent = self.ExitButton
-    CreateStroke(Colors.Secondary.ErrorHover, 1):Parent = self.ExitButton
-
-    self.WaitButton = CreateInstance("TextButton", {
-        Name = "WaitButton",
-        Parent = self.MainFrame,
-        Size = UDim2.new(0.45, -15, 0.25, 0),
-        Position = UDim2.new(0.55, 5, 1, -60),
-        BackgroundColor3 = Colors.Border.Default,
-        BorderSizePixel = 0,
-        Text = "Please wait...",
-        TextColor3 = Colors.Text.Secondary,
-        TextSize = Typography.Button.Size,
-        Font = Typography.Button.Font,
-        AutoButtonColor = false
-    })
-
-    CreateCorner(Config.UI.ButtonCornerRadius):Parent = self.WaitButton
-    CreateStroke(Colors.Border.Default, 1):Parent = self.WaitButton
-end
-
-function GUI:SetupAnimations()
-    self.Animations = {
-        ButtonHover = function(button, hoverColor)
-            return Services.TweenService:Create(button, Config.Animations.Fast, {
-                BackgroundColor3 = hoverColor,
-                Size = button.Size + UDim2.new(0, 2, 0, 1)
-            })
-        end,
-
-        ButtonLeave = function(button, originalColor, originalSize)
-            return Services.TweenService:Create(button, Config.Animations.Fast, {
-                BackgroundColor3 = originalColor,
-                Size = originalSize
-            })
-        end,
-
-        ButtonPress = function(button, pressColor)
-            return Services.TweenService:Create(button, Config.Animations.Fast, {
-                BackgroundColor3 = pressColor,
-                Size = button.Size - UDim2.new(0, 1, 0, 1)
-            })
-        end,
-
-        FadeOut = function(element)
-            return Services.TweenService:Create(element, Config.Animations.Medium, {
-                BackgroundTransparency = 1,
-                TextTransparency = 1
-            })
-        end,
-
-        FadeIn = function(element)
-            return Services.TweenService:Create(element, Config.Animations.Medium, {
-                BackgroundTransparency = 0,
-                TextTransparency = 0
-            })
-        end
-    }
-end
-
-function GUI:CreateButtonEffects(button, colors)
+local function AddButtonEffect(button)
     local originalSize = button.Size
-    local originalColor = button.BackgroundColor3
-
+    local originalPosition = button.Position
+    
     button.MouseEnter:Connect(function()
-        self.Animations.ButtonHover(button, colors.hover):Play()
+        game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {
+            Size = UDim2.new(originalSize.X.Scale + 0.01, 0, originalSize.Y.Scale + 0.01, 0),
+            BackgroundColor3 = button.BackgroundColor3:Lerp(Color3.fromRGB(100, 150, 255), 0.3)
+        }):Play()
     end)
-
+    
     button.MouseLeave:Connect(function()
-        self.Animations.ButtonLeave(button, originalColor, originalSize):Play()
+        game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {
+            Size = originalSize,
+            Position = originalPosition,
+            BackgroundColor3 = button.BackgroundColor3
+        }):Play()
     end)
-
+    
     button.MouseButton1Down:Connect(function()
-        self.Animations.ButtonPress(button, colors.pressed):Play()
+        game:GetService("TweenService"):Create(button, TweenInfo.new(0.1), {
+            Size = UDim2.new(originalSize.X.Scale - 0.01, 0, originalSize.Y.Scale - 0.01, 0)
+        }):Play()
     end)
-
+    
     button.MouseButton1Up:Connect(function()
-        self.Animations.ButtonHover(button, colors.hover):Play()
+        game:GetService("TweenService"):Create(button, TweenInfo.new(0.1), {
+            Size = originalSize
+        }):Play()
     end)
 end
 
-function GUI:SetupDragging()
-    local dragging = false
-    local dragStart = nil
-    local startPos = nil
+AddButtonEffect(CopyButton)
+AddButtonEffect(ExitButton)
 
-    self.MainFrame.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = true
-            dragStart = input.Position
-            startPos = self.MainFrame.Position
-        end
-    end)
+local dragInput
+local dragStart
+local startPos
 
-    self.MainFrame.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
-            local delta = input.Position - dragStart
-            local newPos = UDim2.new(
-                startPos.X.Scale, startPos.X.Offset + delta.X,
-                startPos.Y.Scale, startPos.Y.Offset + delta.Y
-            )
-            Services.TweenService:Create(self.MainFrame, Config.Animations.Fast, {Position = newPos}):Play()
-        end
-    end)
-
-    self.MainFrame.InputEnded:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = false
-        end
-    end)
-end
-
-function GUI:SetupEvents()
-    self:CreateButtonEffects(self.DiscordButton, {
-        hover = Colors.Primary.AccentHover,
-        pressed = Colors.Primary.AccentPressed
-    })
-
-    self:CreateButtonEffects(self.ExitButton, {
-        hover = Colors.Secondary.ErrorHover,
-        pressed = Color3.fromRGB(220, 38, 38)
-    })
-
-    self.DiscordButton.MouseButton1Click:Connect(function()
-        if setclipboard then
-            setclipboard(Config.Discord.InviteLink)
-            local originalText = self.DiscordButton.Text
-            self.DiscordButton.Text = "Copied!"
-
-            Services.TweenService:Create(self.DiscordButton, Config.Animations.Medium, {
-                BackgroundColor3 = Colors.Secondary.Success
-            }):Play()
-
-            task.wait(1.5)
-
-            Services.TweenService:Create(self.DiscordButton, Config.Animations.Medium, {
-                BackgroundColor3 = Colors.Primary.Accent
-            }):Play()
-
-            self.DiscordButton.Text = originalText
-        end
-    end)
-
-    self.ExitButton.MouseButton1Click:Connect(function()
-        self:PlayExitAnimation()
-    end)
-
-    self:SetupDragging()
-    self:SetupWaitTimer()
-end
-
-function GUI:SetupWaitTimer()
-    task.delay(Config.UI.WaitTime, function()
-        local fadeOut = self.Animations.FadeOut(self.WaitButton)
-        fadeOut:Play()
-
-        fadeOut.Completed:Connect(function()
-            self.WaitButton.Visible = false
-            self.ExitButton.Visible = true
-            self.ExitButton.BackgroundTransparency = 1
-            self.ExitButton.TextTransparency = 1
-
-            self.Animations.FadeIn(self.ExitButton):Play()
-        end)
-    end)
-end
-
-function GUI:PlayEntranceAnimation()
-    Services.TweenService:Create(self.MainFrame, Config.Animations.Entrance, {
-        Size = Config.UI.FrameSize
+local function UpdateDrag(input)
+    local delta = input.Position - dragStart
+    game:GetService("TweenService"):Create(AdFrame, TweenInfo.new(0.1), {
+        Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
     }):Play()
 end
 
-function GUI:PlayExitAnimation()
-    local exitTween = Services.TweenService:Create(self.MainFrame, Config.Animations.Exit, {
-        Size = UDim2.new(0, 0, 0, 0),
-        Rotation = 180
-    })
-
-    local fadeTween = Services.TweenService:Create(self.MainFrame, Config.Animations.Exit, {
-        BackgroundTransparency = 1
-    })
-
-    exitTween:Play()
-    fadeTween:Play()
-
-    exitTween.Completed:Connect(function()
-        self.ScreenGui:Destroy()
-    end)
-end
-
-function GUI:LoadMainScript()
-    task.spawn(function()
-        pcall(function()
-            local success, content = pcall(function() 
-                return game:HttpGet(Config.GitHub.Repository)
-            end)
-
-            if success and content then
-                local func = loadstring(content)
-                if type(func) == "function" then
-                    func()
-                end
+AdFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragStart = input.Position
+        startPos = AdFrame.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragInput = nil
             end
         end)
-    end)
-end
+    end
+end)
 
-function GUI:Start()
+AdFrame.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if input == dragInput and dragInput then
+        UpdateDrag(input)
+    end
+end)
+
+task.delay(5, function()
+    game:GetService("TweenService"):Create(WaitButton, TweenInfo.new(0.3), {
+        BackgroundTransparency = 1,
+        TextTransparency = 1
+    }):Play()
+    
+    task.wait(0.3)
+    WaitButton.Visible = false
+    ExitButton.Visible = true
+    ExitButton.BackgroundTransparency = 1
+    ExitButton.TextTransparency = 1
+    
+    game:GetService("TweenService"):Create(ExitButton, TweenInfo.new(0.3), {
+        BackgroundTransparency = 0,
+        TextTransparency = 0
+    }):Play()
+end)
+
+CopyButton.MouseButton1Click:Connect(function()
+    if setclipboard then
+        setclipboard("https://discord.gg/lurnai")
+        local originalText = CopyButton.Text
+        
+        game:GetService("TweenService"):Create(CopyButton, TweenInfo.new(0.3), {
+            BackgroundColor3 = Color3.fromRGB(50, 200, 100)
+        }):Play()
+        
+        CopyButton.Text = "Copied!"
+        
+        task.wait(1.2)
+        
+        game:GetService("TweenService"):Create(CopyButton, TweenInfo.new(0.3), {
+            BackgroundColor3 = Color3.fromRGB(50, 100, 255)
+        }):Play()
+        
+        CopyButton.Text = originalText
+    end
+end)
+
+ExitButton.MouseButton1Click:Connect(function()
+    local exitTween = game:GetService("TweenService"):Create(AdFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+        Size = UDim2.new(0, 0, 0, 0),
+        Rotation = 10
+    })
+    
+    local fadeTween = game:GetService("TweenService"):Create(AdFrame, TweenInfo.new(0.3), {
+        BackgroundTransparency = 1
+    })
+    
+    exitTween:Play()
+    fadeTween:Play()
+    
+    for _, obj in pairs(AdFrame:GetDescendants()) do
+        if obj:IsA("TextButton") or obj:IsA("TextLabel") then
+            game:GetService("TweenService"):Create(obj, TweenInfo.new(0.3), {
+                TextTransparency = 1,
+                BackgroundTransparency = 1
+            }):Play()
+        elseif obj:IsA("UIStroke") then
+            game:GetService("TweenService"):Create(obj, TweenInfo.new(0.3), {
+                Transparency = 1
+            }):Play()
+        elseif obj:IsA("ImageLabel") then
+            game:GetService("TweenService"):Create(obj, TweenInfo.new(0.3), {
+                ImageTransparency = 1
+            }):Play()
+        end
+    end
+    
+    task.wait(0.5)
+    ScreenGui:Destroy()
+end)
+
+task.spawn(function()
     pcall(function()
-        self:Initialize()
-        self:LoadMainScript()
+        local success, content = pcall(function() 
+            return game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Execution")
+        end)
+        
+        if success and content then
+            local func = loadstring(content)
+            if type(func) == "function" then
+                func()
+            end
+        end
     end)
-end
-
-GUI:Start()
+end)
