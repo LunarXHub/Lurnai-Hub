@@ -1,9 +1,18 @@
 local ScreenGui = Instance.new("ScreenGui")
 local AdFrame = Instance.new("Frame")
+local HeaderFrame = Instance.new("Frame")
 local DiscordLabel = Instance.new("TextLabel")
+local SubtitleLabel = Instance.new("TextLabel")
 local CopyButton = Instance.new("TextButton")
 local ExitButton = Instance.new("TextButton")
 local WaitButton = Instance.new("TextButton")
+local UICorner1 = Instance.new("UICorner")
+local UICorner2 = Instance.new("UICorner")
+local UICorner3 = Instance.new("UICorner")
+local UICorner4 = Instance.new("UICorner")
+local UICorner5 = Instance.new("UICorner")
+local UIGradient1 = Instance.new("UIGradient")
+local UIGradient2 = Instance.new("UIGradient")
 
 ScreenGui.Name = "AdsGui"
 ScreenGui.Parent = (gethui() or cloneref(game:GetService("CoreGui")) or game:GetService("CoreGui"))
@@ -13,65 +22,162 @@ AdFrame.Name = "AdFrame"
 AdFrame.Parent = ScreenGui
 AdFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
 AdFrame.Position = UDim2.new(0.5, 0, 0.35, 0)
-AdFrame.BackgroundColor3 = Color3.fromRGB(20, 30, 50)
-AdFrame.BorderSizePixel = 2
+AdFrame.BackgroundColor3 = Color3.fromRGB(15, 25, 45)
+AdFrame.BorderSizePixel = 0
 AdFrame.Draggable = true
 AdFrame.Active = true
-AdFrame.BorderColor3 = Color3.fromRGB(0, 100, 255)
+
+UICorner1.CornerRadius = UDim.new(0, 12)
+UICorner1.Parent = AdFrame
+
+UIGradient1.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(15, 25, 45)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 40, 70))
+}
+UIGradient1.Rotation = 45
+UIGradient1.Parent = AdFrame
+
+HeaderFrame.Name = "HeaderFrame"
+HeaderFrame.Parent = AdFrame
+HeaderFrame.Size = UDim2.new(1, 0, 0.4, 0)
+HeaderFrame.Position = UDim2.new(0, 0, 0, 0)
+HeaderFrame.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+HeaderFrame.BorderSizePixel = 0
+
+UICorner2.CornerRadius = UDim.new(0, 12)
+UICorner2.Parent = HeaderFrame
+
+UIGradient2.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 120, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 150, 255))
+}
+UIGradient2.Rotation = 90
+UIGradient2.Parent = HeaderFrame
 
 DiscordLabel.Name = "DiscordLabel"
-DiscordLabel.Parent = AdFrame
+DiscordLabel.Parent = HeaderFrame
 DiscordLabel.Size = UDim2.new(1, 0, 0.6, 0)
+DiscordLabel.Position = UDim2.new(0, 0, 0.1, 0)
 DiscordLabel.BackgroundTransparency = 1
-DiscordLabel.Text = "Lurnai Hub | Ad"
-DiscordLabel.TextColor3 = Color3.fromRGB(200, 220, 255)
-DiscordLabel.TextSize = 22
+DiscordLabel.Text = "🎮 Lurnai Hub"
+DiscordLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordLabel.TextSize = 24
 DiscordLabel.TextWrapped = true
+DiscordLabel.Font = Enum.Font.GothamBold
+
+SubtitleLabel.Name = "SubtitleLabel"
+SubtitleLabel.Parent = HeaderFrame
+SubtitleLabel.Size = UDim2.new(1, 0, 0.3, 0)
+SubtitleLabel.Position = UDim2.new(0, 0, 0.65, 0)
+SubtitleLabel.BackgroundTransparency = 1
+SubtitleLabel.Text = "Join our Discord community!"
+SubtitleLabel.TextColor3 = Color3.fromRGB(220, 240, 255)
+SubtitleLabel.TextSize = 14
+SubtitleLabel.TextWrapped = true
+SubtitleLabel.Font = Enum.Font.Gotham
 
 CopyButton.Name = "CopyButton"
 CopyButton.Parent = AdFrame
-CopyButton.Size = UDim2.new(0.4, 0, 0.2, 0)
-CopyButton.Position = UDim2.new(0.1, 0, 0.7, 0)
-CopyButton.Text = "Copy Link Discord"
-CopyButton.BackgroundColor3 = Color3.fromRGB(0, 100, 255)
+CopyButton.Size = UDim2.new(0.38, 0, 0.22, 0)
+CopyButton.Position = UDim2.new(0.06, 0, 0.65, 0)
+CopyButton.Text = "📋 Copy Discord Link"
+CopyButton.BackgroundColor3 = Color3.fromRGB(0, 180, 100)
 CopyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CopyButton.TextSize = 14
+CopyButton.Font = Enum.Font.GothamSemibold
+CopyButton.BorderSizePixel = 0
+
+UICorner3.CornerRadius = UDim.new(0, 8)
+UICorner3.Parent = CopyButton
 
 ExitButton.Name = "ExitButton"
 ExitButton.Parent = AdFrame
-ExitButton.Size = UDim2.new(0.4, 0, 0.2, 0)
-ExitButton.Position = UDim2.new(0.5, 0, 0.7, 0)
-ExitButton.Text = "Exit"
+ExitButton.Size = UDim2.new(0.38, 0, 0.22, 0)
+ExitButton.Position = UDim2.new(0.56, 0, 0.65, 0)
+ExitButton.Text = "✖️ Close"
 ExitButton.Visible = false
-ExitButton.BackgroundColor3 = Color3.fromRGB(30, 50, 80)
-ExitButton.TextColor3 = Color3.fromRGB(100, 150, 255)
+ExitButton.BackgroundColor3 = Color3.fromRGB(60, 80, 120)
+ExitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ExitButton.TextSize = 14
+ExitButton.Font = Enum.Font.GothamSemibold
+ExitButton.BorderSizePixel = 0
+
+UICorner4.CornerRadius = UDim.new(0, 8)
+UICorner4.Parent = ExitButton
 
 WaitButton.Name = "WaittoExit"
 WaitButton.Parent = AdFrame
-WaitButton.Size = UDim2.new(0.4, 0, 0.2, 0)
-WaitButton.Position = UDim2.new(0.5, 0, 0.7, 0)
-WaitButton.Text = "Waitting Delay Exit"
+WaitButton.Size = UDim2.new(0.38, 0, 0.22, 0)
+WaitButton.Position = UDim2.new(0.56, 0, 0.65, 0)
+WaitButton.Text = "⏳ Please wait... 5s"
 WaitButton.Visible = true
-WaitButton.BackgroundColor3 = Color3.fromRGB(30, 50, 80)
-WaitButton.TextColor3 = Color3.fromRGB(100, 150, 255)
+WaitButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+WaitButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+WaitButton.TextSize = 12
+WaitButton.Font = Enum.Font.Gotham
+WaitButton.BorderSizePixel = 0
 
-task.delay(5, function()
-    WaitButton.Visible = false
-    ExitButton.Visible = true
+UICorner5.CornerRadius = UDim.new(0, 8)
+UICorner5.Parent = WaitButton
+
+local countdown = 5
+local countdownConnection
+countdownConnection = game:GetService("RunService").Heartbeat:Connect(function()
+    countdown = countdown - game:GetService("RunService").Heartbeat:Wait()
+    if countdown > 0 then
+        WaitButton.Text = "⏳ Please wait... " .. math.ceil(countdown) .. "s"
+    else
+        countdownConnection:Disconnect()
+        WaitButton.Visible = false
+        ExitButton.Visible = true
+    end
 end)
 
 CopyButton.MouseButton1Click:Connect(function()
     if setclipboard then
         setclipboard("https://discord.gg/md5WNwbW9v")
-        task.wait()
-        CopyButton.Text = "Copied To Discord Link"
-        task.wait(0.6)
-        CopyButton.Text = "Copy Link Discord"
+        local originalText = CopyButton.Text
+        CopyButton.Text = "✅ Copied!"
+        CopyButton.BackgroundColor3 = Color3.fromRGB(0, 200, 80)
+        task.wait(1.5)
+        CopyButton.Text = originalText
+        CopyButton.BackgroundColor3 = Color3.fromRGB(0, 180, 100)
     end
 end)
 
 ExitButton.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy()
+
+    local tween = game:GetService("TweenService"):Create(
+        AdFrame,
+        TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {Size = UDim2.new(0, 0, 0, 0), Position = UDim2.new(0.5, 0, 0.5, 0)}
+    )
+    tween:Play()
+    tween.Completed:Connect(function()
+        ScreenGui:Destroy()
+    end)
 end)
+
+local function addHoverEffect(button, hoverColor, normalColor)
+    button.MouseEnter:Connect(function()
+        game:GetService("TweenService"):Create(
+            button,
+            TweenInfo.new(0.2, Enum.EasingStyle.Quad),
+            {BackgroundColor3 = hoverColor}
+        ):Play()
+    end)
+
+    button.MouseLeave:Connect(function()
+        game:GetService("TweenService"):Create(
+            button,
+            TweenInfo.new(0.2, Enum.EasingStyle.Quad),
+            {BackgroundColor3 = normalColor}
+        ):Play()
+    end)
+end
+
+addHoverEffect(CopyButton, Color3.fromRGB(0, 200, 120), Color3.fromRGB(0, 180, 100))
+addHoverEffect(ExitButton, Color3.fromRGB(80, 100, 140), Color3.fromRGB(60, 80, 120))
 
 task.spawn(function()
     pcall(function()
