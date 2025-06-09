@@ -1,0 +1,53 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHubLibary"))()
+
+local Window = Library:CreateWindow({
+    Title = "Blue UI Example",
+    Theme = "BlueSky",
+    Size = UDim2.new(0, 600, 0, 400)
+})
+
+local MainTab = Window:AddTab({
+    Title = "Main Tab",
+    Icon = "home"
+})
+
+local GameSettingsFolder = MainTab:AddFolder("GameSettingsFolder", {
+    Title = "Game Settings",
+    Description = "Manage all game-related settings"
+})
+
+GameSettingsFolder:AddToggle("SpeedToggle", {
+    Title = "Speed Enabled",
+    Default = false,
+    Callback = function(Value)
+        print("Speed Enabled:", Value)
+    end
+})
+
+GameSettingsFolder:AddSlider("SpeedValue", {
+    Title = "Speed Value",
+    Default = 16,
+    Min = 16,
+    Max = 200,
+    Rounding = 0,
+    Callback = function(Value)
+        print("Speed Value:", Value)
+    end
+})
+
+local VisualsFolder = GameSettingsFolder:AddFolder("VisualsFolder", {
+    Title = "Visual Options",
+    Description = "Change visual settings"  
+})
+
+VisualsFolder:AddToggle("ESPToggle", {
+    Title = "ESP Enabled",
+    Default = false
+})
+
+MainTab:AddButton({
+    Title = "Regular Button", 
+    Callback = function()
+        print("Button clicked!")
+    end
+})
