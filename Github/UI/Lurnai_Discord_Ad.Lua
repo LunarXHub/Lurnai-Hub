@@ -18,7 +18,7 @@ AdFrame.Parent = ScreenGui
 AdFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
 AdFrame.Position = UDim2.new(0.5, 0, 0.35, 0)
 AdFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-AdFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
+AdFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 30)
 AdFrame.BorderSizePixel = 0
 AdFrame.Active = true
 
@@ -27,19 +27,31 @@ UICorner.CornerRadius = UDim.new(0, 10)
 
 UIStroke.Parent = AdFrame
 UIStroke.Color = Color3.fromRGB(70, 130, 255)
-UIStroke.Thickness = 2
-UIStroke.Transparency = 0.1
+UIStroke.Thickness = 2.5
+UIStroke.Transparency = 0
 
 UIGlow.Name = "Glow"
 UIGlow.Parent = AdFrame
 UIGlow.AnchorPoint = Vector2.new(0.5, 0.5)
 UIGlow.BackgroundTransparency = 1
 UIGlow.Position = UDim2.new(0.5, 0, 0.5, 0)
-UIGlow.Size = UDim2.new(1.05, 0, 1.05, 0)
+UIGlow.Size = UDim2.new(1.1, 0, 1.1, 0)
 UIGlow.ZIndex = -1
-UIGlow.Image = "rbxassetid://6014261993"
+UIGlow.Image = "rbxassetid://6015897843"
 UIGlow.ImageColor3 = Color3.fromRGB(45, 90, 255)
-UIGlow.ImageTransparency = 0.8
+UIGlow.ImageTransparency = 0.6
+
+local OuterGlow = Instance.new("ImageLabel")
+OuterGlow.Name = "OuterGlow"
+OuterGlow.Parent = AdFrame
+OuterGlow.AnchorPoint = Vector2.new(0.5, 0.5)
+OuterGlow.BackgroundTransparency = 1
+OuterGlow.Position = UDim2.new(0.5, 0, 0.5, 0)
+OuterGlow.Size = UDim2.new(1.2, 0, 1.2, 0)
+OuterGlow.ZIndex = -2
+OuterGlow.Image = "rbxassetid://6015897843"
+OuterGlow.ImageColor3 = Color3.fromRGB(0, 50, 255)
+OuterGlow.ImageTransparency = 0.8
 
 DiscordLabel.Name = "DiscordLabel"
 DiscordLabel.Parent = AdFrame
@@ -51,20 +63,62 @@ DiscordLabel.TextSize = 28
 DiscordLabel.Font = Enum.Font.GothamBold
 DiscordLabel.TextWrapped = true
 
-local TextGlow = Instance.new("TextLabel")
-TextGlow.Name = "TextGlow"
-TextGlow.Parent = DiscordLabel
-TextGlow.AnchorPoint = Vector2.new(0.5, 0.5)
-TextGlow.Position = UDim2.new(0.5, 0, 0.5, 0)
-TextGlow.Size = UDim2.new(1, 0, 1, 0)
-TextGlow.BackgroundTransparency = 1
-TextGlow.TextColor3 = Color3.fromRGB(75, 130, 255)
-TextGlow.Text = "Lurnai Hub"
-TextGlow.TextSize = 28
-TextGlow.Font = Enum.Font.GothamBold
-TextGlow.TextTransparency = 0.6
-TextGlow.ZIndex = -1
-TextGlow.TextWrapped = true
+local function CreateTextGlow(textObject)
+    for i = 1, 4 do
+        local TextGlowClone = Instance.new("TextLabel")
+        TextGlowClone.Name = "TextGlow" .. i
+        TextGlowClone.Parent = textObject
+        TextGlowClone.AnchorPoint = Vector2.new(0.5, 0.5)
+        TextGlowClone.Position = UDim2.new(0.5, 0, 0.5, 0)
+        TextGlowClone.Size = UDim2.new(1, 0, 1, 0)
+        TextGlowClone.BackgroundTransparency = 1
+        TextGlowClone.TextColor3 = Color3.fromRGB(0, 150, 255)
+        TextGlowClone.Text = textObject.Text
+        TextGlowClone.TextSize = textObject.TextSize
+        TextGlowClone.Font = textObject.Font
+        TextGlowClone.TextTransparency = 0.7
+        TextGlowClone.ZIndex = textObject.ZIndex - i
+        TextGlowClone.TextXAlignment = textObject.TextXAlignment
+        TextGlowClone.TextYAlignment = textObject.TextYAlignment
+        TextGlowClone.TextWrapped = textObject.TextWrapped
+        
+        local offsetX = 0
+        local offsetY = 0
+        
+        if i == 1 then
+            offsetX, offsetY = 1, 0
+        elseif i == 2 then
+            offsetX, offsetY = -1, 0
+        elseif i == 3 then
+            offsetX, offsetY = 0, 1
+        elseif i == 4 then
+            offsetX, offsetY = 0, -1
+        end
+        
+        TextGlowClone.Position = UDim2.new(0.5, offsetX, 0.5, offsetY)
+    end
+    
+    local pulseTween = game:GetService("TweenService"):Create(
+        textObject,
+        TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
+        {TextColor3 = Color3.fromRGB(220, 235, 255)}
+    )
+    pulseTween:Play()
+end
+
+CreateTextGlow(DiscordLabel)
+
+local SubLabel = Instance.new("TextLabel")
+SubLabel.Name = "SubLabel"
+SubLabel.Parent = AdFrame
+SubLabel.Size = UDim2.new(0.9, 0, 0.2, 0)
+SubLabel.Position = UDim2.new(0.05, 0, 0.4, 0)
+SubLabel.BackgroundTransparency = 1
+SubLabel.Text = "Join our community for updates and support"
+SubLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+SubLabel.TextSize = 16
+SubLabel.Font = Enum.Font.Gotham
+SubLabel.TextWrapped = true
 
 local CopyCorner = Instance.new("UICorner")
 CopyCorner.Parent = CopyButton
@@ -80,6 +134,12 @@ CopyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 CopyButton.Font = Enum.Font.GothamSemibold
 CopyButton.TextSize = 16
 CopyButton.AutoButtonColor = false
+
+local CopyStroke = Instance.new("UIStroke")
+CopyStroke.Parent = CopyButton
+CopyStroke.Color = Color3.fromRGB(100, 150, 255)
+CopyStroke.Thickness = 1.5
+CopyStroke.Transparency = 0.2
 
 local ExitCorner = Instance.new("UICorner")
 ExitCorner.Parent = ExitButton
@@ -97,6 +157,12 @@ ExitButton.Font = Enum.Font.GothamSemibold
 ExitButton.TextSize = 16
 ExitButton.AutoButtonColor = false
 
+local ExitStroke = Instance.new("UIStroke")
+ExitStroke.Parent = ExitButton
+ExitStroke.Color = Color3.fromRGB(80, 80, 150)
+ExitStroke.Thickness = 1.5
+ExitStroke.Transparency = 0.2
+
 local WaitCorner = Instance.new("UICorner")
 WaitCorner.Parent = WaitButton
 WaitCorner.CornerRadius = UDim.new(0, 8)
@@ -113,27 +179,65 @@ WaitButton.Font = Enum.Font.GothamSemibold
 WaitButton.TextSize = 16
 WaitButton.AutoButtonColor = false
 
-local SubLabel = Instance.new("TextLabel")
-SubLabel.Name = "SubLabel"
-SubLabel.Parent = AdFrame
-SubLabel.Size = UDim2.new(0.9, 0, 0.2, 0)
-SubLabel.Position = UDim2.new(0.05, 0, 0.4, 0)
-SubLabel.BackgroundTransparency = 1
-SubLabel.Text = "Join our community for updates and support"
-SubLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
-SubLabel.TextSize = 16
-SubLabel.Font = Enum.Font.Gotham
-SubLabel.TextWrapped = true
+local WaitStroke = Instance.new("UIStroke")
+WaitStroke.Parent = WaitButton
+WaitStroke.Color = Color3.fromRGB(80, 80, 150)
+WaitStroke.Thickness = 1.5
+WaitStroke.Transparency = 0.2
+
+local function AnimateGlow()
+    local TweenService = game:GetService("TweenService")
+    
+    local glowTween1 = TweenService:Create(
+        UIGlow, 
+        TweenInfo.new(3, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), 
+        {ImageTransparency = 0.4, Size = UDim2.new(1.12, 0, 1.12, 0)}
+    )
+    
+    local glowTween2 = TweenService:Create(
+        OuterGlow, 
+        TweenInfo.new(4, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), 
+        {ImageTransparency = 0.7, Size = UDim2.new(1.25, 0, 1.25, 0)}
+    )
+    
+    local strokeTween = TweenService:Create(
+        UIStroke,
+        TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
+        {Color = Color3.fromRGB(100, 200, 255)}
+    )
+    
+    glowTween1:Play()
+    glowTween2:Play()
+    strokeTween:Play()
+end
+
+AnimateGlow()
 
 local function AddButtonEffect(button)
     local originalSize = button.Size
     local originalPosition = button.Position
+    local buttonStroke = button:FindFirstChildOfClass("UIStroke")
     
     button.MouseEnter:Connect(function()
         game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {
-            Size = UDim2.new(originalSize.X.Scale + 0.01, 0, originalSize.Y.Scale + 0.01, 0),
+            Size = UDim2.new(originalSize.X.Scale + 0.02, 0, originalSize.Y.Scale + 0.02, 0),
             BackgroundColor3 = button.BackgroundColor3:Lerp(Color3.fromRGB(100, 150, 255), 0.3)
         }):Play()
+        
+        if buttonStroke then
+            game:GetService("TweenService"):Create(buttonStroke, TweenInfo.new(0.2), {
+                Thickness = 2,
+                Transparency = 0
+            }):Play()
+        end
+        
+        for _, child in pairs(button:GetChildren()) do
+            if child:IsA("TextLabel") and child.Name:find("TextGlow") then
+                game:GetService("TweenService"):Create(child, TweenInfo.new(0.2), {
+                    TextTransparency = 0.4
+                }):Play()
+            end
+        end
     end)
     
     button.MouseLeave:Connect(function()
@@ -142,23 +246,55 @@ local function AddButtonEffect(button)
             Position = originalPosition,
             BackgroundColor3 = button.BackgroundColor3
         }):Play()
+        
+        if buttonStroke then
+            game:GetService("TweenService"):Create(buttonStroke, TweenInfo.new(0.2), {
+                Thickness = 1.5,
+                Transparency = 0.2
+            }):Play()
+        end
+        
+        for _, child in pairs(button:GetChildren()) do
+            if child:IsA("TextLabel") and child.Name:find("TextGlow") then
+                game:GetService("TweenService"):Create(child, TweenInfo.new(0.2), {
+                    TextTransparency = 0.7
+                }):Play()
+            end
+        end
     end)
     
     button.MouseButton1Down:Connect(function()
         game:GetService("TweenService"):Create(button, TweenInfo.new(0.1), {
             Size = UDim2.new(originalSize.X.Scale - 0.01, 0, originalSize.Y.Scale - 0.01, 0)
         }):Play()
+        
+        if buttonStroke then
+            game:GetService("TweenService"):Create(buttonStroke, TweenInfo.new(0.1), {
+                Thickness = 1.2,
+                Transparency = 0.3
+            }):Play()
+        end
     end)
     
     button.MouseButton1Up:Connect(function()
         game:GetService("TweenService"):Create(button, TweenInfo.new(0.1), {
             Size = originalSize
         }):Play()
+        
+        if buttonStroke then
+            game:GetService("TweenService"):Create(buttonStroke, TweenInfo.new(0.1), {
+                Thickness = 1.5,
+                Transparency = 0.2
+            }):Play()
+        end
     end)
+    
+    CreateTextGlow(button)
 end
 
 AddButtonEffect(CopyButton)
 AddButtonEffect(ExitButton)
+AddButtonEffect(WaitButton)
 
 local dragInput
 local dragStart
@@ -166,8 +302,15 @@ local startPos
 
 local function UpdateDrag(input)
     local delta = input.Position - dragStart
-    game:GetService("TweenService"):Create(AdFrame, TweenInfo.new(0.1), {
+    local dragSpeed = 0.2
+    game:GetService("TweenService"):Create(AdFrame, TweenInfo.new(dragSpeed), {
         Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    }):Play()
+    
+    local glowStrength = math.min(1, delta.Magnitude / 100)
+    game:GetService("TweenService"):Create(UIGlow, TweenInfo.new(dragSpeed), {
+        ImageTransparency = 0.6 - (glowStrength * 0.3),
+        Size = UDim2.new(1.1 + (glowStrength * 0.1), 0, 1.1 + (glowStrength * 0.1), 0)
     }):Play()
 end
 
@@ -179,6 +322,10 @@ AdFrame.InputBegan:Connect(function(input)
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 dragInput = nil
+                game:GetService("TweenService"):Create(UIGlow, TweenInfo.new(0.3), {
+                    ImageTransparency = 0.6,
+                    Size = UDim2.new(1.1, 0, 1.1, 0)
+                }):Play()
             end
         end)
     end
@@ -202,16 +349,54 @@ task.delay(5, function()
         TextTransparency = 1
     }):Play()
     
+    if WaitStroke then
+        game:GetService("TweenService"):Create(WaitStroke, TweenInfo.new(0.3), {
+            Transparency = 1
+        }):Play()
+    end
+    
+    for _, child in pairs(WaitButton:GetChildren()) do
+        if child:IsA("TextLabel") and child.Name:find("TextGlow") then
+            game:GetService("TweenService"):Create(child, TweenInfo.new(0.3), {
+                TextTransparency = 1
+            }):Play()
+        end
+    end
+    
     task.wait(0.3)
     WaitButton.Visible = false
     ExitButton.Visible = true
     ExitButton.BackgroundTransparency = 1
     ExitButton.TextTransparency = 1
     
+    if ExitStroke then
+        ExitStroke.Transparency = 1
+    end
+    
+    for _, child in pairs(ExitButton:GetChildren()) do
+        if child:IsA("TextLabel") and child.Name:find("TextGlow") then
+            child.TextTransparency = 1
+        end
+    end
+    
     game:GetService("TweenService"):Create(ExitButton, TweenInfo.new(0.3), {
         BackgroundTransparency = 0,
         TextTransparency = 0
     }):Play()
+    
+    if ExitStroke then
+        game:GetService("TweenService"):Create(ExitStroke, TweenInfo.new(0.3), {
+            Transparency = 0.2
+        }):Play()
+    end
+    
+    for _, child in pairs(ExitButton:GetChildren()) do
+        if child:IsA("TextLabel") and child.Name:find("TextGlow") then
+            game:GetService("TweenService"):Create(child, TweenInfo.new(0.3), {
+                TextTransparency = 0.7
+            }):Play()
+        end
+    end
 end)
 
 CopyButton.MouseButton1Click:Connect(function()
@@ -223,6 +408,20 @@ CopyButton.MouseButton1Click:Connect(function()
             BackgroundColor3 = Color3.fromRGB(50, 200, 100)
         }):Play()
         
+        if CopyStroke then 
+            game:GetService("TweenService"):Create(CopyStroke, TweenInfo.new(0.3), {
+                Color = Color3.fromRGB(100, 230, 150)
+            }):Play()
+        end
+        
+        for _, child in pairs(CopyButton:GetChildren()) do
+            if child:IsA("TextLabel") and child.Name:find("TextGlow") then
+                game:GetService("TweenService"):Create(child, TweenInfo.new(0.3), {
+                    TextColor3 = Color3.fromRGB(0, 200, 100)
+                }):Play()
+            end
+        end
+        
         CopyButton.Text = "Copied!"
         
         task.wait(1.2)
@@ -231,41 +430,74 @@ CopyButton.MouseButton1Click:Connect(function()
             BackgroundColor3 = Color3.fromRGB(50, 100, 255)
         }):Play()
         
+        if CopyStroke then 
+            game:GetService("TweenService"):Create(CopyStroke, TweenInfo.new(0.3), {
+                Color = Color3.fromRGB(100, 150, 255)
+            }):Play()
+        end
+        
+        for _, child in pairs(CopyButton:GetChildren()) do
+            if child:IsA("TextLabel") and child.Name:find("TextGlow") then
+                game:GetService("TweenService"):Create(child, TweenInfo.new(0.3), {
+                    TextColor3 = Color3.fromRGB(0, 150, 255)
+                }):Play()
+            end
+        end
+        
         CopyButton.Text = originalText
     end
 end)
 
 ExitButton.MouseButton1Click:Connect(function()
-    local exitTween = game:GetService("TweenService"):Create(AdFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+    local TweenService = game:GetService("TweenService")
+    
+    local exitTween = TweenService:Create(AdFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
         Size = UDim2.new(0, 0, 0, 0),
         Rotation = 10
     })
     
-    local fadeTween = game:GetService("TweenService"):Create(AdFrame, TweenInfo.new(0.3), {
+    local glowTween = TweenService:Create(UIGlow, TweenInfo.new(0.5), {
+        Size = UDim2.new(0, 0, 0, 0),
+        ImageTransparency = 1
+    })
+    
+    local outerGlowTween = TweenService:Create(OuterGlow, TweenInfo.new(0.7), {
+        Size = UDim2.new(0, 0, 0, 0),
+        ImageTransparency = 1
+    })
+    
+    local fadeTween = TweenService:Create(AdFrame, TweenInfo.new(0.4), {
         BackgroundTransparency = 1
     })
     
-    exitTween:Play()
+    local strokeTween = TweenService:Create(UIStroke, TweenInfo.new(0.3), {
+        Transparency = 1
+    })
+    
+    glowTween:Play()
+    outerGlowTween:Play()
+    strokeTween:Play()
     fadeTween:Play()
+    exitTween:Play()
     
     for _, obj in pairs(AdFrame:GetDescendants()) do
         if obj:IsA("TextButton") or obj:IsA("TextLabel") then
-            game:GetService("TweenService"):Create(obj, TweenInfo.new(0.3), {
+            TweenService:Create(obj, TweenInfo.new(0.3), {
                 TextTransparency = 1,
                 BackgroundTransparency = 1
             }):Play()
         elseif obj:IsA("UIStroke") then
-            game:GetService("TweenService"):Create(obj, TweenInfo.new(0.3), {
+            TweenService:Create(obj, TweenInfo.new(0.3), {
                 Transparency = 1
             }):Play()
         elseif obj:IsA("ImageLabel") then
-            game:GetService("TweenService"):Create(obj, TweenInfo.new(0.3), {
+            TweenService:Create(obj, TweenInfo.new(0.3), {
                 ImageTransparency = 1
             }):Play()
         end
     end
     
-    task.wait(0.5)
+    task.wait(0.7)
     ScreenGui:Destroy()
 end)
 
