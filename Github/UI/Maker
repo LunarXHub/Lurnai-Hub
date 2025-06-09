@@ -1,5 +1,13 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHubLibary"))()
+local success, lib = pcall(loadstring, game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHubLibary"))
 
+if not success then
+    print("Error loading UI Library:", lib)
+    return
+end
+
+local Library, SaveManager, InterfaceManager = lib()
+
+-- Example usage (create window, tab, folder)
 local Window = Library:CreateWindow({
     Title = "Blue UI Example",
     Theme = "BlueSky",
@@ -16,38 +24,4 @@ local GameSettingsFolder = MainTab:AddFolder("GameSettingsFolder", {
     Description = "Manage all game-related settings"
 })
 
-GameSettingsFolder:AddToggle("SpeedToggle", {
-    Title = "Speed Enabled",
-    Default = false,
-    Callback = function(Value)
-        print("Speed Enabled:", Value)
-    end
-})
-
-GameSettingsFolder:AddSlider("SpeedValue", {
-    Title = "Speed Value",
-    Default = 16,
-    Min = 16,
-    Max = 200,
-    Rounding = 0,
-    Callback = function(Value)
-        print("Speed Value:", Value)
-    end
-})
-
-local VisualsFolder = GameSettingsFolder:AddFolder("VisualsFolder", {
-    Title = "Visual Options",
-    Description = "Change visual settings"  
-})
-
-VisualsFolder:AddToggle("ESPToggle", {
-    Title = "ESP Enabled",
-    Default = false
-})
-
-MainTab:AddButton({
-    Title = "Regular Button", 
-    Callback = function()
-        print("Button clicked!")
-    end
-})
+-- (Add other UI elements here)
