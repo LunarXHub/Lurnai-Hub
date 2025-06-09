@@ -109,12 +109,43 @@ end
 local GUI = {}
 
 function GUI:Initialize()
-    self.ScreenGui = CreateInstance("ScreenGui", {
-        Name = "LurnaiHubAd",
-        Parent = (gethui and gethui()) or (cloneref and cloneref(Services.CoreGui)) or Services.CoreGui,
-        ResetOnSpawn = false,
-        ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    })
+    local getgui = function()
+        if syn and syn.protect_gui then
+            local screenGui = CreateInstance("ScreenGui", {
+                Name = "LurnaiHubAd",
+                ResetOnSpawn = false,
+                ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+            })
+            syn.protect_gui(screenGui)
+            screenGui.Parent = game:GetService("CoreGui")
+            return screenGui
+        elseif gethui then
+            local screenGui = CreateInstance("ScreenGui", {
+                Name = "LurnaiHubAd",
+                ResetOnSpawn = false,
+                ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+            })
+            screenGui.Parent = gethui()
+            return screenGui
+        elseif game:GetService("RunService"):IsStudio() then
+            return CreateInstance("ScreenGui", {
+                Name = "LurnaiHubAd",
+                Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"),
+                ResetOnSpawn = false,
+                ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+            })
+        else
+            local screenGui = CreateInstance("ScreenGui", {
+                Name = "LurnaiHubAd",
+                ResetOnSpawn = false,
+                ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+            })
+            screenGui.Parent = game:GetService("CoreGui")
+            return screenGui
+        end
+    end
+
+    self.ScreenGui = getgui()
 
     self:CreateMainFrame()
     self:CreateComponents()
@@ -396,42 +427,25 @@ end
 function GUI:LoadMainScript()
     task.spawn(function()
         pcall(function()
-            local httpSuccess, httpResult = pcall(function()
+            local success, content = pcall(function() 
                 return game:HttpGet(Config.GitHub.Repository)
             end)
 
-            if httpSuccess and httpResult then
-                local loadSuccess, loadResult = pcall(function()
-                    local scriptFunction = loadstring(httpResult)
-                    if type(scriptFunction) == "function" then
-                        return scriptFunction()
-                    else
-                        error("Failed to loadstring: result is not a function")
-                    end
-                end)
-
-                if not loadSuccess then
-                    warn("Failed to load script:", loadResult)
+            if success and content then
+                local func = loadstring(content)
+                if type(func) == "function" then
+                    func()
                 end
-            else
-                warn("Failed to fetch script:", httpResult)
             end
         end)
     end)
 end
 
 function GUI:Start()
-    self:Initialize()
-    self:LoadMainScript()
-    return true 
+    pcall(function()
+        self:Initialize()
+        self:LoadMainScript()
+    end)
 end
 
-local success, result = pcall(function()
-    return GUI:Start()
-end)
-
-if not success then
-    warn("Error starting GUI:", result)
-end
-
-return true
+GUI:Start()
