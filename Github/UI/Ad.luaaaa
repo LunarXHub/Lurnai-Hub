@@ -13,18 +13,18 @@ AdFrame.Name = "AdFrame"
 AdFrame.Parent = ScreenGui
 AdFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
 AdFrame.Position = UDim2.new(0.5, 0, 0.35, 0)
-AdFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+AdFrame.BackgroundColor3 = Color3.fromRGB(20, 30, 50)
 AdFrame.BorderSizePixel = 2
 AdFrame.Draggable = true
 AdFrame.Active = true
-AdFrame.BorderColor3 = Color3.fromRGB(255, 0, 0)
+AdFrame.BorderColor3 = Color3.fromRGB(0, 100, 255)
 
 DiscordLabel.Name = "DiscordLabel"
 DiscordLabel.Parent = AdFrame
 DiscordLabel.Size = UDim2.new(1, 0, 0.6, 0)
 DiscordLabel.BackgroundTransparency = 1
 DiscordLabel.Text = "Lurnai Hub | Ad"
-DiscordLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordLabel.TextColor3 = Color3.fromRGB(200, 220, 255)
 DiscordLabel.TextSize = 22
 DiscordLabel.TextWrapped = true
 
@@ -33,7 +33,7 @@ CopyButton.Parent = AdFrame
 CopyButton.Size = UDim2.new(0.4, 0, 0.2, 0)
 CopyButton.Position = UDim2.new(0.1, 0, 0.7, 0)
 CopyButton.Text = "Copy Link Discord"
-CopyButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+CopyButton.BackgroundColor3 = Color3.fromRGB(0, 100, 255)
 CopyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 
 ExitButton.Name = "ExitButton"
@@ -42,8 +42,8 @@ ExitButton.Size = UDim2.new(0.4, 0, 0.2, 0)
 ExitButton.Position = UDim2.new(0.5, 0, 0.7, 0)
 ExitButton.Text = "Exit"
 ExitButton.Visible = false
-ExitButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-ExitButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+ExitButton.BackgroundColor3 = Color3.fromRGB(30, 50, 80)
+ExitButton.TextColor3 = Color3.fromRGB(100, 150, 255)
 
 WaitButton.Name = "WaittoExit"
 WaitButton.Parent = AdFrame
@@ -51,8 +51,8 @@ WaitButton.Size = UDim2.new(0.4, 0, 0.2, 0)
 WaitButton.Position = UDim2.new(0.5, 0, 0.7, 0)
 WaitButton.Text = "Waitting Delay Exit"
 WaitButton.Visible = true
-WaitButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-WaitButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+WaitButton.BackgroundColor3 = Color3.fromRGB(30, 50, 80)
+WaitButton.TextColor3 = Color3.fromRGB(100, 150, 255)
 
 task.delay(5, function()
     WaitButton.Visible = false
