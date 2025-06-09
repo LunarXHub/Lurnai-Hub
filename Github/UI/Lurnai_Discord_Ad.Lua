@@ -120,27 +120,6 @@ SubLabel.TextSize = 16
 SubLabel.Font = Enum.Font.Gotham
 SubLabel.TextWrapped = true
 
-local CopyCorner = Instance.new("UICorner")
-CopyCorner.Parent = CopyButton
-CopyCorner.CornerRadius = UDim.new(0, 8)
-
-CopyButton.Name = "CopyButton"
-CopyButton.Parent = AdFrame
-CopyButton.Size = UDim2.new(0.4, 0, 0.2, 0)
-CopyButton.Position = UDim2.new(0.1, 0, 0.7, 0)
-CopyButton.Text = "Join Discord"
-CopyButton.BackgroundColor3 = Color3.fromRGB(50, 100, 255)
-CopyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-CopyButton.Font = Enum.Font.GothamSemibold
-CopyButton.TextSize = 16
-CopyButton.AutoButtonColor = false
-
-local CopyStroke = Instance.new("UIStroke")
-CopyStroke.Parent = CopyButton
-CopyStroke.Color = Color3.fromRGB(100, 150, 255)
-CopyStroke.Thickness = 1.5
-CopyStroke.Transparency = 0.2
-
 local ExitCorner = Instance.new("UICorner")
 ExitCorner.Parent = ExitButton
 ExitCorner.CornerRadius = UDim.new(0, 8)
@@ -185,6 +164,27 @@ WaitStroke.Color = Color3.fromRGB(80, 80, 150)
 WaitStroke.Thickness = 1.5
 WaitStroke.Transparency = 0.2
 
+local CopyCorner = Instance.new("UICorner")
+CopyCorner.Parent = CopyButton
+CopyCorner.CornerRadius = UDim.new(0, 8)
+
+CopyButton.Name = "CopyButton"
+CopyButton.Parent = AdFrame
+CopyButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+CopyButton.Position = UDim2.new(0.1, 0, 0.7, 0)
+CopyButton.Text = "Join Discord"
+CopyButton.BackgroundColor3 = Color3.fromRGB(40, 40, 70)  -- Same as ExitButton background
+CopyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CopyButton.Font = Enum.Font.GothamSemibold
+CopyButton.TextSize = 16
+CopyButton.AutoButtonColor = false
+
+local CopyStroke = Instance.new("UIStroke")
+CopyStroke.Parent = CopyButton
+CopyStroke.Color = Color3.fromRGB(80, 80, 150)  -- Same as ExitButton stroke
+CopyStroke.Thickness = 1.5
+CopyStroke.Transparency = 0.2
+
 local function AnimateGlow()
     local TweenService = game:GetService("TweenService")
     
@@ -221,7 +221,7 @@ local function AddButtonEffect(button)
     button.MouseEnter:Connect(function()
         game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {
             Size = UDim2.new(originalSize.X.Scale + 0.02, 0, originalSize.Y.Scale + 0.02, 0),
-            BackgroundColor3 = button.BackgroundColor3:Lerp(Color3.fromRGB(100, 150, 255), 0.3)
+            BackgroundColor3 = button.BackgroundColor3:Lerp(Color3.fromRGB(70, 70, 120), 0.3)
         }):Play()
         
         if buttonStroke then
@@ -427,12 +427,12 @@ CopyButton.MouseButton1Click:Connect(function()
         task.wait(1.2)
         
         game:GetService("TweenService"):Create(CopyButton, TweenInfo.new(0.3), {
-            BackgroundColor3 = Color3.fromRGB(50, 100, 255)
+            BackgroundColor3 = Color3.fromRGB(40, 40, 70)  -- Back to original color
         }):Play()
         
         if CopyStroke then 
             game:GetService("TweenService"):Create(CopyStroke, TweenInfo.new(0.3), {
-                Color = Color3.fromRGB(100, 150, 255)
+                Color = Color3.fromRGB(80, 80, 150)  -- Back to original color
             }):Play()
         end
         
@@ -451,6 +451,31 @@ end)
 ExitButton.MouseButton1Click:Connect(function()
     local TweenService = game:GetService("TweenService")
     
+    -- Create the spinning icon
+    local SpinningIcon = Instance.new("ImageLabel")
+    SpinningIcon.Name = "LurnaiLogo"
+    SpinningIcon.Parent = ScreenGui
+    SpinningIcon.BackgroundTransparency = 1
+    SpinningIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+    SpinningIcon.Size = UDim2.new(0, 0, 0, 0)  -- Start small
+    SpinningIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+    SpinningIcon.Image = "rbxassetid://129069615357738"  -- The icon ID you provided
+    SpinningIcon.ImageTransparency = 1
+    
+    -- Add glow to the icon
+    local IconGlow = Instance.new("ImageLabel")
+    IconGlow.Name = "IconGlow"
+    IconGlow.Parent = SpinningIcon
+    IconGlow.BackgroundTransparency = 1
+    IconGlow.Position = UDim2.new(0.5, 0, 0.5, 0)
+    IconGlow.Size = UDim2.new(1.4, 0, 1.4, 0)
+    IconGlow.AnchorPoint = Vector2.new(0.5, 0.5)
+    IconGlow.Image = "rbxassetid://6015897843"
+    IconGlow.ImageColor3 = Color3.fromRGB(0, 100, 255)
+    IconGlow.ImageTransparency = 1
+    IconGlow.ZIndex = -1
+    
+    -- Exit animation for the frame
     local exitTween = TweenService:Create(AdFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
         Size = UDim2.new(0, 0, 0, 0),
         Rotation = 10
@@ -474,12 +499,7 @@ ExitButton.MouseButton1Click:Connect(function()
         Transparency = 1
     })
     
-    glowTween:Play()
-    outerGlowTween:Play()
-    strokeTween:Play()
-    fadeTween:Play()
-    exitTween:Play()
-    
+    -- Fade out all elements in the AdFrame
     for _, obj in pairs(AdFrame:GetDescendants()) do
         if obj:IsA("TextButton") or obj:IsA("TextLabel") then
             TweenService:Create(obj, TweenInfo.new(0.3), {
@@ -497,8 +517,63 @@ ExitButton.MouseButton1Click:Connect(function()
         end
     end
     
-    task.wait(0.7)
-    ScreenGui:Destroy()
+    -- Play the exit animations
+    glowTween:Play()
+    outerGlowTween:Play()
+    strokeTween:Play()
+    fadeTween:Play()
+    exitTween:Play()
+    
+    -- Animation sequence for the icon
+    task.wait(0.3)  -- Short delay before showing the icon
+    
+    -- First make the icon appear and grow
+    TweenService:Create(SpinningIcon, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0.15, 0, 0.15, 0),
+        ImageTransparency = 0
+    }):Play()
+    
+    TweenService:Create(IconGlow, TweenInfo.new(0.3), {
+        ImageTransparency = 0.7
+    }):Play()
+    
+    -- Spin the icon very fast initially
+    local fastSpin = TweenService:Create(SpinningIcon, TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+        Rotation = 720
+    })
+    fastSpin:Play()
+    
+    fastSpin.Completed:Connect(function()
+        -- Then slow down the spin
+        local slowSpin = TweenService:Create(SpinningIcon, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            Rotation = SpinningIcon.Rotation + 360
+        })
+        slowSpin:Play()
+        
+        -- Pulse the glow while spinning
+        TweenService:Create(IconGlow, TweenInfo.new(0.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 2, true), {
+            Size = UDim2.new(1.6, 0, 1.6, 0),
+            ImageTransparency = 0.5
+        }):Play()
+        
+        -- Finally fade out the icon
+        task.delay(1.2, function()
+            TweenService:Create(SpinningIcon, TweenInfo.new(0.8, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+                Size = UDim2.new(0, 0, 0, 0),
+                ImageTransparency = 1,
+                Rotation = SpinningIcon.Rotation + 180
+            }):Play()
+            
+            TweenService:Create(IconGlow, TweenInfo.new(0.6), {
+                Size = UDim2.new(0, 0, 0, 0),
+                ImageTransparency = 1
+            }):Play()
+            
+            task.delay(0.8, function()
+                ScreenGui:Destroy()
+            end)
+        end)
+    end)
 end)
 
 task.spawn(function()
