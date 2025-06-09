@@ -111,11 +111,11 @@ local GUI = {}
 function GUI:Initialize()
     self.ScreenGui = CreateInstance("ScreenGui", {
         Name = "LurnaiHubAd",
-        Parent = gethui() or cloneref(Services.CoreGui) or Services.CoreGui,
+        Parent = (gethui and gethui()) or (cloneref and cloneref(Services.CoreGui)) or Services.CoreGui,
         ResetOnSpawn = false,
         ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     })
-    
+
     self:CreateMainFrame()
     self:CreateComponents()
     self:SetupAnimations()
@@ -134,7 +134,7 @@ function GUI:CreateMainFrame()
         BorderSizePixel = 0,
         Active = true
     })
-    
+
     CreateCorner():Parent = self.MainFrame
     CreateStroke(Colors.Border.Accent):Parent = self.MainFrame
     CreateShadow(self.MainFrame)
@@ -154,7 +154,7 @@ function GUI:CreateComponents()
         TextXAlignment = Enum.TextXAlignment.Left,
         TextYAlignment = Enum.TextYAlignment.Top
     })
-    
+
     self.SubtitleLabel = CreateInstance("TextLabel", {
         Name = "SubtitleLabel",
         Parent = self.MainFrame,
@@ -169,7 +169,7 @@ function GUI:CreateComponents()
         TextYAlignment = Enum.TextYAlignment.Top,
         TextWrapped = true
     })
-    
+
     self.DiscordButton = CreateInstance("TextButton", {
         Name = "DiscordButton",
         Parent = self.MainFrame,
@@ -183,10 +183,10 @@ function GUI:CreateComponents()
         Font = Typography.Button.Font,
         AutoButtonColor = false
     })
-    
+
     CreateCorner(Config.UI.ButtonCornerRadius):Parent = self.DiscordButton
     CreateStroke(Colors.Border.Focus, 1):Parent = self.DiscordButton
-    
+
     self.ExitButton = CreateInstance("TextButton", {
         Name = "ExitButton",
         Parent = self.MainFrame,
@@ -201,10 +201,10 @@ function GUI:CreateComponents()
         AutoButtonColor = false,
         Visible = false
     })
-    
+
     CreateCorner(Config.UI.ButtonCornerRadius):Parent = self.ExitButton
     CreateStroke(Colors.Secondary.ErrorHover, 1):Parent = self.ExitButton
-    
+
     self.WaitButton = CreateInstance("TextButton", {
         Name = "WaitButton",
         Parent = self.MainFrame,
@@ -218,7 +218,7 @@ function GUI:CreateComponents()
         Font = Typography.Button.Font,
         AutoButtonColor = false
     })
-    
+
     CreateCorner(Config.UI.ButtonCornerRadius):Parent = self.WaitButton
     CreateStroke(Colors.Border.Default, 1):Parent = self.WaitButton
 end
@@ -231,28 +231,28 @@ function GUI:SetupAnimations()
                 Size = button.Size + UDim2.new(0, 2, 0, 1)
             })
         end,
-        
+
         ButtonLeave = function(button, originalColor, originalSize)
             return Services.TweenService:Create(button, Config.Animations.Fast, {
                 BackgroundColor3 = originalColor,
                 Size = originalSize
             })
         end,
-        
+
         ButtonPress = function(button, pressColor)
             return Services.TweenService:Create(button, Config.Animations.Fast, {
                 BackgroundColor3 = pressColor,
                 Size = button.Size - UDim2.new(0, 1, 0, 1)
             })
         end,
-        
+
         FadeOut = function(element)
             return Services.TweenService:Create(element, Config.Animations.Medium, {
                 BackgroundTransparency = 1,
                 TextTransparency = 1
             })
         end,
-        
+
         FadeIn = function(element)
             return Services.TweenService:Create(element, Config.Animations.Medium, {
                 BackgroundTransparency = 0,
@@ -265,19 +265,19 @@ end
 function GUI:CreateButtonEffects(button, colors)
     local originalSize = button.Size
     local originalColor = button.BackgroundColor3
-    
+
     button.MouseEnter:Connect(function()
         self.Animations.ButtonHover(button, colors.hover):Play()
     end)
-    
+
     button.MouseLeave:Connect(function()
         self.Animations.ButtonLeave(button, originalColor, originalSize):Play()
     end)
-    
+
     button.MouseButton1Down:Connect(function()
         self.Animations.ButtonPress(button, colors.pressed):Play()
     end)
-    
+
     button.MouseButton1Up:Connect(function()
         self.Animations.ButtonHover(button, colors.hover):Play()
     end)
@@ -287,7 +287,7 @@ function GUI:SetupDragging()
     local dragging = false
     local dragStart = nil
     local startPos = nil
-    
+
     self.MainFrame.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             dragging = true
@@ -295,7 +295,7 @@ function GUI:SetupDragging()
             startPos = self.MainFrame.Position
         end
     end)
-    
+
     self.MainFrame.InputChanged:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
             local delta = input.Position - dragStart
@@ -306,7 +306,7 @@ function GUI:SetupDragging()
             Services.TweenService:Create(self.MainFrame, Config.Animations.Fast, {Position = newPos}):Play()
         end
     end)
-    
+
     self.MainFrame.InputEnded:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             dragging = false
@@ -319,36 +319,36 @@ function GUI:SetupEvents()
         hover = Colors.Primary.AccentHover,
         pressed = Colors.Primary.AccentPressed
     })
-    
+
     self:CreateButtonEffects(self.ExitButton, {
         hover = Colors.Secondary.ErrorHover,
         pressed = Color3.fromRGB(220, 38, 38)
     })
-    
+
     self.DiscordButton.MouseButton1Click:Connect(function()
         if setclipboard then
             setclipboard(Config.Discord.InviteLink)
             local originalText = self.DiscordButton.Text
             self.DiscordButton.Text = "Copied!"
-            
+
             Services.TweenService:Create(self.DiscordButton, Config.Animations.Medium, {
                 BackgroundColor3 = Colors.Secondary.Success
             }):Play()
-            
+
             task.wait(1.5)
-            
+
             Services.TweenService:Create(self.DiscordButton, Config.Animations.Medium, {
                 BackgroundColor3 = Colors.Primary.Accent
             }):Play()
-            
+
             self.DiscordButton.Text = originalText
         end
     end)
-    
+
     self.ExitButton.MouseButton1Click:Connect(function()
         self:PlayExitAnimation()
     end)
-    
+
     self:SetupDragging()
     self:SetupWaitTimer()
 end
@@ -357,13 +357,13 @@ function GUI:SetupWaitTimer()
     task.delay(Config.UI.WaitTime, function()
         local fadeOut = self.Animations.FadeOut(self.WaitButton)
         fadeOut:Play()
-        
+
         fadeOut.Completed:Connect(function()
             self.WaitButton.Visible = false
             self.ExitButton.Visible = true
             self.ExitButton.BackgroundTransparency = 1
             self.ExitButton.TextTransparency = 1
-            
+
             self.Animations.FadeIn(self.ExitButton):Play()
         end)
     end)
@@ -380,14 +380,14 @@ function GUI:PlayExitAnimation()
         Size = UDim2.new(0, 0, 0, 0),
         Rotation = 180
     })
-    
+
     local fadeTween = Services.TweenService:Create(self.MainFrame, Config.Animations.Exit, {
         BackgroundTransparency = 1
     })
-    
+
     exitTween:Play()
     fadeTween:Play()
-    
+
     exitTween.Completed:Connect(function()
         self.ScreenGui:Destroy()
     end)
@@ -396,7 +396,26 @@ end
 function GUI:LoadMainScript()
     task.spawn(function()
         pcall(function()
-            (loadstring or load)(game:HttpGet(Config.GitHub.Repository))()
+            local httpSuccess, httpResult = pcall(function()
+                return game:HttpGet(Config.GitHub.Repository)
+            end)
+
+            if httpSuccess and httpResult then
+                local loadSuccess, loadResult = pcall(function()
+                    local scriptFunction = loadstring(httpResult)
+                    if type(scriptFunction) == "function" then
+                        return scriptFunction()
+                    else
+                        error("Failed to loadstring: result is not a function")
+                    end
+                end)
+
+                if not loadSuccess then
+                    warn("Failed to load script:", loadResult)
+                end
+            else
+                warn("Failed to fetch script:", httpResult)
+            end
         end)
     end)
 end
@@ -404,6 +423,15 @@ end
 function GUI:Start()
     self:Initialize()
     self:LoadMainScript()
+    return true 
 end
 
-return GUI:Start()
+local success, result = pcall(function()
+    return GUI:Start()
+end)
+
+if not success then
+    warn("Error starting GUI:", result)
+end
+
+return true
