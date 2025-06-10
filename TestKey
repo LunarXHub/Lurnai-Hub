@@ -1,5 +1,6 @@
 local LibraryURL = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHub_Library.lua"
 local Library, SaveManager, InterfaceManager = loadstring(game:HttpGet(LibraryURL))()
+
 local WindowTitle = "Lurnai Hub | Grow A Garden"
 local WindowSubTitle = "By Havoc"
 local WindowTabWidth = 160
@@ -7,6 +8,7 @@ local WindowSizeX = 380
 local WindowSizeY = 360
 local WindowAcrylic = true
 local WindowTheme = "LurnaiHub"
+
 local Window = Library:CreateWindow({
     Title = WindowTitle,
     SubTitle = WindowSubTitle,
@@ -15,6 +17,7 @@ local Window = Library:CreateWindow({
     Acrylic = WindowAcrylic,
     Theme = WindowTheme
 })
+
 local HomeIcon = "house"
 local HomeTitle = "Home"
 local MainIcon = "gamepad-2"
@@ -31,57 +34,69 @@ local SettingsIcon = "settings"
 local SettingsTitle = "Settings"
 local UISettingsIcon = "monitor"
 local UISettingsTitle = "UI Settings"
+
 local Home = Window:AddTab({
     Title = HomeTitle,
     Icon = HomeIcon
 })
+
 local Main = Window:AddTab({
     Title = MainTitle,
     Icon = MainIcon
 })
+
 local Automatically = Window:AddTab({
     Title = AutoTitle,
     Icon = AutoIcon
 })
+
 local Inventory = Window:AddTab({
     Title = InventoryTitle,
     Icon = InventoryIcon
 })
+
 local Shop = Window:AddTab({
     Title = ShopTitle,
     Icon = ShopIcon
 })
+
 local Misc = Window:AddTab({
     Title = MiscTitle,
     Icon = MiscIcon
 })
+
 local Settings = Window:AddTab({
     Title = SettingsTitle,
     Icon = SettingsIcon
 })
+
 local SettingsUI = Window:AddTab({
     Title = UISettingsTitle,
     Icon = UISettingsIcon
 })
-local MainSection = Main:AddSection("")
 
-MainSection:AddToggle("", {
-    Title = "",
-    Description = "",
+local MainSection = Main:AddSection("Main Features")
+
+MainSection:AddToggle("MainToggle", {
+    Title = "Enable Feature",
+    Description = "Toggle main functionality",
     Default = false,
     Callback = function(Value)
+        print("Main Toggle:", Value)
     end
 })
 
-MainSection:AddSlider("", {
-    Title = "",
-    Description = "",
-    Default = 0,
+MainSection:AddSlider("WalkSpeedSlider", {
+    Title = "Walk Speed",
+    Description = "Adjust player walk speed",
+    Default = 16,
     Min = 0,
-    Max = 0,
-    Rounding = ,
+    Max = 100,
+    Rounding = 1,
     Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end
     end
 })
 
@@ -94,7 +109,7 @@ MainSection:AddKeybind("TestKeybind", {
     Title = "Test Keybind",
     Description = "Press a key!",
     Default = "E",
-    Mode = "Toggle", -- "Toggle", "Hold", "Always"
+    Mode = "Toggle",
     Callback = function(Value, Mode)
         print("Keybind:", Value, "Mode:", Mode)
     end
@@ -108,7 +123,6 @@ MainSection:AddButton({
     end
 })
 
--- Toggle
 MainSection:AddToggle("TestToggle", {
     Title = "Test Toggle",
     Description = "Toggle me!",
@@ -118,7 +132,6 @@ MainSection:AddToggle("TestToggle", {
     end
 })
 
--- Slider
 MainSection:AddSlider("TestSlider", {
     Title = "Test Slider",
     Description = "Slide me!",
@@ -131,7 +144,6 @@ MainSection:AddSlider("TestSlider", {
     end
 })
 
--- Dropdown
 MainSection:AddDropdown("TestDropdown", {
     Title = "Test Dropdown",
     Description = "Select an option!",
@@ -143,7 +155,6 @@ MainSection:AddDropdown("TestDropdown", {
     end
 })
 
--- Multi-Dropdown
 MainSection:AddDropdown("TestMultiDropdown", {
     Title = "Multi Dropdown",
     Description = "Select multiple!",
@@ -155,7 +166,6 @@ MainSection:AddDropdown("TestMultiDropdown", {
     end
 })
 
--- Input/TextBox
 MainSection:AddInput("TestInput", {
     Title = "Test Input",
     Description = "Type something!",
@@ -167,7 +177,6 @@ MainSection:AddInput("TestInput", {
     end
 })
 
--- Numeric Input
 MainSection:AddInput("TestNumericInput", {
     Title = "Numeric Input",
     Description = "Numbers only!",
@@ -179,12 +188,13 @@ MainSection:AddInput("TestNumericInput", {
     end
 })
 
-SaveManager:SetLibrary(Library)
-InterfaceManager:SetLibrary(Library)
-SaveManager:SetFolder("MyScript/Configs")
-InterfaceManager:SetFolder("MyScript/Interface")
+if SaveManager and InterfaceManager then
+    SaveManager:SetLibrary(Library)
+    InterfaceManager:SetLibrary(Library)
+    SaveManager:SetFolder("MyScript/Configs")
+    InterfaceManager:SetFolder("MyScript/Interface")
 
-SaveManager:BuildConfigSection(SettingsTab)
-InterfaceManager:BuildInterfaceSection(SettingsTab)
-
-SaveManager:LoadAutoloadConfig()
+    SaveManager:BuildConfigSection(Settings)
+    InterfaceManager:BuildInterfaceSection(SettingsUI)
+    SaveManager:LoadAutoloadConfig()
+end
