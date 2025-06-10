@@ -8,6 +8,22 @@ local UICorner = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
 local UIGlow = Instance.new("ImageLabel")
 
+-- Store the loadstring for execution after animations
+local function executeLurnaiHub()
+    pcall(function()
+        local success, content = pcall(function()
+            return game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHub_Library.lua")
+        end)
+        
+        if success and content then
+            local func = loadstring(content)
+            if type(func) == "function" then
+                func()
+            end
+        end
+    end)
+end
+
 ScreenGui.Name = "LurnaiAds"
 ScreenGui.Parent = (gethui() or cloneref(game:GetService("CoreGui")) or game:GetService("CoreGui"))
 ScreenGui.ResetOnSpawn = false
@@ -190,13 +206,13 @@ local function AnimateGlow()
     
     local glowTween1 = TweenService:Create(
         UIGlow, 
-        TweenInfo.new(3, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), 
+        TweenInfo.new(3, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
         {ImageTransparency = 0.4, Size = UDim2.new(1.12, 0, 1.12, 0)}
     )
     
     local glowTween2 = TweenService:Create(
         OuterGlow, 
-        TweenInfo.new(4, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), 
+        TweenInfo.new(4, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
         {ImageTransparency = 0.7, Size = UDim2.new(1.25, 0, 1.25, 0)}
     )
     
@@ -343,6 +359,7 @@ game:GetService("UserInputService").InputChanged:Connect(function(input)
     end
 end)
 
+-- Wait timer and button transition
 task.delay(5, function()
     game:GetService("TweenService"):Create(WaitButton, TweenInfo.new(0.3), {
         BackgroundTransparency = 1,
@@ -448,6 +465,7 @@ CopyButton.MouseButton1Click:Connect(function()
     end
 end)
 
+-- Modified ExitButton click handler to execute Lurnai Hub after animations
 ExitButton.MouseButton1Click:Connect(function()
     local TweenService = game:GetService("TweenService")
     
@@ -559,23 +577,15 @@ ExitButton.MouseButton1Click:Connect(function()
             }):Play()
             
             task.delay(0.8, function()
+                -- Execute Lurnai Hub after all animations complete
+                executeLurnaiHub()
+                
+                -- Clean up the ad GUI
                 ScreenGui:Destroy()
             end)
         end)
     end)
 end)
 
-task.spawn(function()
-    pcall(function()
-        local success, content = pcall(function() 
-            return game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Execution")
-        end)
-        
-        if success and content then
-            local func = loadstring(content)
-            if type(func) == "function" then
-                func()
-            end
-        end
-    end)
-end)
+-- Remove the original execution task since we now execute after animations
+-- The Lurnai Hub will only load when the user clicks "Close" and animations finish
