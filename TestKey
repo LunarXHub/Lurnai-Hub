@@ -63,7 +63,7 @@ local SettingsUI = Window:AddTab({
     Title = UISettingsTitle,
     Icon = UISettingsIcon
 })
-local MainSection = MainTab:AddSection("")
+local MainSection = Main:AddSection("")
 
 MainSection:AddToggle("", {
     Title = "",
