@@ -30,11 +30,6 @@ end)
 
 local ProtectGui = protectgui or (syn and syn.protect_gui) or function(f) end
 
-# All 50 Color Themes for Lurnai Hub
-
-I'll provide all 50 themes for your Lurnai Hub library. This will be a complete replacement for your Themes table:
-
-```lua
 local Themes = {
     Names = {
         "LurnaiHub", "Red", "Green", "Blue", "Purple", "Orange", "Pink", "Teal", "Yellow", "Lime",
