@@ -188,47 +188,6 @@ MainSection:AddInput("TestNumericInput", {
     end
 })
 
-local MainSectionn = Main:AddSection("Main Features")
-
--- Add a folder element
-local TestFolder = MainSectionn:AddFolder({
-    Title = "Test Folder",
-    Description = "Expand to see more options",
-    Default = false -- Start closed
-})
-
--- Add a dropdown inside the folder
-TestFolder:AddDropdown("FolderDropdown", {
-    Title = "Folder Dropdown",
-    Description = "This dropdown is inside a folder!",
-    Values = {"Option X", "Option Y", "Option Z"},
-    Multi = false,
-    Default = "Option X",
-    Callback = function(Value)
-        print("Folder Dropdown Selected:", Value)
-    end
-})
-
--- Add another element to show multiple items in folder
-TestFolder:AddToggle("FolderToggle", {
-    Title = "Folder Toggle",
-    Description = "A toggle inside the folder",
-    Default = false,
-    Callback = function(Value)
-        print("Folder Toggle:", Value)
-    end
-})
-
--- Continue with your regular elements
-MainSection:AddToggle("MainToggle", {
-    Title = "Enable Feature",
-    Description = "Toggle main functionality",
-    Default = false,
-    Callback = function(Value)
-        print("Main Toggle:", Value)
-    end
-})
-
 if SaveManager and InterfaceManager then
     SaveManager:SetLibrary(Library)
     InterfaceManager:SetLibrary(Library)
