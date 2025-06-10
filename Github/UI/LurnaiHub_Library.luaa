@@ -7449,17 +7449,61 @@ function Library:GetIcon(Name)
 	return nil
 end
 
+-- ElementsTable should store *tables*, not functions
+local ElementsTable = {}
+
+ElementsTable.Button = (function()
+    local Element = {}
+    Element.__index = Element
+    -- ... (Your Button functions, including :New)
+    function Element:New(Config)
+       --
+    end
+    return Element
+end)()  -- Immediately invoke the function
+
+
+ElementsTable.Toggle = (function()
+    local Element = {}
+    Element.__index = Element
+    -- ... (Your Toggle functions, including :New)
+    function Element:New(Config)
+        --
+    end
+    return Element
+end)()
+
+
+----
+
+----
+ElementsTable.Slider = (function()
+    local Element = {}
+    Element.__index = Element
+    -- ... (Your Slider functions, including :New)
+    function Element:New(Config)
+       --
+    end
+    return Element
+end)()
+
+
+
+-- Elements setup (outside the loop)
 local Elements = {}
 Elements.__index = Elements
-Elements.__namecall = function(Table, Key, ...)
-	return Elements[Key](...)
-end
 
+--Loop to add the elements
 for ElementName, ElementComponent in pairs(ElementsTable) do
     Elements["Add" .. ElementName] = function(self, Idx, Config)
+
+        --ElementComponent is now a table
         ElementComponent.Container = self.Container
-        -- ... other properties the same
-        return ElementComponent:New(Idx, Config) -- Call the function correctly.
+        ElementComponent.Type = self.Type
+        ElementComponent.ScrollFrame = self.ScrollFrame
+        ElementComponent.Library = Library
+
+        return ElementComponent:New(Idx, Config)
     end
 end
 
