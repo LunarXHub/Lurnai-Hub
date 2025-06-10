@@ -5659,167 +5659,161 @@ ElementsTable.Paragraph = (function()
 	return Paragraph
 end)()
 ElementsTable.Slider = (function()
-    local Element = {}
-    Element.__index = Element
-    Element.__type = "Slider"
+	local Element = {}
+	Element.__index = Element
+	Element.__type = "Slider"
 
-    local function createSliderFill(parent, fillColor)
-         --Creating SliderFill (Gradient Style)
-        local sliderGradient = New("UIGradient", {
-            Color = ColorSequence.new{
-                ColorSequenceKeypoint.new(0, fillColor),
-                ColorSequenceKeypoint.new(1, fillColor)
-            },
-            Rotation = 90,
-            Parent = parent
-        })  
-        local sliderFill = New("Frame", {
-            Size = UDim2.new(0, 0, 1, 0),
-            BackgroundTransparency = 0.3,  -- Make the fill slightly transparent
-            Parent = parent,       
-        }, {
-            New("UICorner", {
-                CornerRadius = UDim.new(1, 0),
-            }),
-            sliderGradient
-        })
+	function Element:New(Idx, Config)
+		assert(Config.Title, "Slider - Missing Title.")
+		assert(Config.Default, "Slider - Missing default value.")
+		assert(Config.Min, "Slider - Missing minimum value.")
+		assert(Config.Max, "Slider - Missing maximum value.")
+		assert(Config.Rounding, "Slider - Missing rounding value.")
 
-        return sliderFill, sliderGradient
+		local Slider = {
+			Value = nil,
+			Min = Config.Min,
+			Max = Config.Max,
+			Rounding = Config.Rounding,
+			Callback = Config.Callback or function(Value) end,
+			Type = "Slider",
+		}
 
-    end
+		local Dragging = false
 
-    return function(self, Idx, Config)
-        assert(Config.Title, "Slider - Missing Title.")
-        assert(Config.Default, "Slider - Missing default value.")
-        assert(Config.Min, "Slider - Missing minimum value.")
-        assert(Config.Max, "Slider - Missing maximum value.")
-        assert(Config.Rounding, "Slider - Missing rounding value.")
+		local SliderFrame = Components.Element(Config.Title, Config.Description, self.Container, false, Config)
+		SliderFrame.DescLabel.Size = UDim2.new(1, -170, 0, 14)
 
+		Slider.Elements = SliderFrame
+		Slider.SetTitle = SliderFrame.SetTitle
+		Slider.SetDesc = SliderFrame.SetDesc
+		Slider.Visible = SliderFrame.Visible
 
-        local Slider = {
-            Value = nil,
-            Min = Config.Min,
-            Max = Config.Max,
-            Rounding = Config.Rounding,
-            Callback = Config.Callback or function(Value) end,
-            Type = "Slider",
-        }
+		local SliderDot = New("ImageLabel", {
+			AnchorPoint = Vector2.new(0, 0.5),
+			Position = UDim2.new(0, -7, 0.5, 0),
+			Size = UDim2.fromOffset(14, 14),
+			Image = "http://www.roblox.com/asset/?id=12266946128",
+			ThemeTag = {
+				ImageColor3 = "Accent",
+			},
+		})
 
-        local Dragging = false
+		local SliderRail = New("Frame", {
+			BackgroundTransparency = 1,
+			Position = UDim2.fromOffset(7, 0),
+			Size = UDim2.new(1, -14, 1, 0),
+		}, {
+			SliderDot,
+		})
 
-        local SliderFrame = Components.Element(Config.Title, Config.Description, self.Container, false, Config)
-        SliderFrame.DescLabel.Size = UDim2.new(1, -170, 0, 14)
+		local SliderFill = New("Frame", {
+			Size = UDim2.new(0, 0, 1, 0),
+			ThemeTag = {
+				BackgroundColor3 = "Accent",
+			},
+		}, {
+			New("UICorner", {
+				CornerRadius = UDim.new(1, 0),
+			}),
+		})
 
-        Slider.Elements = SliderFrame
-        Slider.SetTitle = SliderFrame.SetTitle
-        Slider.SetDesc = SliderFrame.SetDesc
+		local SliderDisplay = New("TextLabel", {
+			FontFace = Font.new("rbxasset://fonts/families/Bangers.json"),
+			Text = "Value",
+			TextSize = 12,
+			TextWrapped = true,
+			TextXAlignment = Enum.TextXAlignment.Right,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1,
+			Size = UDim2.new(0, 100, 0, 14),
+			Position = UDim2.new(0, -4, 0.5, 0),
+			AnchorPoint = Vector2.new(1, 0.5),
+			ThemeTag = {
+				TextColor3 = "SubText",
+			},
+		})
 
+		local SliderInner = New("Frame", {
+			Size = UDim2.new(1, 0, 0, 4),
+			AnchorPoint = Vector2.new(1, 0.5),
+			Position = UDim2.new(1, -10, 0.5, 0),
+			BackgroundTransparency = 0.4,
+			Parent = SliderFrame.Frame,
+			ThemeTag = {
+				BackgroundColor3 = "SliderRail",
+			},
+		}, {
+			New("UICorner", {
+				CornerRadius = UDim.new(1, 0),
+			}),
+			New("UISizeConstraint", {
+				MaxSize = Vector2.new(150, math.huge),
+			}),
+			SliderDisplay,
+			SliderFill,
+			SliderRail,
+		})
 
-        local SliderDot = New("ImageLabel", {
-            AnchorPoint = Vector2.new(0.5, 0.5),
-            Position = UDim2.new(0, 0, 0.5, 0),
-            Size = UDim2.fromOffset(18, 18),
-            Image = Library:GetIcon("circle-dot"),
-            ImageColor3 = Color3.fromRGB(255, 255, 255),
-            ThemeTag = {
-                ImageColor3 = "Accent",
-            },
-        })
-        -- Slider Customization Start
-        local SliderRail, RailGradient = createSliderFill(SliderFrame.Frame, Color3.fromRGB(200,200,200))
-        SliderRail.ZIndex = 5
-        SliderRail.Size = UDim2.new(1, -10, 0, 3)
-        SliderRail.AnchorPoint = Vector2.new(0.5, 0.5)
-        SliderRail.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Creator.AddSignal(SliderDot.InputBegan, function(Input)
+			if
+				Input.UserInputType == Enum.UserInputType.MouseButton1
+				or Input.UserInputType == Enum.UserInputType.Touch
+			then
+				Dragging = true
+			end
+		end)
 
-        local SliderFill, FillGradient = createSliderFill(SliderRail, Library.Creator.GetThemeProperty("Accent")) 
-        FillGradient.Color = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Library.Creator.GetThemeProperty("Accent")),
-            ColorSequenceKeypoint.new(1, Library.Creator.GetThemeProperty("Accent"))            
-        }
-        SliderFill.ZIndex = 6
+		Creator.AddSignal(SliderDot.InputEnded, function(Input)
+			if
+				Input.UserInputType == Enum.UserInputType.MouseButton1
+				or Input.UserInputType == Enum.UserInputType.Touch
+			then
+				Dragging = false
+			end
+		end)
 
-        local SliderDisplay = New("TextLabel", {
-            FontFace = Font.new("rbxasset://fonts/families/FredokaOne.json", Enum.FontWeight.Bold), --Uses FredokaOne Font
-            Text = "Value",
-            TextSize = 14,
-            TextColor3  = Color3.fromRGB(255, 255, 255),
-            TextWrapped = true,
-            TextXAlignment = Enum.TextXAlignment.Center,
-            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-            BackgroundTransparency = 1,
-            Size = UDim2.new(1, 0, 0, 14),
-            Position = UDim2.new(0, 0, -0.8, 0),     
-            ThemeTag = {               
-                TextColor3 = "Text"
-            },
-        })
+		Creator.AddSignal(UserInputService.InputChanged, function(Input)
+			if
+				Dragging
+				and (
+					Input.UserInputType == Enum.UserInputType.MouseMovement
+						or Input.UserInputType == Enum.UserInputType.Touch
+				)
+			then
+				local SizeScale =
+					math.clamp((Input.Position.X - SliderRail.AbsolutePosition.X) / SliderRail.AbsoluteSize.X, 0, 1)
+				Slider:SetValue(Slider.Min + ((Slider.Max - Slider.Min) * SizeScale))
+			end
+		end)
 
-        SliderDot.Parent = SliderRail
-        SliderDisplay.Parent = SliderRail
+		function Slider:OnChanged(Func)
+			Slider.Changed = Func
+			Func(Slider.Value)
+		end
 
-        --Event handling for customization
-        local function UpdateSlider()            
-            local SizeScale =(Slider.Value - Slider.Min) / (Slider.Max - Slider.Min)
-            SliderDot.Position = UDim2.new(SizeScale, 0, 0.5, 0) -- Dot position follows fill and gradient
-            SliderFill.Size = UDim2.fromScale(SizeScale, 1)
-            FillGradient.Color = ColorSequence.new{ -- Gradient changes with the dot
-                ColorSequenceKeypoint.new(0,Library.Creator.GetThemeProperty("Accent") ),
-                ColorSequenceKeypoint.new(SizeScale, Library.Creator.GetThemeProperty("Accent")),
-                ColorSequenceKeypoint.new(SizeScale, Color3.fromRGB(200, 200, 200)),
-                ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 200, 200))                
-            }                
-            SliderDisplay.Text = tostring(Slider.Value)
-        end
+		function Slider:SetValue(Value)
+			self.Value = Library:Round(math.clamp(Value, Slider.Min, Slider.Max), Slider.Rounding)
+			SliderDot.Position = UDim2.new((self.Value - Slider.Min) / (Slider.Max - Slider.Min), -7, 0.5, 0)
+			SliderFill.Size = UDim2.fromScale((self.Value - Slider.Min) / (Slider.Max - Slider.Min), 1)
+			SliderDisplay.Text = tostring(self.Value)
 
-        Creator.AddSignal(SliderRail.InputBegan, function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-                Dragging = true
-                UpdateSlider() -- Update on initial click
-            end
-        end)
+			Library:SafeCallback(Slider.Callback, self.Value)
+			Library:SafeCallback(Slider.Changed, self.Value)
+		end
 
-        Creator.AddSignal(SliderRail.InputEnded, function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-                Dragging = false
-            
-            end
-        end)
+		function Slider:Destroy()
+			SliderFrame:Destroy()
+			Library.Options[Idx] = nil
+		end
 
-        Creator.AddSignal(UserInputService.InputChanged, function(Input)
-            if Dragging and (Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch) then
-                local SizeScale = math.clamp((Input.Position.X - SliderRail.AbsolutePosition.X) / SliderRail.AbsoluteSize.X + 0.5, 0, 1)  -- Added an offset                   
-                Slider:SetValue(Slider.Min + ((Slider.Max - Slider.Min) * SizeScale))
-            end
-        end)
+		Slider:SetValue(Config.Default)
 
+		Library.Options[Idx] = Slider
+		return Slider
+	end
 
-
-        function Slider:OnChanged(Func)
-            Slider.Changed = Func
-            Func(Slider.Value)
-        end
-
-
-        function Slider:SetValue(Value)
-            Value = Library:Round(math.clamp(Value, Slider.Min, Slider.Max), Slider.Rounding)
-            self.Value = Value
-                     
-            Library:SafeCallback(Slider.Callback, Value) --Call the callback with the value               
-            UpdateSlider()                    
-            pcall(Slider.Changed,Value) --Calls OnChanged if it exists. Prevents code from erroring when this is nil.
-
-        end
-
-        function Slider:Destroy()
-            SliderFrame:Destroy()
-            Library.Options[Idx] = nil
-        end
-
-        Slider:SetValue(Config.Default)
-        Library.Options[Idx] = Slider
-        return Slider
-    end
+	return Element
 end)()
 ElementsTable.Keybind = (function()
 	local Element = {}
@@ -7449,62 +7443,21 @@ function Library:GetIcon(Name)
 	return nil
 end
 
--- ElementsTable should store *tables*, not functions
-local ElementsTable = {}
-
-ElementsTable.Button = (function()
-    local Element = {}
-    Element.__index = Element
-    -- ... (Your Button functions, including :New)
-    function Element:New(Config)
-       --
-    end
-    return Element
-end)()  -- Immediately invoke the function
-
-
-ElementsTable.Toggle = (function()
-    local Element = {}
-    Element.__index = Element
-    -- ... (Your Toggle functions, including :New)
-    function Element:New(Config)
-        --
-    end
-    return Element
-end)()
-
-
-----
-
-----
-ElementsTable.Slider = (function()
-    local Element = {}
-    Element.__index = Element
-    -- ... (Your Slider functions, including :New)
-    function Element:New(Config)
-       --
-    end
-    return Element
-end)()
-
-
-
--- Elements setup (outside the loop)
 local Elements = {}
 Elements.__index = Elements
+Elements.__namecall = function(Table, Key, ...)
+	return Elements[Key](...)
+end
 
---Loop to add the elements
-for ElementName, ElementComponent in pairs(ElementsTable) do
-    Elements["Add" .. ElementName] = function(self, Idx, Config)
+for _, ElementComponent in pairs(ElementsTable) do
+	Elements["Add" .. ElementComponent.__type] = function(self, Idx, Config)
+		ElementComponent.Container = self.Container
+		ElementComponent.Type = self.Type
+		ElementComponent.ScrollFrame = self.ScrollFrame
+		ElementComponent.Library = Library
 
-        --ElementComponent is now a table
-        ElementComponent.Container = self.Container
-        ElementComponent.Type = self.Type
-        ElementComponent.ScrollFrame = self.ScrollFrame
-        ElementComponent.Library = Library
-
-        return ElementComponent:New(Idx, Config)
-    end
+		return ElementComponent:New(Idx, Config)
+	end
 end
 
 Library.Elements = Elements
