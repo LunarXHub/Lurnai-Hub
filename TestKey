@@ -1,103 +1,106 @@
--- Load the library
-local Library, SaveManager, InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHub_Library.lua"))()
-
--- Create window
+local LibraryURL = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHub_Library.lua"
+local Library, SaveManager, InterfaceManager = loadstring(game:HttpGet(LibraryURL))()
+local WindowTitle = "Lurnai Hub | Grow A Garden"
+local WindowSubTitle = "By Havoc"
+local WindowTabWidth = 160
+local WindowSizeX = 380
+local WindowSizeY = 360
+local WindowAcrylic = true
+local WindowTheme = "LurnaiHub"
 local Window = Library:CreateWindow({
-    Title = "Speed Hub X",
-    SubTitle = "by AhmadV99",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
-    Acrylic = true,
-    Theme = "LurnaiHub"
+    Title = WindowTitle,
+    SubTitle = WindowSubTitle,
+    TabWidth = WindowTabWidth,
+    Size = UDim2.fromOffset(WindowSizeX, WindowSizeY),
+    Acrylic = WindowAcrylic,
+    Theme = WindowTheme
 })
+local HomeIcon = "house"
+local HomeTitle = "Home"
+local MainIcon = "gamepad-2"
+local MainTitle = "Main"
+local AutoIcon = "zap"
+local AutoTitle = "Auto Farm"
+local InventoryIcon = "package"
+local InventoryTitle = "Inventory"
+local ShopIcon = "shopping-cart"
+local ShopTitle = "Shop"
+local MiscIcon = "more-horizontal"
+local MiscTitle = "Misc"
+local SettingsIcon = "settings"
+local SettingsTitle = "Settings"
+local UISettingsIcon = "monitor"
+local UISettingsTitle = "UI Settings"
+local Home = Window:AddTab({
+    Title = HomeTitle,
+    Icon = HomeIcon
+})
+local Main = Window:AddTab({
+    Title = MainTitle,
+    Icon = MainIcon
+})
+local Automatically = Window:AddTab({
+    Title = AutoTitle,
+    Icon = AutoIcon
+})
+local Inventory = Window:AddTab({
+    Title = InventoryTitle,
+    Icon = InventoryIcon
+})
+local Shop = Window:AddTab({
+    Title = ShopTitle,
+    Icon = ShopIcon
+})
+local Misc = Window:AddTab({
+    Title = MiscTitle,
+    Icon = MiscIcon
+})
+local Settings = Window:AddTab({
+    Title = SettingsTitle,
+    Icon = SettingsIcon
+})
+local SettingsUI = Window:AddTab({
+    Title = UISettingsTitle,
+    Icon = UISettingsIcon
+})
+local MainSection = MainTab:AddSection("")
 
--- Create tabs
-local MainTab = Window:AddTab({ Title = "Main", Icon = "home" })
-local SettingsTab = Window:AddTab({ Title = "Settings", Icon = "settings" })
-
--- Add elements to main tab
-local MainSection = MainTab:AddSection("Main Features")
-
-MainSection:AddToggle("AutoFarm", {
-    Title = "Auto Farm",
-    Description = "Automatically farms for you",
+MainSection:AddToggle("", {
+    Title = "",
+    Description = "",
     Default = false,
     Callback = function(Value)
-        print("Auto Farm:", Value)
     end
 })
 
-MainSection:AddSlider("WalkSpeed", {
-    Title = "Walk Speed",
-    Description = "Changes your walk speed",
-    Default = 16,
-    Min = 16,
-    Max = 100,
-    Rounding = 1,
+MainSection:AddSlider("", {
+    Title = "",
+    Description = "",
+    Default = 0,
+    Min = 0,
+    Max = 0,
+    Rounding = ,
     Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
     end
 })
 
--- Add config management to settings
-SaveManager:SetLibrary(Library)
-InterfaceManager:SetLibrary(Library)
-SaveManager:SetFolder("MyScript/Configs")
-InterfaceManager:SetFolder("MyScript/Interface")
-
--- Build config section
-SaveManager:BuildConfigSection(SettingsTab)
-InterfaceManager:BuildInterfaceSection(SettingsTab)
-
--- Load autoload config
-SaveManager:LoadAutoloadConfig()
-
-
-
-
-local Library, SaveManager, InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Main/refs/heads/main/Library/V4.lua"))()
-
--- Now you can use the library
-local Window = Library:CreateWindow({
-    Title = "My Script",
-    SubTitle = "Version 1.0",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
-    Acrylic = true,
-    Theme = "SpeedHubX"
+MainSection:AddParagraph({
+    Title = "Information",
+    Content = "This is a paragraph element that displays text information to users. It's useful for instructions or descriptions."
 })
 
--- Add tabs and elements
-local Tab = Window:AddTab({ Title = "Main", Icon = "home" })
-local Section = Tab:AddSection("Controls")
-
-Section:AddButton({
-    Title = "Test Button",
-    Description = "Click me!",
-    Callback = function()
-        print("Button clicked!")
+MainSection:AddKeybind("TestKeybind", {
+    Title = "Test Keybind",
+    Description = "Press a key!",
+    Default = "E",
+    Mode = "Toggle", -- "Toggle", "Hold", "Always"
+    Callback = function(Value, Mode)
+        print("Keybind:", Value, "Mode:", Mode)
     end
-}) add everything to this
-
-
-local Library, SaveManager, InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Main/refs/heads/main/Library/V4.lua"))()
-
--- Create Window
-local Window = Library:CreateWindow({
-    Title = "Element Showcase",
-    SubTitle = "One of Everything",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
-    Acrylic = true,
-    Theme = "SpeedHubX"
 })
 
--- Single Tab with Everything
-local Tab = Window:AddTab({ Title = "Showcase", Icon = "home" })
-local Section = Tab:AddSection("All Elements")
-
--- Button
-Section:AddButton({
+MainSection:AddButton({
     Title = "Test Button",
     Description = "Click me!",
     Callback = function()
@@ -106,7 +109,7 @@ Section:AddButton({
 })
 
 -- Toggle
-Section:AddToggle("TestToggle", {
+MainSection:AddToggle("TestToggle", {
     Title = "Test Toggle",
     Description = "Toggle me!",
     Default = false,
@@ -116,7 +119,7 @@ Section:AddToggle("TestToggle", {
 })
 
 -- Slider
-Section:AddSlider("TestSlider", {
+MainSection:AddSlider("TestSlider", {
     Title = "Test Slider",
     Description = "Slide me!",
     Default = 50,
@@ -129,7 +132,7 @@ Section:AddSlider("TestSlider", {
 })
 
 -- Dropdown
-Section:AddDropdown("TestDropdown", {
+MainSection:AddDropdown("TestDropdown", {
     Title = "Test Dropdown",
     Description = "Select an option!",
     Values = {"Option 1", "Option 2", "Option 3"},
@@ -141,7 +144,7 @@ Section:AddDropdown("TestDropdown", {
 })
 
 -- Multi-Dropdown
-Section:AddDropdown("TestMultiDropdown", {
+MainSection:AddDropdown("TestMultiDropdown", {
     Title = "Multi Dropdown",
     Description = "Select multiple!",
     Values = {"Item A", "Item B", "Item C", "Item D"},
@@ -153,7 +156,7 @@ Section:AddDropdown("TestMultiDropdown", {
 })
 
 -- Input/TextBox
-Section:AddInput("TestInput", {
+MainSection:AddInput("TestInput", {
     Title = "Test Input",
     Description = "Type something!",
     Default = "Hello World",
@@ -165,7 +168,7 @@ Section:AddInput("TestInput", {
 })
 
 -- Numeric Input
-Section:AddInput("TestNumericInput", {
+MainSection:AddInput("TestNumericInput", {
     Title = "Numeric Input",
     Description = "Numbers only!",
     Default = "123",
@@ -176,32 +179,12 @@ Section:AddInput("TestNumericInput", {
     end
 })
 
--- Color Picker
-Section:AddColorpicker("TestColorpicker", {
-    Title = "Test Color Picker",
-    Description = "Pick a color!",
-    Default = Color3.fromRGB(255, 255, 255),
-    Transparency = 0,
-    Callback = function(Value, Transparency)
-        print("Color:", Value, "Transparency:", Transparency)
-    end
-})
+SaveManager:SetLibrary(Library)
+InterfaceManager:SetLibrary(Library)
+SaveManager:SetFolder("MyScript/Configs")
+InterfaceManager:SetFolder("MyScript/Interface")
 
--- Keybind
-Section:AddKeybind("TestKeybind", {
-    Title = "Test Keybind",
-    Description = "Press a key!",
-    Default = "E",
-    Mode = "Toggle", -- "Toggle", "Hold", "Always"
-    Callback = function(Value, Mode)
-        print("Keybind:", Value, "Mode:", Mode)
-    end
-})
+SaveManager:BuildConfigSection(SettingsTab)
+InterfaceManager:BuildInterfaceSection(SettingsTab)
 
--- Paragraph/Label
-Section:AddParagraph({
-    Title = "Information",
-    Content = "This is a paragraph element that displays text information to users. It's useful for instructions or descriptions."
-})
-
-print("🎉 Showcase loaded! Try all the elements above!")
+SaveManager:LoadAutoloadConfig()
