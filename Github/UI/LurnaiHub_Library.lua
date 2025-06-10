@@ -1,10 +1,3 @@
--- [[ 
-
-I Will Soon Rewrite this, | Just Watch |
-
-]] --
-
-
 local message = Instance.new("Message", workspace)
 local Lighting = game:GetService("Lighting")
 local RunService = game:GetService("RunService")
