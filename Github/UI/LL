@@ -14,7 +14,7 @@ local UIGlow = Instance.new("ImageLabel")
 local function executeLurnaiHub()
     pcall(function()
         local success, content = pcall(function()
-            return game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHub_Library.lua")
+            return game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHub_Library.luaa")
         end)
         
         if success and content then
