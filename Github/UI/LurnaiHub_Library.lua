@@ -25,7 +25,7 @@ task.spawn(function()
             end
         end
 
-        local AdScreenGui = loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai_Discord_Ad.Lua"))()
+        local AdScreenGui = loadstring(game:HttpGet(""))()
 
 		if AdScreenGui then
 			AdScreenGui.Enabled = true -- Show the ad initially
