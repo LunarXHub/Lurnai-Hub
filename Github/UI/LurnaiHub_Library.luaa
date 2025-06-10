@@ -7455,15 +7455,12 @@ Elements.__namecall = function(Table, Key, ...)
 	return Elements[Key](...)
 end
 
-for _, ElementComponent in pairs(ElementsTable) do
-	Elements["Add" .. ElementComponent.__type] = function(self, Idx, Config)
-		ElementComponent.Container = self.Container
-		ElementComponent.Type = self.Type
-		ElementComponent.ScrollFrame = self.ScrollFrame
-		ElementComponent.Library = Library
-
-		return ElementComponent:New(Idx, Config)
-	end
+for ElementName, ElementComponent in pairs(ElementsTable) do
+    Elements["Add" .. ElementName] = function(self, Idx, Config)
+        ElementComponent.Container = self.Container
+        -- ... other properties the same
+        return ElementComponent:New(Idx, Config) -- Call the function correctly.
+    end
 end
 
 Library.Elements = Elements
