@@ -1,3 +1,5 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Execution")
+
 local ScreenGui = Instance.new("ScreenGui")
 local AdFrame = Instance.new("Frame")
 local DiscordLabel = Instance.new("TextLabel")
