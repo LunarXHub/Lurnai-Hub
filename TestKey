@@ -1,5 +1,7 @@
 local LibraryURL = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/LurnaiHub_Library.lua"
 local Library, SaveManager, InterfaceManager = loadstring(game:HttpGet(LibraryURL))()
+print("Library loaded:", Library ~= nil)
+print("Available themes:", table.concat(Library.Themes, ", "))
 
 local WindowTitle = "Lurnai Hub | Grow A Garden"
 local WindowSubTitle = "By Havoc"
