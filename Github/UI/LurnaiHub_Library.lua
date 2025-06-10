@@ -1,4 +1,3 @@
-local message = Instance.new("Message", workspace)
 local Lighting = game:GetService("Lighting")
 local RunService = game:GetService("RunService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
@@ -18,34 +17,14 @@ LocalPlayer.Idled:connect(function()
 end)
 
 task.spawn(function()
-    pcall(function()
-        if game.PlaceId == 3623096087 then
-            if game.Workspace:FindFirstChild("RobloxForwardPortals") then
-                game.Workspace.RobloxForwardPortals:Destroy()
-            end
-        end
-
-        local AdScreenGui = loadstring(game:HttpGet(""))()
-
-		if AdScreenGui then
-			AdScreenGui.Enabled = true -- Show the ad initially
-			
-			-- Wait for 7 seconds
-			wait(7)
-
-			-- Get the Lurnai Hub ScreenGui (Library.GUI) from your main script
-			local LurnaiHubScreenGui = Library.GUI  -- Access it directly from Library
-
-			if LurnaiHubScreenGui then
-				LurnaiHubScreenGui.Enabled = true -- Show the Lurnai Hub GUI after 7 seconds
-			else
-				warn("Lurnai Hub ScreenGui not found. Ensure 'Library.GUI' is set up correctly.")
+	pcall(function()
+		if game.PlaceId == 3623096087 then
+			if game.Workspace:FindFirstChild("RobloxForwardPortals") then
+				game.Workspace.RobloxForwardPortals:Destroy()
 			end
-			
-			AdScreenGui:Destroy() -- Now remove or disable the ad GUI
 		end
-
-    end)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Main/main/Library/GUI_ADS.lua"))()
+	end)
 end)
 
 local ProtectGui = protectgui or (syn and syn.protect_gui) or function(f) end
