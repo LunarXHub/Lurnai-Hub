@@ -1,4 +1,4 @@
---[[local message = Instance.new("Message", workspace)
+local message = Instance.new("Message", workspace)
 local Lighting = game:GetService("Lighting")
 local RunService = game:GetService("RunService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
