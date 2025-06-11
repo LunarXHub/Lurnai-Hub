@@ -1,0 +1,782 @@
+local Library = loadstring(game:HttpGetAsync("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau"))()
+local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
+local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
+
+if getgenv().SimpleSpyExecuted and type(getgenv().SimpleSpyShutdown) == "function" then
+    getgenv().SimpleSpyShutdown()
+end
+
+local realconfigs = {
+    logcheckcaller = false,
+    autoblock = false,
+    funcEnabled = true,
+    advancedinfo = false,
+    supersecretdevtoggle = false
+}
+
+local configs = newproxy(true)
+local configsmetatable = getmetatable(configs)
+
+configsmetatable.__index = function(self, index)
+    return realconfigs[index]
+end
+
+local logs = {}
+local selected = nil
+local blacklist = {}
+local blocklist = {}
+local remoteLogs = {}
+local connections = {}
+local DecompiledScripts = {}
+local generation = {}
+local running_threads = {}
+local history = {}
+local excluding = {}
+local mouseInGui = false
+local layoutOrderNum = 999999999
+local mainClosing = false
+local closed = false
+local sideClosing = false
+local sideClosed = false
+local maximized = false
+local toggle = false
+local prevTables = {}
+local getNil = false
+local topstr = ""
+local bottomstr = ""
+local getnilrequired = false
+
+local OldDebugId = game.GetDebugId
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local TextService = game:GetService("TextService")
+local http = game:GetService("HttpService")
+
+local Window = Library:CreateWindow{
+    Title = "SimpleSpy V3",
+    SubTitle = "by exx#9394 & 78n",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(830, 525),
+    Resize = true,
+    MinSize = Vector2.new(470, 380),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.RightControl
+}
+
+local Tabs = {
+    Main = Window:CreateTab{
+        Title = "Main",
+        Icon = "phosphor-code-bold"
+    },
+    Remote = Window:CreateTab{
+        Title = "Remote Details",
+        Icon = "phosphor-file-text-bold"
+    },
+    Settings = Window:CreateTab{
+        Title = "Settings",
+        Icon = "settings"
+    }
+}
+
+local Options = Library.Options
+local logListItems = {}
+
+local function logthread(thread)
+    table.insert(running_threads, thread)
+end
+
+local function formatstr(s, indentation)
+    if not indentation then indentation = 0 end
+    if #s > (getgenv().SimpleSpyMaxStringSize or 10000) then
+        s = string.sub(s, 0, getgenv().SimpleSpyMaxStringSize or 10000)
+        return '"' .. s .. '"', true
+    end
+    return '"' .. s .. '"', false
+end
+
+local function v2s(v, l, p, n, vtv, i, pt, path, tables, tI)
+    if type(v) == "string" then
+        return formatstr(v, l)
+    elseif type(v) == "table" then
+        if not tables then tables = {} end
+        if not path then path = "" end
+        if not l then l = 0 tables = {} end
+        if not p then p = v end
+
+        for _, existing in next, tables do
+            if existing == v then
+                return "{} --"
+            end
+        end
+
+        table.insert(tables, v)
+        local s = "{"
+        local size = 0
+        l = l + 4
+
+        for key, value in next, v do
+            size = size + 1
+            if size > (getgenv().SimpleSpyMaxTableSize or 1000) then
+                s = s .. "\n" .. string.rep(" ", l) .. "-- MAXIMUM TABLE SIZE REACHED"
+                break
+            end
+
+            s = s .. "\n" .. string.rep(" ", l) .. "[" .. (type(key) == "string" and '"' .. key .. '"' or tostring(key)) .. "] = "
+
+            if type(value) == "table" then
+                s = s .. v2s(value, l, v, n, vtv, key, v, path, tables)
+            else
+                s = s .. tostring(value)
+            end
+            s = s .. ","
+        end
+
+        if size > 0 then
+            s = s:sub(1, #s - 1) .. "\n" .. string.rep(" ", l - 4)
+        end
+        return s .. "}"
+    else
+        return tostring(v)
+    end
+end
+
+local function genScript(remote, args)
+    local gen = ""
+    if #args > 0 then
+        gen = "local args = " .. v2s(args) .. "\n\n"
+
+        if remote:IsA("RemoteEvent") then
+            gen = gen .. remote:GetFullName() .. ":FireServer(unpack(args))"
+        elseif remote:IsA("RemoteFunction") then
+            gen = gen .. remote:GetFullName() .. ":InvokeServer(unpack(args))"
+        end
+    else
+        if remote:IsA("RemoteEvent") then
+            gen = remote:GetFullName() .. ":FireServer()"
+        elseif remote:IsA("RemoteFunction") then
+            gen = remote:GetFullName() .. ":InvokeServer()"
+        end
+    end
+    return gen
+end
+
+local function newRemote(type, data)
+    if layoutOrderNum < 1 then layoutOrderNum = 999999999 end
+
+    local remote = data.remote
+    local logData = {
+        Name = remote.Name,
+        Function = data.infofunc or "--Function Info is disabled",
+        Remote = remote,
+        DebugId = data.id,
+        metamethod = data.metamethod,
+        args = data.args,
+        Blocked = data.blocked,
+        Source = data.callingscript,
+        returnvalue = data.returnvalue,
+        GenScript = "-- Generating, please wait...\n-- (If this message persists, the remote args are likely extremely long)"
+    }
+
+    table.insert(logs, logData)
+
+    task.spawn(function()
+        logData.GenScript = genScript(remote, logData.args)
+        if data.blocked then
+            logData.GenScript = "-- THIS REMOTE WAS PREVENTED FROM FIRING TO THE SERVER BY SIMPLESPY\n\n" .. logData.GenScript
+        end
+    end)
+
+    local remoteType = type == "event" and "RemoteEvent" or "RemoteFunction"
+    local remoteItem = {
+        Name = remote.Name,
+        Type = remoteType,
+        Path = remote:GetFullName(),
+        Data = logData,
+        LayoutOrder = layoutOrderNum
+    }
+
+    table.insert(logListItems, 1, remoteItem)
+    layoutOrderNum -= 1
+
+    if #logListItems > (getgenv().SIMPLESPYCONFIG_MaxRemotes or 300) then
+        table.remove(logListItems, #logListItems)
+    end
+
+    refreshRemoteList()
+end
+
+local function refreshRemoteList()
+    local items = {}
+    for i, item in ipairs(logListItems) do
+        local color = item.Type == "RemoteEvent" and Color3.fromRGB(255, 242, 0) or Color3.fromRGB(99, 86, 245)
+        items[i] = {
+            Text = item.Name,
+            Description = item.Type,
+            Color = color,
+            Data = item.Data
+        }
+    end
+
+    if Options.RemotesList then
+        Options.RemotesList:SetValues(items)
+    end
+end
+
+local RemotesList = Tabs.Main:CreateDropdown("RemotesList", {
+    Title = "Remote Logs",
+    Description = "Select a remote to view details",
+    Values = {},
+    Multi = false,
+    Callback = function(selectedItem)
+        if not selectedItem or not selectedItem.Data then return end
+
+        selected = selectedItem.Data
+
+        if Options.CodeBox then
+            Options.CodeBox:SetValue(selected.GenScript)
+        end
+
+        local infoText = string.format(
+            "Name: %s\nClass: %s\nPath: %s\n",
+            selected.Remote.Name,
+            selected.Remote.ClassName,
+            selected.Remote:GetFullName()
+        )
+
+        if selected.Function and selected.Function ~= "--Function Info is disabled" then
+            infoText = infoText .. "\nCalling Function: " .. tostring(selected.Function)
+        end
+
+        if selected.Source then
+            infoText = infoText .. "\nSource: " .. tostring(selected.Source:GetFullName())
+        end
+
+        if Options.RemoteInfo then
+            Options.RemoteInfo:SetValue(infoText)
+        end
+
+        if Options.ArgsBox then
+            Options.ArgsBox:SetValue(v2s(selected.args))
+        end
+    end
+})
+
+local CodeBox = Tabs.Remote:CreateInput("CodeBox", {
+    Title = "Generated Script",
+    MultiLine = true,
+    Placeholder = "Select a remote to view its code",
+    Size = UDim2.new(0, 200, 0, 200)
+})
+
+local RemoteInfo = Tabs.Remote:CreateParagraph("RemoteInfo", {
+    Title = "Remote Information",
+    Content = "Select a remote from the list to view its details"
+})
+
+local ArgsBox = Tabs.Remote:CreateInput("ArgsBox", {
+    Title = "Arguments",
+    MultiLine = true,
+    Placeholder = "Remote arguments will appear here",
+    Size = UDim2.new(0, 200, 0, 150)
+})
+
+Tabs.Remote:CreateButton({
+    Title = "Copy Code",
+    Description = "Copy the generated script to clipboard",
+    Callback = function()
+        if selected and selected.GenScript then
+            setclipboard(selected.GenScript)
+            Library:Notify({
+                Title = "SimpleSpy",
+                Content = "Code copied to clipboard",
+                Duration = 3
+            })
+        end
+    end
+})
+
+Tabs.Remote:CreateButton({
+    Title = "Copy Remote Path",
+    Description = "Copy the remote's path to clipboard",
+    Callback = function()
+        if selected and selected.Remote then
+            setclipboard(selected.Remote:GetFullName())
+            Library:Notify({
+                Title = "SimpleSpy",
+                Content = "Remote path copied to clipboard",
+                Duration = 3
+            })
+        end
+    end
+})
+
+Tabs.Remote:CreateButton({
+    Title = "Execute Code",
+    Description = "Execute the generated script",
+    Callback = function()
+        if selected and selected.Remote then
+            Library:Notify({
+                Title = "SimpleSpy",
+                Content = "Executing...",
+                Duration = 3
+            })
+
+            xpcall(function()
+                local success, result
+                if selected.Remote:IsA("RemoteEvent") then
+                    success = selected.Remote:FireServer(unpack(selected.args))
+                    result = "Event fired successfully"
+                else
+                    result = selected.Remote:InvokeServer(unpack(selected.args))
+                    success = true
+                end
+
+                Library:Notify({
+                    Title = "SimpleSpy",
+                    Content = "Executed successfully: " .. tostring(result),
+                    Duration = 3
+                })
+            end, function(err)
+                Library:Notify({
+                    Title = "SimpleSpy",
+                    Content = "Execution failed: " .. tostring(err),
+                    Duration = 5
+                })
+            end)
+        end
+    end
+})
+
+if decompile then
+    Tabs.Remote:CreateButton({
+        Title = "Decompile Source",
+        Description = "Attempt to decompile the source script",
+        Callback = function()
+            if selected and selected.Source then
+                local Source = selected.Source
+
+                if not DecompiledScripts[Source] then
+                    Library:Notify({
+                        Title = "SimpleSpy",
+                        Content = "Decompiling...",
+                        Duration = 3
+                    })
+
+                    xpcall(function()
+                        local decompiledsource = decompile(Source):gsub("-- Decompiled with the Synapse X Luau decompiler.", "")
+                        DecompiledScripts[Source] = "local script = " .. Source:GetFullName() .. "\n" .. decompiledsource
+                    end, function(err)
+                        Library:Notify({
+                            Title = "SimpleSpy",
+                            Content = "Decompile failed: " .. tostring(err),
+                            Duration = 5
+                        })
+                    end)
+                end
+
+                if DecompiledScripts[Source] then
+                    Options.CodeBox:SetValue(DecompiledScripts[Source])
+                end
+            else
+                Library:Notify({
+                    Title = "SimpleSpy",
+                    Content = "Source script not found",
+                    Duration = 3
+                })
+            end
+        end
+    })
+end
+
+Tabs.Settings:CreateToggle("EnableFuncInfo", {
+    Title = "Function Info",
+    Description = "Enable/disable function information (may cause lag in some games)",
+    Default = realconfigs.funcEnabled,
+    Callback = function(Value)
+        realconfigs.funcEnabled = Value
+    end
+})
+
+Tabs.Settings:CreateToggle("AutoBlock", {
+    Title = "Auto Block",
+    Description = "[BETA] Intelligently detect and exclude spammy remote calls",
+    Default = realconfigs.autoblock,
+    Callback = function(Value)
+        realconfigs.autoblock = Value
+        history = {}
+        excluding = {}
+    end
+})
+
+Tabs.Settings:CreateToggle("LogCheckCaller", {
+    Title = "Log Check Caller",
+    Description = "Log remotes fired by the client",
+    Default = realconfigs.logcheckcaller,
+    Callback = function(Value)
+        realconfigs.logcheckcaller = Value
+    end
+})
+
+Tabs.Settings:CreateToggle("AdvancedInfo", {
+    Title = "Advanced Info",
+    Description = "Display more detailed remote information",
+    Default = realconfigs.advancedinfo,
+    Callback = function(Value)
+        realconfigs.advancedinfo = Value
+    end
+})
+
+Tabs.Settings:CreateButton({
+    Title = "Clear Logs",
+    Description = "Clear all remote logs",
+    Callback = function()
+        logs = {}
+        logListItems = {}
+        selected = nil
+        refreshRemoteList()
+
+        if Options.CodeBox then
+            Options.CodeBox:SetValue("")
+        end
+
+        if Options.RemoteInfo then
+            Options.RemoteInfo:SetValue("Select a remote from the list to view its details")
+        end
+
+        if Options.ArgsBox then
+            Options.ArgsBox:SetValue("")
+        end
+
+        Library:Notify({
+            Title = "SimpleSpy",
+            Content = "Logs cleared",
+            Duration = 3
+        })
+    end
+})
+
+Tabs.Settings:CreateButton({
+    Title = "Clear Blacklist",
+    Description = "Clear the remote blacklist",
+    Callback = function()
+        blacklist = {}
+        Library:Notify({
+            Title = "SimpleSpy",
+            Content = "Blacklist cleared",
+            Duration = 3
+        })
+    end
+})
+
+Tabs.Settings:CreateButton({
+    Title = "Clear Blocklist",
+    Description = "Clear the remote blocklist",
+    Callback = function()
+        blocklist = {}
+        Library:Notify({
+            Title = "SimpleSpy",
+            Content = "Blocklist cleared",
+            Duration = 3
+        })
+    end
+})
+
+Tabs.Settings:CreateButton({
+    Title = "Join Discord",
+    Description = "Join the SimpleSpy Discord server",
+    Callback = function()
+        setclipboard("https://discord.com/invite/AWS6ez9")
+        Library:Notify({
+            Title = "SimpleSpy",
+            Content = "Copied invite to your clipboard",
+            Duration = 3
+        })
+
+        if request then
+            request({
+                Url = 'http://127.0.0.1:6463/rpc?v=1',
+                Method = 'POST',
+                Headers = {
+                    ['Content-Type'] = 'application/json',
+                    Origin = 'https://discord.com'
+                },
+                Body = http:JSONEncode({
+                    cmd = 'INVITE_BROWSER',
+                    nonce = http:GenerateGUID(false),
+                    args = {code = 'AWS6ez9'}
+                })
+            })
+        end
+    end
+})
+
+local oth = syn and syn.oth
+local unhook = oth and oth.unhook
+local hook = oth and oth.hook
+
+local synv3 = false
+if syn and identifyexecutor then
+    local _, version = identifyexecutor()
+    if (version and version:sub(1, 2) == 'v3') then
+        synv3 = true
+    end
+end
+
+local function remoteHandler(data)
+    if realconfigs.autoblock then
+        local id = data.id
+
+        if excluding[id] then
+            return
+        end
+
+        if not history[id] then
+            history[id] = {badOccurances = 0, lastCall = tick()}
+        end
+
+        if tick() - history[id].lastCall < 1 then
+            history[id].badOccurances += 1
+            return
+        else
+            history[id].badOccurances = 0
+        end
+
+        if history[id].badOccurances > 3 then
+            excluding[id] = true
+            return
+        end
+
+        history[id].lastCall = tick()
+    end
+
+    if data.remote:IsA("RemoteEvent") and string.lower(data.method) == "fireserver" then
+        newRemote("event", data)
+    elseif data.remote:IsA("RemoteFunction") and string.lower(data.method) == "invokeserver" then
+        newRemote("function", data)
+    end
+end
+
+local hookEnabled = false
+local originalnamecall
+local originalEvent 
+local originalFunction
+
+local function toggleSpy()
+    if not hookEnabled then
+        Library:Notify({
+            Title = "SimpleSpy",
+            Content = "Enabling remote spy...",
+            Duration = 3
+        })
+
+        local newnamecall = newcclosure(function(...)
+            local method = getnamecallmethod()
+
+            if method and (method == "FireServer" or method == "fireServer" or method == "InvokeServer" or method == "invokeServer") then
+                local remote = ...
+
+                if typeof(remote) == 'Instance' and (remote:IsA("RemoteEvent") or remote:IsA("RemoteFunction")) then    
+                    if not realconfigs.logcheckcaller and checkcaller() then 
+                        return originalnamecall(...)
+                    end
+
+                    local id = remote:GetDebugId()
+                    local blockcheck = blacklist[id] or blacklist[remote.Name]
+                    local args = {select(2, ...)}
+
+                    if not (blacklist[id] or blacklist[remote.Name]) then
+                        local data = {
+                            method = method,
+                            remote = remote,
+                            args = args,
+                            metamethod = "__namecall",
+                            blockcheck = blockcheck,
+                            id = id,
+                            returnvalue = {}
+                        }
+
+                        if realconfigs.funcEnabled then
+                            data.infofunc = debug.info(2, "f")
+                            data.callingscript = getcallingscript()
+                        end
+
+                        task.spawn(remoteHandler, data)
+                    end
+
+                    if blockcheck then 
+                        return 
+                    end
+                end
+            end
+
+            return originalnamecall(...)
+        end)
+
+        if synv3 then
+            originalnamecall = hook(getrawmetatable(game).__namecall, newnamecall)
+            originalEvent = hook(Instance.new("RemoteEvent").FireServer, newnamecall)
+            originalFunction = hook(Instance.new("RemoteFunction").InvokeServer, newnamecall)
+        else
+            if hookmetamethod then
+                originalnamecall = hookmetamethod(game, "__namecall", newnamecall)
+            else
+                originalnamecall = hookfunction(getrawmetatable(game).__namecall, newnamecall)
+            end
+
+            originalEvent = hookfunction(Instance.new("RemoteEvent").FireServer, newnamecall)
+            originalFunction = hookfunction(Instance.new("RemoteFunction").InvokeServer, newnamecall)
+        end
+
+        hookEnabled = true
+    else
+        Library:Notify({
+            Title = "SimpleSpy",
+            Content = "Disabling remote spy...",
+            Duration = 3
+        })
+
+        if synv3 then
+            unhook(getrawmetatable(game).__namecall, originalnamecall)
+            unhook(Instance.new("RemoteEvent").FireServer, originalEvent)
+            unhook(Instance.new("RemoteFunction").InvokeServer, originalFunction)
+        else
+            if hookmetamethod then
+                hookmetamethod(game, "__namecall", originalnamecall)
+            else
+                hookfunction(getrawmetatable(game).__namecall, originalnamecall)
+            end
+
+            hookfunction(Instance.new("RemoteEvent").FireServer, originalEvent)
+            hookfunction(Instance.new("RemoteFunction").InvokeServer, originalFunction)
+        end
+
+        hookEnabled = false
+    }
+end
+
+Tabs.Main:CreateToggle("SpyToggle", {
+    Title = "Remote Spy",
+    Description = "Toggle the remote spy on/off",
+    Default = false,
+    Callback = function(value)
+        toggleSpy()
+    }
+})
+
+Tabs.Main:CreateButton({
+    Title = "Block Selected Remote",
+    Description = "Prevent the selected remote from firing",
+    Callback = function()
+        if selected and selected.Remote then
+            blocklist[selected.Remote:GetDebugId()] = true
+            Library:Notify({
+                Title = "SimpleSpy",
+                Content = "Remote blocked: " .. selected.Remote.Name,
+                Duration = 3
+            })
+        end
+    end
+})
+
+Tabs.Main:CreateButton({
+    Title = "Block All With Same Name",
+    Description = "Block all remotes with the same name as the selected one",
+    Callback = function()
+        if selected and selected.Remote then
+            blocklist[selected.Remote.Name] = true
+            Library:Notify({
+                Title = "SimpleSpy",
+                Content = "All remotes named '" .. selected.Remote.Name .. "' blocked",
+                Duration = 3
+            })
+        end
+    end
+})
+
+Tabs.Main:CreateButton({
+    Title = "Ignore Selected Remote",
+    Description = "Ignore the selected remote in logs",
+    Callback = function()
+        if selected and selected.Remote then
+            blacklist[selected.Remote:GetDebugId()] = true
+            Library:Notify({
+                Title = "SimpleSpy",
+                Content = "Remote ignored: " .. selected.Remote.Name,
+                Duration = 3
+            })
+        end
+    end
+})
+
+Tabs.Main:CreateButton({
+    Title = "Ignore All With Same Name",
+    Description = "Ignore all remotes with the same name in logs",
+    Callback = function()
+        if selected and selected.Remote then
+            blacklist[selected.Remote.Name] = true
+            Library:Notify({
+                Title = "SimpleSpy",
+                Content = "All remotes named '" .. selected.Remote.Name .. "' ignored",
+                Duration = 3
+            })
+        end
+    end
+})
+
+local function shutdown()
+    Library:Notify({
+        Title = "SimpleSpy",
+        Content = "Shutting down...",
+        Duration = 3
+    })
+
+    for _, connection in pairs(connections) do
+        if typeof(connection) == "RBXScriptConnection" then
+            connection:Disconnect()
+        end
+    end
+
+    for _, thread in pairs(running_threads) do
+        if coroutine.status(thread) ~= "dead" then
+            coroutine.close(thread)
+        end
+    end
+
+    table.clear(connections)
+    table.clear(logs)
+    table.clear(remoteLogs)
+    table.clear(running_threads)
+
+    if hookEnabled then
+        toggleSpy()
+    end
+
+    Library:Destroy()
+
+    getgenv().SimpleSpyExecuted = false
+}
+
+getgenv().SimpleSpyShutdown = shutdown
+
+SaveManager:SetLibrary(Library)
+InterfaceManager:SetLibrary(Library)
+SaveManager:IgnoreThemeSettings()
+InterfaceManager:SetFolder("SimpleSpy")
+SaveManager:SetFolder("SimpleSpy")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+Window:SelectTab(1)
+
+Library:Notify({
+    Title = "SimpleSpy V3",
+    Content = "SimpleSpy has been loaded!",
+    Duration = 5
+})
+
+getgenv().SimpleSpyExecuted = true
+SaveManager:LoadAutoloadConfig()
