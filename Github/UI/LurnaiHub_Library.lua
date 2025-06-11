@@ -131,10 +131,10 @@ Gay = {
     SubText = Color3.fromRGB(160, 180, 210),
     Hover = Color3.fromRGB(255, 0, 0),
     HoverChange = 0.08,
-},
+}
 
--- Rainbow color cycle using task.spawn
-task.spawn(function()
+-- Rainbow color cycle
+coroutine.wrap(function()
     local rainbowColors = {
         Color3.fromRGB(255, 0, 0),   -- Red
         Color3.fromRGB(255, 127, 0), -- Orange
@@ -165,15 +165,19 @@ task.spawn(function()
         LurnaiHub.DialogInputLine = currentColor
         LurnaiHub.Hover = currentColor
         
+        -- Apply the theme changes
+        Creator.UpdateTheme()
+        
         -- Move to next color
         colorIndex = colorIndex + 1
         if colorIndex > #rainbowColors then
             colorIndex = 1
         end
         
-        task.wait(0.5) -- Change color every 0.5 seconds
+        wait(0.5) -- Change color every 0.5 seconds
     end
-end)
+end)()
+
 
     
     -- Theme 2: Red
