@@ -88,99 +88,93 @@ local Themes = {
 
 Gay = {
     Name = "Gay",
-    Accent = function() 
-        local hue = (tick() * 0.5) % 1
-        return Color3.fromHSV(hue, 1, 1)
-    end,
+    Accent = Color3.fromRGB(255, 0, 0), -- Start with red
     AcrylicMain = Color3.fromRGB(15, 20, 30),
-    AcrylicBorder = function()
-        local hue = (tick() * 0.3) % 1
-        return Color3.fromHSV(hue, 0.8, 0.4)
-    end,
-    AcrylicGradient = function()
-        local hue1 = (tick() * 0.4) % 1
-        local hue2 = ((tick() * 0.4) + 0.5) % 1
-        return ColorSequence.new(Color3.fromHSV(hue1, 0.7, 0.3), Color3.fromHSV(hue2, 0.7, 0.2))
-    end,
+    AcrylicBorder = Color3.fromRGB(30, 40, 60),
+    AcrylicGradient = ColorSequence.new(Color3.fromRGB(20, 30, 45), Color3.fromRGB(10, 15, 25)),
     AcrylicNoise = 0.8,
     
-    TitleBarLine = function()
-        local hue = (tick() * 0.6) % 1
-        return Color3.fromHSV(hue, 0.9, 0.8)
-    end,
-    Tab = function()
-        local hue = (tick() * 0.7) % 1
-        return Color3.fromHSV(hue, 1, 0.9)
-    end,
+    TitleBarLine = Color3.fromRGB(255, 0, 0),
+    Tab = Color3.fromRGB(255, 0, 0),
     
-    Element = function()
-        local hue = (tick() * 0.5) % 1
-        return Color3.fromHSV(hue, 0.9, 0.8)
-    end,
+    Element = Color3.fromRGB(255, 0, 0),
     ElementBorder = Color3.fromRGB(40, 50, 70),
     InElementBorder = Color3.fromRGB(60, 80, 110),
     ElementTransparency = 0.75,
     
-    ToggleSlider = function()
-        local hue = (tick() * 0.8) % 1
-        return Color3.fromHSV(hue, 1, 1)
-    end,
+    ToggleSlider = Color3.fromRGB(255, 0, 0),
     ToggleToggled = Color3.fromRGB(255, 255, 255),
     
-    SliderRail = function()
-        local hue = (tick() * 0.4) % 1
-        return Color3.fromHSV(hue, 0.6, 0.7)
-    end,
+    SliderRail = Color3.fromRGB(120, 140, 180),
     
     DropdownFrame = Color3.fromRGB(20, 25, 40),
     DropdownHolder = Color3.fromRGB(35, 45, 65),
-    DropdownBorder = function()
-        local hue = (tick() * 0.6) % 1
-        return Color3.fromHSV(hue, 1, 0.8)
-    end,
-    DropdownOption = function()
-        local hue = (tick() * 0.9) % 1
-        return Color3.fromHSV(hue, 1, 1)
-    end,
+    DropdownBorder = Color3.fromRGB(255, 0, 0),
+    DropdownOption = Color3.fromRGB(255, 0, 0),
     
-    Keybind = function()
-        local hue = (tick() * 0.5) % 1
-        return Color3.fromHSV(hue, 0.8, 0.7)
-    end,
+    Keybind = Color3.fromRGB(255, 0, 0),
     
     Input = Color3.fromRGB(150, 170, 200),
     InputFocused = Color3.fromRGB(0, 0, 0),
-    InputIndicator = function()
-        local hue = (tick() * 1.2) % 1
-        return Color3.fromHSV(hue, 1, 1)
-    end,
+    InputIndicator = Color3.fromRGB(255, 0, 0),
     
     Dialog = Color3.fromRGB(20, 25, 40),
     DialogHolder = Color3.fromRGB(30, 40, 60),
-    DialogHolderLine = function()
-        local hue = (tick() * 0.7) % 1
-        return Color3.fromHSV(hue, 1, 0.8)
-    end,
+    DialogHolderLine = Color3.fromRGB(255, 0, 0),
     DialogButton = Color3.fromRGB(20, 25, 40),
-    DialogButtonBorder = function()
-        local hue = (tick() * 0.8) % 1
-        return Color3.fromHSV(hue, 1, 1)
-    end,
+    DialogButtonBorder = Color3.fromRGB(255, 0, 0),
     DialogBorder = Color3.fromRGB(50, 70, 100),
     DialogInput = Color3.fromRGB(25, 35, 50),
-    DialogInputLine = function()
-        local hue = (tick() * 1.0) % 1
-        return Color3.fromHSV(hue, 1, 1)
-    end,
+    DialogInputLine = Color3.fromRGB(255, 0, 0),
     
     Text = Color3.fromRGB(255, 255, 255),
     SubText = Color3.fromRGB(160, 180, 210),
-    Hover = function()
-        local hue = (tick() * 1.5) % 1
-        return Color3.fromHSV(hue, 1, 1)
-    end,
+    Hover = Color3.fromRGB(255, 0, 0),
     HoverChange = 0.08,
 },
+
+-- Rainbow color cycle
+spawn(function()
+    local rainbowColors = {
+        Color3.fromRGB(255, 0, 0),   -- Red
+        Color3.fromRGB(255, 127, 0), -- Orange
+        Color3.fromRGB(255, 255, 0), -- Yellow
+        Color3.fromRGB(0, 255, 0),   -- Green
+        Color3.fromRGB(0, 0, 255),   -- Blue
+        Color3.fromRGB(75, 0, 130),  -- Indigo
+        Color3.fromRGB(148, 0, 211)  -- Violet
+    }
+    
+    local colorIndex = 1
+    
+    while true do
+        local currentColor = rainbowColors[colorIndex]
+        
+        -- Update all the accent colors
+        LurnaiHub.Accent = currentColor
+        LurnaiHub.TitleBarLine = currentColor
+        LurnaiHub.Tab = currentColor
+        LurnaiHub.Element = currentColor
+        LurnaiHub.ToggleSlider = currentColor
+        LurnaiHub.DropdownBorder = currentColor
+        LurnaiHub.DropdownOption = currentColor
+        LurnaiHub.Keybind = currentColor
+        LurnaiHub.InputIndicator = currentColor
+        LurnaiHub.DialogHolderLine = currentColor
+        LurnaiHub.DialogButtonBorder = currentColor
+        LurnaiHub.DialogInputLine = currentColor
+        LurnaiHub.Hover = currentColor
+        
+        -- Move to next color
+        colorIndex = colorIndex + 1
+        if colorIndex > #rainbowColors then
+            colorIndex = 1
+        end
+        
+        wait(0.5) -- Change color every 0.5 seconds
+    end
+end)
+
     
     -- Theme 2: Red
     Red = {
