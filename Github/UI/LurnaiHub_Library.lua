@@ -95,22 +95,22 @@ Gay = {
     AcrylicNoise = 0.8,
     
     TitleBarLine = Color3.fromRGB(255, 127, 0), -- HI
-    Tab = Color3.fromRGB(255, 255, 0), -- HI
+    Tab = Color3.fromRGB(255, 23, 49), -- HI
     
-    Element = Color3.fromRGB(0, 255, 0), -- HI
-    ElementBorder = Color3.fromRGB(40, 50, 70),
+    Element = Color3.fromRGB(2, 255, 0), -- HI
+    ElementBorder = Color3.fromRGB(50, 50, 70),
     InElementBorder = Color3.fromRGB(60, 80, 110),
     ElementTransparency = 0.75,
     
-    ToggleSlider = Color3.fromRGB(0, 255, 255), -- HI
+    ToggleSlider = Color3.fromRGB(0, 222, 255), -- HI
     ToggleToggled = Color3.fromRGB(255, 255, 255),
     
     SliderRail = Color3.fromRGB(120, 140, 180),
     
-    DropdownFrame = Color3.fromRGB(20, 25, 40),
-    DropdownHolder = Color3.fromRGB(35, 45, 65),
-    DropdownBorder = Color3.fromRGB(0, 0, 255), -- HI
-    DropdownOption = Color3.fromRGB(148, 0, 211), -- HI
+    DropdownFrame = Color3.fromRGB(20, 231, 40),
+    DropdownHolder = Color3.fromRGB(35, 35, 65),
+    DropdownBorder = Color3.fromRGB(0, 4, 255), -- HI
+    DropdownOption = Color3.fromRGB(148, 19, 211), -- HI
     
     Keybind = Color3.fromRGB(255, 20, 147), -- HI
     
@@ -127,7 +127,7 @@ Gay = {
     DialogInput = Color3.fromRGB(25, 35, 50),
     DialogInputLine = Color3.fromRGB(138, 43, 226),
     
-    Text = Color3.fromRGB(255, 255, 255),
+    Text = Color3.fromRGB(255, 115, 255),
     SubText = Color3.fromRGB(160, 180, 210),
     Hover = Color3.fromRGB(255, 215, 0),
     HoverChange = 0.08,
