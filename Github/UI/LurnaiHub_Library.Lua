@@ -88,97 +88,50 @@ local Themes = {
 
 Gay = {
     Name = "Gay",
-    Accent = Color3.fromRGB(255, 0, 0), -- Start with red
+    Accent = Color3.fromRGB(255, 0, 128), -- HI
     AcrylicMain = Color3.fromRGB(15, 20, 30),
     AcrylicBorder = Color3.fromRGB(30, 40, 60),
     AcrylicGradient = ColorSequence.new(Color3.fromRGB(20, 30, 45), Color3.fromRGB(10, 15, 25)),
     AcrylicNoise = 0.8,
     
-    TitleBarLine = Color3.fromRGB(255, 0, 0),
-    Tab = Color3.fromRGB(255, 0, 0),
+    TitleBarLine = Color3.fromRGB(255, 127, 0), -- HI
+    Tab = Color3.fromRGB(255, 255, 0), -- HI
     
-    Element = Color3.fromRGB(255, 0, 0),
+    Element = Color3.fromRGB(0, 255, 0), -- HI
     ElementBorder = Color3.fromRGB(40, 50, 70),
     InElementBorder = Color3.fromRGB(60, 80, 110),
     ElementTransparency = 0.75,
     
-    ToggleSlider = Color3.fromRGB(255, 0, 0),
+    ToggleSlider = Color3.fromRGB(0, 255, 255), -- HI
     ToggleToggled = Color3.fromRGB(255, 255, 255),
     
     SliderRail = Color3.fromRGB(120, 140, 180),
     
     DropdownFrame = Color3.fromRGB(20, 25, 40),
     DropdownHolder = Color3.fromRGB(35, 45, 65),
-    DropdownBorder = Color3.fromRGB(255, 0, 0),
-    DropdownOption = Color3.fromRGB(255, 0, 0),
+    DropdownBorder = Color3.fromRGB(0, 0, 255), -- HI
+    DropdownOption = Color3.fromRGB(148, 0, 211), -- HI
     
-    Keybind = Color3.fromRGB(255, 0, 0),
+    Keybind = Color3.fromRGB(255, 20, 147), -- HI
     
     Input = Color3.fromRGB(150, 170, 200),
     InputFocused = Color3.fromRGB(0, 0, 0),
-    InputIndicator = Color3.fromRGB(255, 0, 0),
+    InputIndicator = Color3.fromRGB(255, 105, 180), -- HI
     
     Dialog = Color3.fromRGB(20, 25, 40),
     DialogHolder = Color3.fromRGB(30, 40, 60),
-    DialogHolderLine = Color3.fromRGB(255, 0, 0),
+    DialogHolderLine = Color3.fromRGB(50, 205, 50), -- HI
     DialogButton = Color3.fromRGB(20, 25, 40),
-    DialogButtonBorder = Color3.fromRGB(255, 0, 0),
+    DialogButtonBorder = Color3.fromRGB(255, 69, 0), -- HI
     DialogBorder = Color3.fromRGB(50, 70, 100),
     DialogInput = Color3.fromRGB(25, 35, 50),
-    DialogInputLine = Color3.fromRGB(255, 0, 0),
+    DialogInputLine = Color3.fromRGB(138, 43, 226),
     
     Text = Color3.fromRGB(255, 255, 255),
     SubText = Color3.fromRGB(160, 180, 210),
-    Hover = Color3.fromRGB(255, 0, 0),
+    Hover = Color3.fromRGB(255, 215, 0),
     HoverChange = 0.08,
-}
-
--- Rainbow color cycle
-coroutine.wrap(function()
-    local rainbowColors = {
-        Color3.fromRGB(255, 0, 0),   -- Red
-        Color3.fromRGB(255, 127, 0), -- Orange
-        Color3.fromRGB(255, 255, 0), -- Yellow
-        Color3.fromRGB(0, 255, 0),   -- Green
-        Color3.fromRGB(0, 0, 255),   -- Blue
-        Color3.fromRGB(75, 0, 130),  -- Indigo
-        Color3.fromRGB(148, 0, 211)  -- Violet
-    }
-    
-    local colorIndex = 1
-    
-    while true do
-        local currentColor = rainbowColors[colorIndex]
-        
-        -- Update all the accent colors
-        LurnaiHub.Accent = currentColor
-        LurnaiHub.TitleBarLine = currentColor
-        LurnaiHub.Tab = currentColor
-        LurnaiHub.Element = currentColor
-        LurnaiHub.ToggleSlider = currentColor
-        LurnaiHub.DropdownBorder = currentColor
-        LurnaiHub.DropdownOption = currentColor
-        LurnaiHub.Keybind = currentColor
-        LurnaiHub.InputIndicator = currentColor
-        LurnaiHub.DialogHolderLine = currentColor
-        LurnaiHub.DialogButtonBorder = currentColor
-        LurnaiHub.DialogInputLine = currentColor
-        LurnaiHub.Hover = currentColor
-        
-        -- Apply the theme changes
-        Creator.UpdateTheme()
-        
-        -- Move to next color
-        colorIndex = colorIndex + 1
-        if colorIndex > #rainbowColors then
-            colorIndex = 1
-        end
-        
-        wait(0.5) -- Change color every 0.5 seconds
-    end
-end)()
-
-
+},
     
     -- Theme 2: Red
     Red = {
