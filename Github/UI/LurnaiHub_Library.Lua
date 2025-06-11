@@ -31,7 +31,7 @@ local ProtectGui = protectgui or (syn and syn.protect_gui) or function(f) end
 
 local Themes = {
     Names = {
-        "LurnaiHub", "Red", "Green", "Blue", "Purple", "Orange", "Pink", "Teal", "Yellow", "Lime",
+        "LurnaiHub", "Gay", "Red", "Green", "Blue", "Purple", "Orange", "Pink", "Teal", "Yellow", "Lime",
         "Amber", "Aqua", "Azure", "Blurple", "Brown", "Burgundy", "Coral", "Crimson", "Cyan", "DarkBlue",
         "DarkGreen", "DarkOrange", "DarkPurple", "DarkRed", "Gold", "Gray", "HotPink", "Indigo", "Jade", "Lavender",
         "LightBlue", "LightGreen", "Magenta", "Maroon", "Mint", "Navy", "Olive", "Peach", "Plum", "Rose",
@@ -85,6 +85,102 @@ local Themes = {
         Hover = Color3.fromRGB(0, 140, 255),
         HoverChange = 0.08,
     },
+
+Gay = {
+    Name = "Gay",
+    Accent = function() 
+        local hue = (tick() * 0.5) % 1
+        return Color3.fromHSV(hue, 1, 1)
+    end,
+    AcrylicMain = Color3.fromRGB(15, 20, 30),
+    AcrylicBorder = function()
+        local hue = (tick() * 0.3) % 1
+        return Color3.fromHSV(hue, 0.8, 0.4)
+    end,
+    AcrylicGradient = function()
+        local hue1 = (tick() * 0.4) % 1
+        local hue2 = ((tick() * 0.4) + 0.5) % 1
+        return ColorSequence.new(Color3.fromHSV(hue1, 0.7, 0.3), Color3.fromHSV(hue2, 0.7, 0.2))
+    end,
+    AcrylicNoise = 0.8,
+    
+    TitleBarLine = function()
+        local hue = (tick() * 0.6) % 1
+        return Color3.fromHSV(hue, 0.9, 0.8)
+    end,
+    Tab = function()
+        local hue = (tick() * 0.7) % 1
+        return Color3.fromHSV(hue, 1, 0.9)
+    end,
+    
+    Element = function()
+        local hue = (tick() * 0.5) % 1
+        return Color3.fromHSV(hue, 0.9, 0.8)
+    end,
+    ElementBorder = Color3.fromRGB(40, 50, 70),
+    InElementBorder = Color3.fromRGB(60, 80, 110),
+    ElementTransparency = 0.75,
+    
+    ToggleSlider = function()
+        local hue = (tick() * 0.8) % 1
+        return Color3.fromHSV(hue, 1, 1)
+    end,
+    ToggleToggled = Color3.fromRGB(255, 255, 255),
+    
+    SliderRail = function()
+        local hue = (tick() * 0.4) % 1
+        return Color3.fromHSV(hue, 0.6, 0.7)
+    end,
+    
+    DropdownFrame = Color3.fromRGB(20, 25, 40),
+    DropdownHolder = Color3.fromRGB(35, 45, 65),
+    DropdownBorder = function()
+        local hue = (tick() * 0.6) % 1
+        return Color3.fromHSV(hue, 1, 0.8)
+    end,
+    DropdownOption = function()
+        local hue = (tick() * 0.9) % 1
+        return Color3.fromHSV(hue, 1, 1)
+    end,
+    
+    Keybind = function()
+        local hue = (tick() * 0.5) % 1
+        return Color3.fromHSV(hue, 0.8, 0.7)
+    end,
+    
+    Input = Color3.fromRGB(150, 170, 200),
+    InputFocused = Color3.fromRGB(0, 0, 0),
+    InputIndicator = function()
+        local hue = (tick() * 1.2) % 1
+        return Color3.fromHSV(hue, 1, 1)
+    end,
+    
+    Dialog = Color3.fromRGB(20, 25, 40),
+    DialogHolder = Color3.fromRGB(30, 40, 60),
+    DialogHolderLine = function()
+        local hue = (tick() * 0.7) % 1
+        return Color3.fromHSV(hue, 1, 0.8)
+    end,
+    DialogButton = Color3.fromRGB(20, 25, 40),
+    DialogButtonBorder = function()
+        local hue = (tick() * 0.8) % 1
+        return Color3.fromHSV(hue, 1, 1)
+    end,
+    DialogBorder = Color3.fromRGB(50, 70, 100),
+    DialogInput = Color3.fromRGB(25, 35, 50),
+    DialogInputLine = function()
+        local hue = (tick() * 1.0) % 1
+        return Color3.fromHSV(hue, 1, 1)
+    end,
+    
+    Text = Color3.fromRGB(255, 255, 255),
+    SubText = Color3.fromRGB(160, 180, 210),
+    Hover = function()
+        local hue = (tick() * 1.5) % 1
+        return Color3.fromHSV(hue, 1, 1)
+    end,
+    HoverChange = 0.08,
+},
     
     -- Theme 2: Red
     Red = {
