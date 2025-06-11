@@ -133,8 +133,8 @@ Gay = {
     HoverChange = 0.08,
 },
 
--- Rainbow color cycle
-spawn(function()
+-- Rainbow color cycle using task.spawn
+task.spawn(function()
     local rainbowColors = {
         Color3.fromRGB(255, 0, 0),   -- Red
         Color3.fromRGB(255, 127, 0), -- Orange
@@ -171,7 +171,7 @@ spawn(function()
             colorIndex = 1
         end
         
-        wait(0.5) -- Change color every 0.5 seconds
+        task.wait(0.5) -- Change color every 0.5 seconds
     end
 end)
 
