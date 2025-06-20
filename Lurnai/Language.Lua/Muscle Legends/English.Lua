@@ -220,5 +220,10 @@ return {
     ["Thanks for Supporting me :D"] = "Thanks for Supporting me :D",
     ["Script Info"] = "Script Info",
     ["Lurnai Hub"] = "Lurnai Hub",
-    ["Welcome To Lurnai Hub"] = "Welcome To Lurnai Hub"
+    ["Welcome To Lurnai Hub"] = "Welcome To Lurnai Hub",
+    ["Transparent"] = "Transparent",
+    ["Toggle UI transparency."] = "Toggle UI transparency.",
+    ["Acrylic UI"] = "Enable Windows-like blurry UI acrylic",
+    ["Theme"] = "Theme",
+    ["Pick the UI theme."] = "Pick the UI theme."
 }
