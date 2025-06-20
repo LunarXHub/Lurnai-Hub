@@ -221,4 +221,10 @@ return {
     ["Script Info"] = "Info Script",
     ["Lurnai Hub"] = "Lurnai Hub",
     ["Welcome To Lurnai Hub"] = "Benvenuto in Lurnai Hub"
+    ["Transparent"] = "Trasparente",
+    ["Toggle UI transparency."] = "Attiva/disattiva la trasparenza dell'interfaccia.",
+    ["Acrylic UI"] = "UI acrilica",
+    ["Enable Windows-like blurry UI acrylic"] = "Abilita effetto acrilico sfocato come Windows",
+    ["Theme"] = "Tema",
+    ["Pick the UI theme."] = "Scegli il tema dell'interfaccia."
 }
