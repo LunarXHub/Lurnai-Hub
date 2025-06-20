@@ -220,7 +220,7 @@ return {
     ["Thanks for Supporting me :D"] = "サポートありがとう :D",
     ["Script Info"] = "スクリプト情報",
     ["Lurnai Hub"] = "Lurnai Hub",
-    ["Welcome To Lurnai Hub"] = "Lurnai Hubへようこそ"
+    ["Welcome To Lurnai Hub"] = "Lurnai Hubへようこそ",
     ["Transparent"] = "透明",
     ["Toggle UI transparency."] = "UIの透明度を切り替える",
     ["Acrylic UI"] = "アクリルUI",
