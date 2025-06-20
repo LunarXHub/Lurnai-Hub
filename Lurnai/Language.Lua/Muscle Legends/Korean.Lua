@@ -220,7 +220,7 @@ return {
     ["Thanks for Supporting me :D"] = "지원해 주셔서 감사합니다 :D",
     ["Script Info"] = "스크립트 정보",
     ["Lurnai Hub"] = "Lurnai 허브",
-    ["Welcome To Lurnai Hub"] = "Lurnai 허브에 오신 것을 환영합니다"
+    ["Welcome To Lurnai Hub"] = "Lurnai 허브에 오신 것을 환영합니다",
     ["Transparent"] = "투명",
     ["Toggle UI transparency."] = "UI 투명도를 토글합니다.",
     ["Acrylic UI"] = "아크릴 UI",
