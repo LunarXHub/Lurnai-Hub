@@ -221,4 +221,10 @@ return {
     ["Script Info"] = "스크립트 정보",
     ["Lurnai Hub"] = "Lurnai 허브",
     ["Welcome To Lurnai Hub"] = "Lurnai 허브에 오신 것을 환영합니다"
+    ["Transparent"] = "투명",
+    ["Toggle UI transparency."] = "UI 투명도를 토글합니다.",
+    ["Acrylic UI"] = "아크릴 UI",
+    ["Enable Windows-like blurry UI acrylic"] = "Windows 스타일의 블러 아크릴 UI 활성화",
+    ["Theme"] = "테마",
+    ["Pick the UI theme."] = "UI 테마를 선택하세요.",
 }
