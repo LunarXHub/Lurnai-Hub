@@ -220,7 +220,7 @@ return {
     ["Thanks for Supporting me :D"] = "Grazie per Supportarmi :D",
     ["Script Info"] = "Info Script",
     ["Lurnai Hub"] = "Lurnai Hub",
-    ["Welcome To Lurnai Hub"] = "Benvenuto in Lurnai Hub"
+    ["Welcome To Lurnai Hub"] = "Benvenuto in Lurnai Hub",
     ["Transparent"] = "Trasparente",
     ["Toggle UI transparency."] = "Attiva/disattiva la trasparenza dell'interfaccia.",
     ["Acrylic UI"] = "UI acrilica",
