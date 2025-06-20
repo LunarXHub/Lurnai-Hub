@@ -223,5 +223,11 @@ return {
     ["Thanks for Supporting me :D"] = "ขอบคุณสำหรับการสนับสนุนฉัน :D",
     ["Version Info"] = "ข้อมูลเวอร์ชัน",
     ["Script Info"] = "ข้อมูลสคริปต์",
-    ["Welcome To Lurnai Free Version :D"] = "ยินดีต้อนรับสู่ Lurnai เวอร์ชันฟรี :D"
+    ["Welcome To Lurnai Free Version :D"] = "ยินดีต้อนรับสู่ Lurnai เวอร์ชันฟรี :D",
+    ["Transparent"] = "โปร่งใส",
+    ["Toggle UI transparency."] = "สลับความโปร่งใสของ UI",
+    ["Acrylic UI"] = "UI แบบอะคริลิค",
+    ["Enable Windows-like blurry UI acrylic"] = "เปิดใช้งาน UI อะคริลิคแบบเบลอเหมือน Windows",
+    ["Theme"] = "ธีม",
+    ["Pick the UI theme."] = "เลือกธีม UI"
 }
