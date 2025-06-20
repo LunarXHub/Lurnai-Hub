@@ -220,5 +220,11 @@ return {
     ["Thanks for Supporting me :D"] = "Merci de Me Soutenir :D",
     ["Script Info"] = "Infos du Script",
     ["Lurnai Hub"] = "Lurnai Hub",
-    ["Welcome To Lurnai Hub"] = "Bienvenue sur Lurnai Hub"
+    ["Welcome To Lurnai Hub"] = "Bienvenue sur Lurnai Hub",
+    ["Transparent"] = "Transparent",
+    ["Toggle UI transparency."] = "Activer/désactiver la transparence de l'interface.",
+    ["Acrylic UI"] = "Interface acrylique",
+    ["Enable Windows-like blurry UI acrylic"] = "Activer l'effet acrylique flou façon Windows",
+    ["Theme"] = "Thème",
+    ["Pick the UI theme."] = "Choisissez le thème de l'interface."
 }
