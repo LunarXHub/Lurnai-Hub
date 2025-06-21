@@ -46,6 +46,23 @@ do
 	end
 end
 
+LocalPlayer.Idled:connect(function()
+    VirtualUser:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+    wait(1)
+    VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+end)
+
+task.spawn(function()
+	pcall(function()
+		if game.PlaceId == 3623096087 then
+			if game.Workspace:FindFirstChild("RobloxForwardPortals") then
+				game.Workspace.RobloxForwardPortals:Destroy()
+			end
+		end
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Lurnai_Roblox_Ad.lua"))()
+	end)
+end)
+
 local imgui = Instance.new("ScreenGui")
 imgui.Name = "imgui"
 imgui.Parent = getUniversalGuiParent()
