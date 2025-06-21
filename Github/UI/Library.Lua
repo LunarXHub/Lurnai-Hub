@@ -2547,6 +2547,80 @@ local Library = {
 	MinimizeKey = Enum.KeyCode.LeftControl,
 }
 
+
+do 
+	local GUI = game:GetService("CoreGui"):FindFirstChild("OpenClose")
+	if GUI then 
+		GUI:Destroy()
+	end
+
+	local GUI1 = game:GetService("CoreGui"):FindFirstChild("Lurnai_ScreenGui")
+	if GUI1 then 
+		GUI1:Destroy()
+	end
+end
+
+local function CloseOpen()
+	local UIStroke = Instance.new("UIStroke")
+	local UICorner = Instance.new("UICorner")
+
+	local ScreenGui = Instance.new("ScreenGui")
+	local Close_ImageButton = Instance.new("ImageButton")
+
+	do
+		ProtectGui(ScreenGui)
+	end
+
+	ScreenGui.Name = "OpenClose"
+	ScreenGui.Parent = RunService:IsStudio() and LocalPlayer.PlayerGui or (gethui() or cloneref(game:GetService("CoreGui")) or game:GetService("CoreGui"))
+	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Close_ImageButton.Parent = ScreenGui
+	Close_ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Close_ImageButton.BorderColor3 = Color3.fromRGB(255, 0, 0)
+	Close_ImageButton.Position = UDim2.new(0.1021, 0, 0.0743, 0)
+	Close_ImageButton.Size = UDim2.new(0, 59, 0, 49)
+	Close_ImageButton.Image = "rbxassetid://129069615357738"
+	Close_ImageButton.Visible = false
+
+	UICorner.Name = "MainCorner"
+	UICorner.CornerRadius = UDim.new(0, 9)
+	UICorner.Parent = Close_ImageButton
+
+	local dragging = false
+	local dragStart = nil
+	local startPos = nil
+
+	local function update(input)
+		local delta = input.Position - dragStart
+		Close_ImageButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+
+	Close_ImageButton.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			dragStart = input.Position
+			startPos = Close_ImageButton.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	Close_ImageButton.InputChanged:Connect(function(input)
+		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+			update(input)
+		end
+	end)
+
+	return Close_ImageButton
+end
+
+local Close_ImageButton = CloseOpen()
+
 local function isMotor(value)
 	local motorType = tostring(value):match("^Motor%((.+)%)$")
 
