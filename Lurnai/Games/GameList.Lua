@@ -17,7 +17,7 @@ You may use this script **only for personal, non-commercial purposes.**
 Modification, redistribution, or claiming authorship of this script is **strictly prohibited** without explicit permission from the creator (LURNAI).
 ]]--
 
-local url = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Button.lua"
+local url = "https://raw.githubusercontent.com/HVX-Havoc/Lurnai-Hub/refs/heads/main/Github/UI/Button.Lua"
 local success, scriptCode = pcall(function()
     return game:HttpGet(url)
 end)
