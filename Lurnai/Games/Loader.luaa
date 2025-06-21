@@ -1,0 +1,13 @@
+local key = Enum.KeyCode.RightControl
+local vk = 0xA3
+if firekeydown then
+    firekeydown(key)
+elseif firekey then
+    firekey(key)
+elseif keypress then
+    keypress(vk)
+elseif Input then
+    Input.SendKeyEvent(true, key, false, game)
+elseif keyevent then
+    keyevent(vk)
+end
