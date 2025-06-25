@@ -2195,7 +2195,7 @@ Components.Tab = (function()
 		Tab.Container = Tab.ContainerFrame
 		Tab.ScrollFrame = Tab.Container
 
-		function Tab:AddSection(SectionTitle, SectionIcon)
+		function Tab:LurnaiSection(SectionTitle, SectionIcon)
 			local Section = { Type = "Section" }
 
 			local Icon = SectionIcon
@@ -6306,10 +6306,10 @@ local SaveManager = {} do
 	function SaveManager:BuildConfigSection(tab)
 		assert(self.Library, "Must set SaveManager.Library")
 
-		local section = tab:AddSection("Configuration", "settings")
+		local section = tab:LurnaiSection("Configuration", "settings")
 
-		section:AddInput("SaveManager_ConfigName",    { Title = "Config name" })
-		section:AddDropdown("SaveManager_ConfigList", { Title = "Config list", Values = self:RefreshConfigList(), AllowNull = true })
+		section:LurnaiInput("SaveManager_ConfigName",    { Title = "Config name" })
+		section:LurnaiDropdown("SaveManager_ConfigList", { Title = "Config list", Values = self:RefreshConfigList(), AllowNull = true })
 
 		section:AddButton({
 			Title = "Create config",
