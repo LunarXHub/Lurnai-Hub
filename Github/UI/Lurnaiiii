@@ -3509,7 +3509,7 @@ Components.Window = (function()
 		end
 
 		local TabModule = Components.Tab:Init(Window)
-		function Window:AddTab(TabConfig)
+		function Window:LurnaiTab(TabConfig)
 			return TabModule:New(TabConfig.Title, TabConfig.Icon, Window.TabHolder)
 		end
 
