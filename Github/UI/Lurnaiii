@@ -6486,8 +6486,8 @@ local InterfaceManager = {} do
 
 		InterfaceManager:LoadSettings()
 
-		local section = tab:AddSection("Interface", "monitor")
-		local InterfaceTheme = section:AddDropdown("InterfaceTheme", {
+		local section = tab:LurnaiSection("Interface", "monitor")
+		local InterfaceTheme = section:LurnaiDropdown("InterfaceTheme", {
 			Title = "Theme",
 			Description = "Changes the interface theme.",
 			Values = Library.Themes,
@@ -6502,7 +6502,7 @@ local InterfaceManager = {} do
 		InterfaceTheme:SetValue(Settings.Theme)
 
 		if Library.UseAcrylic and not Mobile then
-			section:AddToggle("AcrylicToggle", {
+			section:LurnaiToggle("AcrylicToggle", {
 				Title = "Acrylic",
 				Description = "The blurred background requires graphic quality 8+",
 				Default = Settings.Acrylic,
@@ -6516,7 +6516,7 @@ local InterfaceManager = {} do
 			Settings.Acrylic = false
 		end
 
-		section:AddSlider("WindowTransparency", {
+		section:LurnaiSlider("WindowTransparency", {
 			Title = "Window Transparency",
 			Description = "Adjusts the window transparency.",
 			Default = 1,
@@ -6529,7 +6529,7 @@ local InterfaceManager = {} do
 		})
 
 
-		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = Library.MinimizeKey.Name or Settings.MenuKeybind })
+		local MenuKeybind = section:LurnaiKeybind("MenuKeybind", { Title = "Minimize Bind", Default = Library.MinimizeKey.Name or Settings.MenuKeybind })
 		MenuKeybind:OnChanged(function()
 			Settings.MenuKeybind = MenuKeybind.Value
 			InterfaceManager:SaveSettings()
