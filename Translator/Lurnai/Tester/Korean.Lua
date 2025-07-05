@@ -1,1 +1,25 @@
-
+return {
+    ["Lurnai Hub"] = "Lurnai 허브",
+    ["Discord Invite"] = "Discord 초대: Discord.gg/xH56eZ7jTG",
+    ["Main"] = "메인",
+    ["Main Section"] = "메인 섹션",
+    ["Dropdown Example"] = "드롭다운 예제",
+    ["Choose an option from the dropdown."] = "드롭다운에서 옵션을 선택하세요.",
+    ["Option 1"] = "옵션 1",
+    ["Option 2"] = "옵션 2",
+    ["Option 3"] = "옵션 3",
+    ["Red Button"] = "빨간 버튼",
+    ["This is a red button."] = "이것은 빨간 버튼입니다.",
+    ["Toggle Example"] = "토글 예제",
+    ["Enable or disable this feature."] = "이 기능을 활성화하거나 비활성화하세요.",
+    ["Input Example"] = "입력 예제",
+    ["Enter some text."] = "텍스트를 입력하세요.",
+    ["Default Text"] = "기본 텍스트",
+    ["Slider Example"] = "슬라이더 예제",
+    ["Adjust the value with the slider."] = "슬라이더로 값을 조정하세요.",
+    ["Section Seperator"] = "섹션 구분자",
+    ["Paragraph Header"] = "문단 제목",
+    ["Instructional Paragraph"] = "이것은 텍스트 단락입니다. 사용자에게 지시 사항이나 정보를 표시하는 데 사용할 수 있습니다. 텍스트는 공간에 맞게 자동 줄 바꿈됩니다.",
+    ["Lurnai Hub loaded successfully!"] = "Lurnai 허브가 성공적으로 로드되었습니다!",
+    ["Select Language"] = "언어 선택"
+}
