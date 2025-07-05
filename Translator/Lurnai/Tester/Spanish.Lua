@@ -1,1 +1,25 @@
-
+return {
+    ["Lurnai Hub"] = "Lurnai Hub",
+    ["Discord Invite"] = "Invitación de Discord: Discord.gg/xH56eZ7jTG",
+    ["Main"] = "Principal",
+    ["Main Section"] = "Sección Principal",
+    ["Dropdown Example"] = "Ejemplo de Desplegable",
+    ["Choose an option from the dropdown."] = "Elige una opción del menú desplegable.",
+    ["Option 1"] = "Opción 1",
+    ["Option 2"] = "Opción 2",
+    ["Option 3"] = "Opción 3",
+    ["Red Button"] = "Botón Rojo",
+    ["This is a red button."] = "Este es un botón rojo.",
+    ["Toggle Example"] = "Ejemplo de Conmutador",
+    ["Enable or disable this feature."] = "Activa o desactiva esta función.",
+    ["Input Example"] = "Ejemplo de Entrada",
+    ["Enter some text."] = "Introduce un texto.",
+    ["Default Text"] = "Texto Predeterminado",
+    ["Slider Example"] = "Ejemplo de Control Deslizante",
+    ["Adjust the value with the slider."] = "Ajusta el valor con el control deslizante.",
+    ["Section Seperator"] = "Separador de Sección",
+    ["Paragraph Header"] = "Encabezado de Párrafo",
+    ["Instructional Paragraph"] = "Este es un párrafo de texto. Puede utilizarse para mostrar instrucciones o información al usuario. El texto se ajustará automáticamente al espacio.",
+    ["Lurnai Hub loaded successfully!"] = "¡Lurnai Hub cargado con éxito!",
+    ["Select Language"] = "Seleccionar Idioma"
+}
