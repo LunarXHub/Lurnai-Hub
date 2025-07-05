@@ -1,1 +1,25 @@
-
+return {
+    ["Lurnai Hub"] = "Lurnai ฮับ",
+    ["Discord Invite"] = "เชิญ Discord: Discord.gg/xH56eZ7jTG",
+    ["Main"] = "หลัก",
+    ["Main Section"] = "ส่วนหลัก",
+    ["Dropdown Example"] = "ตัวอย่างดรอปดาวน์",
+    ["Choose an option from the dropdown."] = "เลือกหนึ่งตัวเลือกจากดรอปดาวน์",
+    ["Option 1"] = "ตัวเลือก 1",
+    ["Option 2"] = "ตัวเลือก 2",
+    ["Option 3"] = "ตัวเลือก 3",
+    ["Red Button"] = "ปุ่มสีแดง",
+    ["This is a red button."] = "นี่คือปุ่มสีแดง",
+    ["Toggle Example"] = "ตัวอย่างสลับ",
+    ["Enable or disable this feature."] = "เปิดหรือปิดการใช้งานคุณสมบัตินี้",
+    ["Input Example"] = "ตัวอย่างการใส่ข้อมูล",
+    ["Enter some text."] = "กรอกข้อความ",
+    ["Default Text"] = "ข้อความเริ่มต้น",
+    ["Slider Example"] = "ตัวอย่างสไลเดอร์",
+    ["Adjust the value with the slider."] = "ปรับค่าด้วยสไลเดอร์",
+    ["Section Seperator"] = "ตัวแบ่งส่วน",
+    ["Paragraph Header"] = "ส่วนหัวของย่อหน้า",
+    ["Instructional Paragraph"] = "นี่คือย่อหน้าของข้อความ สามารถใช้สำหรับแสดงคำแนะนำหรือข้อมูลให้กับผู้ใช้ ข้อความจะตัดบรรทัดอัตโนมัติตามพื้นที่",
+    ["Lurnai Hub loaded successfully!"] = "Lurnai ฮับ โหลดเสร็จสมบูรณ์!",
+    ["Select Language"] = "เลือกภาษา"
+}
