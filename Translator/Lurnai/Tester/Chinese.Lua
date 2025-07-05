@@ -1,1 +1,25 @@
 
+return {
+    ["Lurnai Hub"] = "Lurnai Hub",
+    ["Discord Invite"] = "Discord.gg/xH56eZ7jTG",
+    ["Main"] = "Main",
+    ["Main Section"] = "Main Section",
+    ["Dropdown Example"] = "Dropdown Example",
+    ["Choose an option from the dropdown."] = "Choose an option from the dropdown.",
+    ["Option 1"] = "Option 1",
+    ["Option 2"] = "Option 2",
+    ["Option 3"] = "Option 3",
+    ["Red Button"] = "Red Button",
+    ["This is a red button."] = "This is a red button.",
+    ["Toggle Example"] = "Toggle Example",
+    ["Enable or disable this feature."] = "Enable or disable this feature.",
+    ["Input Example"] = "Input Example",
+    ["Enter some text."] = "Enter some text.",
+    ["Default Text"] = "Default Text",
+    ["Slider Example"] = "Slider Example",
+    ["Adjust the value with the slider."] = "Adjust the value with the slider.",
+    ["Section Seperator"] = "Section Seperator",
+    ["Paragraph Header"] = "Paragraph Header",
+    ["Instructional Paragraph"] = "This is a paragraph of text. It can be used for displaying instructions or information to the user. The text will wrap automatically to fit the space.",
+    ["Lurnai Hub loaded successfully!"] = "Lurnai Hub loaded successfully!"
+}
