@@ -1,1 +1,25 @@
-
+return {
+    ["Lurnai Hub"] = "Lurnaiハブ",
+    ["Discord Invite"] = "Discord招待: Discord.gg/xH56eZ7jTG",
+    ["Main"] = "メイン",
+    ["Main Section"] = "メインセクション",
+    ["Dropdown Example"] = "ドロップダウン例",
+    ["Choose an option from the dropdown."] = "ドロップダウンからオプションを選択してください。",
+    ["Option 1"] = "オプション1",
+    ["Option 2"] = "オプション2",
+    ["Option 3"] = "オプション3",
+    ["Red Button"] = "赤いボタン",
+    ["This is a red button."] = "これは赤いボタンです。",
+    ["Toggle Example"] = "トグル例",
+    ["Enable or disable this feature."] = "この機能を有効または無効にします。",
+    ["Input Example"] = "入力例",
+    ["Enter some text."] = "テキストを入力してください。",
+    ["Default Text"] = "デフォルトテキスト",
+    ["Slider Example"] = "スライダー例",
+    ["Adjust the value with the slider."] = "スライダーで値を調節します。",
+    ["Section Seperator"] = "セクションセパレーター",
+    ["Paragraph Header"] = "段落ヘッダー",
+    ["Instructional Paragraph"] = "これはテキストの段落です。ユーザーに指示や情報を表示するために使用できます。テキストは自動的に折り返されます。",
+    ["Lurnai Hub loaded successfully!"] = "Lurnaiハブが正常にロードされました！",
+    ["Select Language"] = "言語を選択"
+}
