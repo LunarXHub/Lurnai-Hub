@@ -1,1 +1,26 @@
 
+return {
+    ["Lurnai Hub"] = "Lurnai Hub",
+    ["Discord Invite"] = "Приглашение Discord: Discord.gg/xH56eZ7jTG",
+    ["Main"] = "Главное",
+    ["Main Section"] = "Основная секция",
+    ["Dropdown Example"] = "Пример выпадающего списка",
+    ["Choose an option from the dropdown."] = "Выберите вариант из выпадающего списка.",
+    ["Option 1"] = "Вариант 1",
+    ["Option 2"] = "Вариант 2",
+    ["Option 3"] = "Вариант 3",
+    ["Red Button"] = "Красная кнопка",
+    ["This is a red button."] = "Это красная кнопка.",
+    ["Toggle Example"] = "Пример переключателя",
+    ["Enable or disable this feature."] = "Включите или отключите эту функцию.",
+    ["Input Example"] = "Пример ввода",
+    ["Enter some text."] = "Введите текст.",
+    ["Default Text"] = "Текст по умолчанию",
+    ["Slider Example"] = "Пример слайдера",
+    ["Adjust the value with the slider."] = "Отрегулируйте значение с помощью слайдера.",
+    ["Section Seperator"] = "Разделитель секции",
+    ["Paragraph Header"] = "Заголовок параграфа",
+    ["Instructional Paragraph"] = "Это абзац текста. Может быть использован для отображения инструкций или информации для пользователя. Текст автоматически переносится.",
+    ["Lurnai Hub loaded successfully!"] = "Lurnai Hub успешно загружен!",
+    ["Select Language"] = "Выбрать язык"
+}
