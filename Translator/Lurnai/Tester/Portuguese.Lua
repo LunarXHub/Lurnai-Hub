@@ -18,4 +18,8 @@ return {
     ["Slider Example"] = "Exemplo de Deslizante",
     ["Adjust the value with the slider."] = "Ajuste o valor com o controle deslizante.",
     ["Section Seperator"] = "Separador de Seção",
-    ["Paragraph Header"] = "Cabeç
+    ["Paragraph Header"] = "Cabeçalho do Parágrafo",
+    ["Instructional Paragraph"] = "Este é um parágrafo de texto. Pode ser usado para mostrar instruções ou informações ao usuário. O texto se ajustará automaticamente ao espaço.",
+    ["Lurnai Hub loaded successfully!"] = "Lurnai Hub carregado com sucesso!",
+    ["Select Language"] = "Selecionar Idioma"
+}
