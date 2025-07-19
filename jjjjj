@@ -1,0 +1,80 @@
+pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Anti-Kick/refs/heads/main/Anti-Kick.lua"))()
+end)
+print("[AntiKick] Loaded.")
+
+local orig_loadstring = loadstring or load
+
+function loadstring(code)
+    print("========== DEOBFUSCATED CODE START ==========")
+    print(code)
+    print("=========== DEOBFUSCATED CODE END ===========")
+
+    if code:find("discord.com/api/webhooks/") then
+        print("[ALERT][Payload] Discord webhook found IN payload!")
+    end
+    if code:find("http") then
+        print("[Info][Payload] HTTP(S) link found IN payload!")
+    end
+
+    return orig_loadstring(code)
+end
+if not load then load = loadstring end
+
+print("[Deobf] loadstring/load hook ready.")
+
+local seen_links = {}
+
+local function find_in_table(t)
+    for k, v in next, t do
+        if type(k) == "string" then
+            if k:find("discord.com/api/webhooks/") and not seen_links[k] then
+                print("[WEBHOOK][key]", k)
+                seen_links[k] = true
+            elseif k:find("http") and not seen_links[k] then
+                print("[LINK][key]", k)
+                seen_links[k] = true
+            end
+        end
+        if type(v) == "string" then
+            if v:find("discord.com/api/webhooks/") and not seen_links[v] then
+                print("[WEBHOOK][val]", v)
+                seen_links[v] = true
+            elseif v:find("http") and not seen_links[v] then
+                print("[LINK][val]", v)
+                seen_links[v] = true
+            end
+        end
+        if type(v) == "table" then
+            find_in_table(v)
+        end
+    end
+end
+
+spawn(function()
+    while true do
+        pcall(function()
+            for _, v in ipairs(getgc(true)) do
+                if type(v) == "string" then
+                    if v:find("discord.com/api/webhooks/") and not seen_links[v] then
+                        print("[WEBHOOK][gc]", v)
+                        seen_links[v] = true
+                    elseif v:find("http") and not seen_links[v] then
+                        print("[LINK][gc]", v)
+                        seen_links[v] = true
+                    end
+                elseif type(v) == "table" then
+                    find_in_table(v)
+                end
+            end
+        end)
+        wait(0.1)
+    end
+end)
+print("[Scanner] Webhook/link scanner running every 0.1s.")
+
+wait(0.5)
+print("[Executor] Running target obfuscated script...")
+pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/SenScriptCracker/RMPG-PRIVATE-SCRIPT/refs/heads/main/SLHBAYUT.lua"))()
+end)
