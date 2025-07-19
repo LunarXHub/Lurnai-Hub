@@ -3,7 +3,7 @@ local AntiKickLoaded = false
 local function LoadAntiKick()
     if not AntiKickLoaded then
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/AirExunys/main/AntiKick/main.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Anti-Kick/refs/heads/main/Anti-Kick.lua"))()
         end)
         AntiKickLoaded = true
         print("[AntiKick] Loaded.")
