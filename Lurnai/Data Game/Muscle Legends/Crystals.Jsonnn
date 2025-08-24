@@ -13,9 +13,33 @@
       "rarity": "Basic"
     },
     {
-      "chance": 25,
-      "image": "Question Mark",
-      "name": "Basic Aura",
+      "chance": 5,
+      "image": "Blue Aura",
+      "name": "Blue Aura",
+      "rarity": "Basic"
+    },
+    {
+      "chance": 5,
+      "image": "Green Aura",
+      "name": "Green Aura",
+      "rarity": "Basic"
+    },
+    {
+      "chance": 5,
+      "image": "Purple Aura",
+      "name": "Purple Aura",
+      "rarity": "Basic"
+    },
+    {
+      "chance": 5,
+      "image": "Red Aura",
+      "name": "Red Aura",
+      "rarity": "Basic"
+    },
+    {
+      "chance": 5,
+      "image": "Yellow Aura",
+      "name": "Yellow Aura",
       "rarity": "Basic"
     },
     {
@@ -45,9 +69,15 @@
       "rarity": "Basic"
     },
     {
-      "chance": 20,
-      "image": "Question Mark",
-      "name": "Advanced Aura",
+      "chance": 10,
+      "image": "Electro",
+      "name": "Electro",
+      "rarity": "Advanced"
+    },
+    {
+      "chance": 10,
+      "image": "Purple Nova",
+      "name": "Purple Nova",
       "rarity": "Advanced"
     },
     {
@@ -69,17 +99,47 @@
       "rarity": "Rare"
     },
     {
-      "chance": 15,
-      "image": "Question Mark",
-      "name": "Basic Aura",
+      "chance": 3,
+      "image": "Blue Aura",
+      "name": "Blue Aura",
+      "rarity": "Basic"
+    },
+    {
+      "chance": 3,
+      "image": "Green Aura",
+      "name": "Green Aura",
+      "rarity": "Basic"
+    },
+    {
+      "chance": 3,
+      "image": "Purple Aura",
+      "name": "Purple Aura",
+      "rarity": "Basic"
+    },
+    {
+      "chance": 3,
+      "image": "Red Aura",
+      "name": "Red Aura",
+      "rarity": "Basic"
+    },
+    {
+      "chance": 3,
+      "image": "Yellow Aura",
+      "name": "Yellow Aura",
       "rarity": "Basic"
     }
   ],
   "Frost Crystal": [
     {
-      "chance": 20,
-      "image": "Question Mark",
-      "name": "Advanced Aura",
+      "chance": 10,
+      "image": "Electro",
+      "name": "Electro",
+      "rarity": "Advanced"
+    },
+    {
+      "chance": 10,
+      "image": "Purple Nova",
+      "name": "Purple Nova",
       "rarity": "Advanced"
     },
     {
@@ -101,9 +161,39 @@
       "rarity": "Epic"
     },
     {
-      "chance": 15,
-      "image": "Question Mark",
-      "name": "Rare Aura",
+      "chance": 2.5,
+      "image": "Astral Electro",
+      "name": "Astral Electro",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 2.5,
+      "image": "Dark Electro",
+      "name": "Dark Electro",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 2.5,
+      "image": "Power Lightning",
+      "name": "Power Lightning",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 2.5,
+      "image": "Supernova",
+      "name": "Supernova",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 2.5,
+      "image": "Ultra Inferno",
+      "name": "Ultra Inferno",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 2.5,
+      "image": "Ultra Mirage",
+      "name": "Ultra Mirage",
       "rarity": "Rare"
     },
     {
@@ -115,15 +205,69 @@
   ],
   "Mythical Crystal": [
     {
-      "chance": 20,
-      "image": "Question Mark",
-      "name": "Rare Aura",
+      "chance": 3.33,
+      "image": "Astral Electro",
+      "name": "Astral Electro",
       "rarity": "Rare"
     },
     {
-      "chance": 15,
-      "image": "Question Mark",
-      "name": "Epic Aura",
+      "chance": 3.33,
+      "image": "Dark Electro",
+      "name": "Dark Electro",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 3.33,
+      "image": "Power Lightning",
+      "name": "Power Lightning",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 3.33,
+      "image": "Supernova",
+      "name": "Supernova",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 3.33,
+      "image": "Ultra Inferno",
+      "name": "Ultra Inferno",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 3.35,
+      "image": "Ultra Mirage",
+      "name": "Ultra Mirage",
+      "rarity": "Rare"
+    },
+    {
+      "chance": 3,
+      "image": "Azure Tundra",
+      "name": "Azure Tundra",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 3,
+      "image": "Enchanted Mirage",
+      "name": "Enchanted Mirage",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 3,
+      "image": "Grand Supernova",
+      "name": "Grand Supernova",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 3,
+      "image": "Lightning",
+      "name": "Lightning",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 3,
+      "image": "Unstable Mirage",
+      "name": "Unstable Mirage",
       "rarity": "Epic"
     },
     {
@@ -153,15 +297,69 @@
   ],
   "Inferno Crystal": [
     {
-      "chance": 25,
-      "image": "Question Mark",
-      "name": "Epic Aura",
+      "chance": 5,
+      "image": "Azure Tundra",
+      "name": "Azure Tundra",
       "rarity": "Epic"
     },
     {
       "chance": 5,
-      "image": "Question Mark",
-      "name": "Unique Aura",
+      "image": "Enchanted Mirage",
+      "name": "Enchanted Mirage",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 5,
+      "image": "Grand Supernova",
+      "name": "Grand Supernova",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 5,
+      "image": "Lightning",
+      "name": "Lightning",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 5,
+      "image": "Unstable Mirage",
+      "name": "Unstable Mirage",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 0.83,
+      "image": "Dark Lightning",
+      "name": "Dark Lightning",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 0.83,
+      "image": "Dark Storm",
+      "name": "Dark Storm",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 0.83,
+      "image": "Entropic Blast",
+      "name": "Entropic Blast",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 0.83,
+      "image": "Eternal Megastrike",
+      "name": "Eternal Megastrike",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 0.83,
+      "image": "Inferno",
+      "name": "Inferno",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 0.85,
+      "image": "Muscle King",
+      "name": "Muscle King",
       "rarity": "Unique"
     },
     {
@@ -191,15 +389,69 @@
   ],
   "Legends Crystal": [
     {
-      "chance": 25,
-      "image": "Question Mark",
-      "name": "Epic Aura",
+      "chance": 5,
+      "image": "Azure Tundra",
+      "name": "Azure Tundra",
       "rarity": "Epic"
     },
     {
-      "chance": 10,
-      "image": "Question Mark",
-      "name": "Unique Aura",
+      "chance": 5,
+      "image": "Enchanted Mirage",
+      "name": "Enchanted Mirage",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 5,
+      "image": "Grand Supernova",
+      "name": "Grand Supernova",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 5,
+      "image": "Lightning",
+      "name": "Lightning",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 5,
+      "image": "Unstable Mirage",
+      "name": "Unstable Mirage",
+      "rarity": "Epic"
+    },
+    {
+      "chance": 1.67,
+      "image": "Dark Lightning",
+      "name": "Dark Lightning",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 1.67,
+      "image": "Dark Storm",
+      "name": "Dark Storm",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 1.67,
+      "image": "Entropic Blast",
+      "name": "Entropic Blast",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 1.67,
+      "image": "Eternal Megastrike",
+      "name": "Eternal Megastrike",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 1.66,
+      "image": "Inferno",
+      "name": "Inferno",
+      "rarity": "Unique"
+    },
+    {
+      "chance": 1.66,
+      "image": "Muscle King",
+      "name": "Muscle King",
       "rarity": "Unique"
     },
     {
